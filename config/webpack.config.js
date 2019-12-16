@@ -138,10 +138,21 @@ module.exports = function(webpackEnv) {
   };
 
   return {
-    externals : {
-      react: 'react',
-      'react-dom': 'react-dom'
-    },
+    externals: {      
+      // Don't bundle react or react-dom      
+      react: {          
+          commonjs: "react",          
+          commonjs2: "react",          
+          amd: "React",          
+          root: "React"      
+      },      
+      "react-dom": {          
+          commonjs: "react-dom",          
+          commonjs2: "react-dom",          
+          amd: "ReactDOM",          
+          root: "ReactDOM"      
+      }  
+  } ,
     mode: isEnvProduction ? 'production' : isEnvDevelopment && 'development',
     // Stop compilation early in production
     bail: isEnvProduction,
@@ -172,6 +183,8 @@ module.exports = function(webpackEnv) {
       // changing JS code would still trigger a refresh.
     ].filter(Boolean),
     output: {
+      library: 'tamtam-components',      
+      libraryTarget: 'umd',  
       // The build folder.
       path: isEnvProduction ? paths.appBuild : undefined,
       // Add /* filename */ comments to generated require()s in the output.
