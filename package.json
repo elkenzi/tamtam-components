@@ -2,7 +2,7 @@
   "name": "tamtam-components",
   "version": "0.1.0",
   "private": true,
-  "main": "build/static/main.js",
+  "main": "build/static/js/main.js",
   "peerDependencies": {
     "react": "^16.12.0",
     "react-dom": "^16.12.0"
