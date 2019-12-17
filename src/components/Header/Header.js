@@ -25,7 +25,7 @@ function extractFirstLettre(arrayStr, length) {
     return result.toUpperCase();
 }
 
-export default class Header extends Component {
+export class Header extends Component {
 
     renderLoggedIn() {
         const {
