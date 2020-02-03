@@ -1,7 +1,12 @@
-import React, { Component } from "react";
+import React, { Component, createRef } from "react";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 import * as icons from "../Icons";
+import Communities from "./Communities";
+import Apps from "./Apps";
+import Notifs from "./Notifs";
+import MenuItem from "./MenuItem";
 import styles from "./Header.module.scss";
 
 // TODO move this
@@ -25,92 +30,198 @@ function extractFirstLettre(arrayStr, length) {
   return result.toUpperCase();
 }
 
+const I18N = {
+  en: {
+    signIn: "Login / Sign up",
+    logout: "Logout",
+    profile: "Profile"
+  },
+  fr: {
+    signIn: "Connexion / Inscription",
+    logout: "Se déconnecter",
+    profile: "Profil"
+  },
+  nl: {
+    signIn: "Aanmelden / Inschrijven",
+    logout: "Uitloggen",
+    profile: "Profiel"
+  }
+};
+
 export class Header extends Component {
+  state = {
+    showSettings: false
+  };
+
+  settingsRef = createRef();
+
+  componentDidMount() {
+    window.addEventListener("mousedown", this.handleClickOutside);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("mousedown", this.handleClickOutside);
+  }
+
+  handleClickOutside = ({ target }) => {
+    if (
+      this.settingsRef &&
+      this.settingsRef.current &&
+      this.settingsRef.current.contains(target)
+    ) {
+      this.setState(({ showSettings }) => ({ showSettings: !showSettings }));
+      return;
+    }
+
+    this.setState({ showSettings: false });
+  };
+
   renderLoggedIn() {
-    const { avatarUrl, firstName, lastName, profileUrl, eboxUrl } = this.props;
+    const {
+      profileUrl,
+      eboxUrl,
+      homeUrl,
+      apps,
+      communities,
+      currentCommunity,
+      onCommunityChange,
+      notifications,
+      user,
+      lng,
+      onLanguageChange,
+      onLogout
+    } = this.props;
+
+    const { avatarUrl, firstName, lastName, mainEmail } = user;
+    const languages = ["fr", "nl", "en"];
+
+    let avatarDiv = null;
+    if (avatarUrl) {
+      avatarDiv = (
+        <div
+          className={styles.menuImgWrap}
+          style={{ backgroundImage: `url(${avatarUrl})` }}
+        />
+      );
+    } else {
+      avatarDiv = (
+        <div className={`${styles.menuImgWrap} ${styles.emptyAvatar}`}>
+          <span>{getUserNameForAvatar(firstName, lastName)}</span>
+        </div>
+      );
+    }
 
     return (
       <>
-        <div style={{ display: "flex", marginLeft: "auto" }}>
-          <div className={styles.menuLink}>
-            <a href={profileUrl}>
-              <icons.Profile />
-            </a>
-          </div>
-          <div className={styles.menuLink}>
-            <a href={eboxUrl}>
-              <icons.Ebox />
-            </a>
-          </div>
-          <div className={`${styles.menuLink} ${styles.expandable}`}>
-            <span>
-              <icons.Notifs />
-            </span>
-          </div>
-          <div className={`${styles.dropdown} ${styles.notifsDropdown}`}>
-            <div className="flex-container social-links__header">
-              <div className="flex-container flex-dir-column infos">
-                <span>{firstName + " " + lastName}</span>
-              </div>
-            </div>
-          </div>
-          <div className={`${styles.menuLink} ${styles.expandable}`}>
-            <span>
-              <icons.Apps />
-            </span>
-          </div>
-          <div className={`${styles.dropdown} ${styles.appsDropdown}`}>
-            <div className="flex-container social-links__header">
-              <div className="flex-container flex-dir-column infos">
-                <span>{firstName + " " + lastName}</span>
-              </div>
-            </div>
-          </div>
-        </div>
+        <nav className="top-bar-left">
+          <ul className="menu">
+            {/* <Communities
+              communities={communities}
+              currentCommunity={currentCommunity}
+              onCommunityChange={onCommunityChange}
+              lng={lng}
+            /> */}
+          </ul>
+        </nav>
+        <div className={styles.headerRight}>
+          <ul className={`${styles.menu} ${styles.buttons}`}>
+            <MenuItem icon="Profile" href={`${profileUrl}`} />
+            <MenuItem
+              icon="Ebox"
+              className={styles.ebox}
+              href={`${eboxUrl}`}
+              count={102}
+            />
+            <Notifs
+              notifications={notifications}
+              lng={"fr"}
+              onClick={this.handleNotificationClick}
+            />
+            <Apps apps={apps} />
+          </ul>
 
-        <div
-          className={`${styles.profile} ${styles.expandable}`}
-          style={avatarUrl ? { backgroundImage: `url(${avatarUrl})` } : {}}
-        >
-          {avatarUrl ? "" : getUserNameForAvatar(firstName, lastName)}
-        </div>
-
-        <div className={`${styles.dropdown} ${styles.profileDropdown}`}>
-          <div className="flex-container social-links__header">
-            <div className="flex-container flex-dir-column infos">
-              <span>{firstName + " " + lastName}</span>
-            </div>
-          </div>
+          <ul className={styles.menu}>
+            <li
+              className={`${styles.expandable} ${styles.menuImg} ${styles.profile}`}
+            >
+              {avatarDiv}
+              <ul className={`${styles.menuDropdown}`}>
+                <li className={styles.profileContainer}>
+                  {avatarDiv}
+                  <div className={styles.infos}>
+                    <span>{`${firstName} ${lastName}`}</span>
+                    <span className={styles.email}>{mainEmail}</span>
+                  </div>
+                </li>
+                <li className={`${styles.menuProfile}`}>
+                  <ul>
+                    <li>
+                      <a href={`${homeUrl}profile`}> {I18N[lng]["profile"]}</a>
+                    </li>
+                  </ul>
+                </li>
+                <li className={styles.menuLanguage}>
+                  <ul>
+                    {languages.map(language => (
+                      <li
+                        id={language}
+                        key={language}
+                        className={
+                          lng === language ? styles.headerLanguageSelected : ""
+                        }
+                        onClick={() => onLanguageChange(language)}
+                      >
+                        {language.toUpperCase()}
+                      </li>
+                    ))}
+                  </ul>
+                </li>
+                <li className={styles.social}>
+                  <ul>
+                    {/* TODO add links */}
+                    <li>
+                      <i className="icon icon-social-facebook" />
+                    </li>
+                    <li>
+                      <i className="icon icon-social-twitter" />
+                    </li>
+                    <li>
+                      <i className="icon icon-social-linkedin" />
+                    </li>
+                  </ul>
+                </li>
+                <li className={styles.logout} onClick={onLogout}>
+                  <Link to="/" className="text-center">
+                    {I18N[lng]["logout"]}
+                  </Link>
+                </li>
+              </ul>
+            </li>
+          </ul>
         </div>
       </>
     );
   }
 
   renderLoggedOut() {
-    const { language, onLanguageChange } = this.props;
+    const { lng, onLanguageChange, onClickLogin } = this.props;
     const languages = ["fr", "nl", "en"];
 
-    // const tmp = `${TTP_HOME_URL}?goto=${goto}`;
-
     return (
-      <div style={{ display: "flex", marginLeft: "auto" }}>
-        <div className={styles.headerLanguages}>
-          <ul>
-            {languages.map(lng => (
-              <li
-                id={lng}
-                key={lng}
-                className={lng === language ? "selected" : ""}
-                onClick={() => onLanguageChange(lng)}
-              >
-                {lng.toUpperCase()}
-              </li>
-            ))}
-          </ul>
-        </div>
-        <a className={styles.signIn} href={""}>
-          <i className="icon icon-lock" />
-          {"Sign in / Join"}
+      <div className={styles.headerRight}>
+        <ul className={styles.headerLanguages}>
+          {languages.map(language => (
+            <li
+              key={language}
+              className={lng === language ? styles.headerLanguageSelected : ""}
+              onClick={() => onLanguageChange(language)}
+            >
+              {language.toUpperCase()}
+            </li>
+          ))}
+        </ul>
+        <a className={styles.signIn} onClick={onClickLogin} href="">
+          {I18N[lng]["signIn"]}
         </a>
       </div>
     );
@@ -126,15 +237,44 @@ export class Header extends Component {
       lastName,
       profileUrl,
       eboxUrl,
+      onClickLogo,
+      settings = [],
+      onLanguageChange,
       ...otherProps
     } = this.props;
 
+    // TODO sanitize otherprops
+
     return (
       <header className={styles.header} {...otherProps}>
-        <div className={styles.appInfo}>
-          <img className={styles.appLogo} src={appLogoUrl} alt="logo" />
-          <span className={styles.appName}>{appName}</span>
-        </div>
+        <span
+          className={`${styles.menuLogo} ${
+            this.state.showSettings ? styles.shadow : ""
+          }`}
+        >
+          <div>
+            <span
+              ref={this.settingsRef}
+              className={`icon-options-vertical ${styles.settingsIcon}`}
+              style={settings.length === 0 ? { visibility: "hidden" } : {}}
+            />
+            <ul
+              className={`${styles.menuDropdown} ${
+                this.state.showSettings ? styles.show : ""
+              }`}
+            >
+              {settings.map(({ label, url }) => (
+                <li key={url}>
+                  <Link to={url}>{label}</Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <Link to="/" className={styles.appInfo}>
+            <img className={styles.appLogo} src={appLogoUrl} alt="logo" />
+            <span className={styles.appName}>{appName}</span>
+          </Link>
+        </span>
 
         {loggedIn ? this.renderLoggedIn() : this.renderLoggedOut()}
       </header>
@@ -151,6 +291,6 @@ Header.propTypes = {
   lastName: PropTypes.string,
   profileUrl: PropTypes.string,
   eboxUrl: PropTypes.string,
-  language: PropTypes.oneOf(["fr", "nl", "en"]).isRequired,
+  lng: PropTypes.oneOf(["fr", "nl", "en"]).isRequired,
   onLanguageChange: PropTypes.func.isRequired
 };

@@ -1,3 +1,16 @@
+@import './colors';
+@import './spacing';
+
+$transitions: ();
+@for $i from 1 through 20 {
+  $transitions: append($transitions, #{$i * 0.1}s all ease-in-out);
+};
+
+$h-font-family: "Montserrat";
+$main-header-font: Raleway, 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;;
+$main-body-font: Roboto, 'Segoe UI', Helvetica, sans-serif;
+$h-color: rgb(63, 63, 63);
+
 $main-color: #8d8d8d;
 $main-blue: rgb(80, 129, 190); //#5081BE
 $main-orange: rgb(244, 150, 73); //#F49649
@@ -20,3 +33,6 @@ $new-very-light-gray: #F8F9FA;
 $image-shadow: 0 1px 15px 1px rgba(0,0,0,.24), 0 1px 6px rgba(0,0,0,.04);
 $shadow-color: rgba(41, 57, 77, 0.1);
 $bg-new-light-blue: rgba(199, 232,254, .1);
+
+
+$tag-color: #18A0FB;
