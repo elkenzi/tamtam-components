@@ -1,6 +1,8 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 import styles from "./Article.module.scss";
+import { Avatar } from "../Avatar/Avatar";
 
 const Like = () => (
   <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
@@ -59,65 +61,53 @@ const Favorite = () => (
 
 export class Article extends Component {
   render() {
-    const { size = "small" } = this.props;
-
-    const category = "Droit";
-    const community = "ITAA";
-    const title =
-      "Tempore quo primis auspiciis in mundanum fulgorem surgeret Tempore quo primis auspiciis in mundanum fulgorem surgeret";
-
-    const summary =
-      "Thalassius vero ea tempestate praefectus praetorio praesens ipse quoque adrogantis ingenii, considerans halassius vero ea temt empestate vero ea tempestate praefectus praetorio praesens ipse quoque adrogantis ingenii, considerans ea tempestate praefectus praetorio praesens ipse quoque adrogantis";
-    const url =
-      "https://s3.tamtam.pro/v2/storage/media/IMAGE/10734/5787ad358aca73e88049f053f60ab0d542934e85.jpeg";
-
-    const avatarUrl =
-      "https://s3.tamtam.pro/v2/storage/media/IMAGE/31/AVATAR_70d83b21836dec24e6ec10e5d38a0ac3d96cbed2.png";
-
     return (
-      <div className={`${styles.article} ${styles[size]}`}>
+      <div className={`${styles.article} ${styles[this.props.size]}`}>
         <div className={styles.authorsContainer}>
-          <div className={styles.author}>
-            <div
-              className={styles.authorAvatar}
-              style={{ backgroundImage: `url(${avatarUrl})` }}
-            ></div>
-            <div className={styles.authorInfo}>
-              <div className={styles.authorName}>Emmanuel Degrève</div>
-              <div className={styles.authorSignature}>
-                Partner et Conseil Fiscal
-              </div>
-            </div>
-          </div>
+          <Avatar
+            avatarUrl={this.props.avatarUrl}
+            avatarName={this.props.authorName}
+            avatarSignature={this.props.authorSignature}
+          />
         </div>
         <div
           className={styles.content}
-          style={{ backgroundImage: `url(${url})` }}
+          style={{ backgroundImage: `url(${this.props.url})` }}
         >
-          <div className={styles.category}>{category}</div>
-          <div className={styles.community}>{community}</div>
-          <div className={styles.title}>{title}</div>
-          {size === "large" && <div className={styles.summary}>{summary}</div>}
+          <div className={styles.category}>{this.props.category}</div>
+          <div className={styles.community}>{this.props.community}</div>
+          <div className={styles.title}>{this.props.title}</div>
+          {this.props.size === "large" && (
+            <div className={styles.summary}>{this.props.summary}</div>
+          )}
           <div className={styles.actionsContainer}>
             <div className={`${styles.action} ${styles.activeAction}`}>
               <Like />
-              <span className={styles.actionCount}>16</span>
+              <span className={styles.actionCount}>{this.props.likeCount}</span>
             </div>
             <div className={styles.action}>
               <Dislike />
-              <span className={styles.actionCount}>11</span>
+              <span className={styles.actionCount}>
+                {this.props.disLikeCount}
+              </span>
             </div>
             <div className={styles.action}>
               <Comment />
-              <span className={styles.actionCount}>32</span>
+              <span className={styles.actionCount}>
+                {this.props.commentCount}
+              </span>
             </div>
             <div className={styles.action}>
               <Share />
-              <span className={styles.actionCount}>3</span>
+              <span className={styles.actionCount}>
+                {this.props.shareCount}
+              </span>
             </div>
             <div className={styles.action}>
               <Favorite />
-              <span className={styles.actionCount}>5</span>
+              <span className={styles.actionCount}>
+                {this.props.favoriteCount}
+              </span>
             </div>
           </div>
         </div>
@@ -125,3 +115,28 @@ export class Article extends Component {
     );
   }
 }
+
+Article.propTypes = {
+  size: PropTypes.oneOf(["small", "large"]),
+  category: PropTypes.string,
+  community: PropTypes.string,
+  title: PropTypes.string,
+  summary: PropTypes.string,
+  url: PropTypes.string,
+  avatarUrl: PropTypes.string,
+  authorName: PropTypes.string,
+  authorSignature: PropTypes.string,
+  likeCount: PropTypes.number,
+  disLikeCount: PropTypes.number,
+  commentCount: PropTypes.number,
+  shareCount: PropTypes.number,
+  favoriteCount: PropTypes.number
+};
+Article.defaultProps = {
+  size: "small",
+  likeCount: 0,
+  disLikeCount: 0,
+  commentCount: 0,
+  shareCount: 0,
+  favoriteCount: 0
+};
