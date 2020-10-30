@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 
 import styles from "./Article.module.scss";
 import { Avatar } from "../Avatar/Avatar";
+import { getDateLabel } from "../../utils";
 
 const Like = () => (
   <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
@@ -61,6 +62,208 @@ const Favorite = () => (
 
 export class Article extends Component {
   render() {
+    switch (this.props.type) {
+      case "type2":
+        return this.renderType2();
+        break;
+      case "type3":
+        return this.renderType3();
+        break;
+      case "type4":
+        return this.renderType4();
+        break;
+      default:
+        return this.renderDefault();
+    }
+  }
+
+  renderType2() {
+    return (
+      <div className={`${styles.articleTemplate2} ${styles[this.props.size]}`}>
+        <div className={styles.authorsContainer}>
+          <Avatar
+            avatarUrl={this.props.avatarUrl}
+            avatarName={this.props.authorName}
+            avatarSignature={this.props.authorSignature}
+          />
+        </div>
+        <div className={styles.content}>
+          {this.props.publishedAt && (
+            <div className={styles.publishedAt}>
+              {getDateLabel(this.props.publishedAt)}
+            </div>
+          )}
+          <div className={styles.category}>{this.props.category}</div>
+          <div className={styles.community}>{this.props.community}</div>
+
+          <div className={styles.title}>{this.props.title}</div>
+          <div className={styles.summary}>{this.props.summary}</div>
+          <div className={styles.actionsContainer}>
+            <div className={`${styles.action} ${styles.activeAction}`}>
+              <Like />
+              <span className={styles.actionCount}>{this.props.likeCount}</span>
+            </div>
+            <div className={styles.action}>
+              <Dislike />
+              <span className={styles.actionCount}>
+                {this.props.disLikeCount}
+              </span>
+            </div>
+            <div className={styles.action}>
+              <Comment />
+              <span className={styles.actionCount}>
+                {this.props.commentCount}
+              </span>
+            </div>
+            <div className={styles.action}>
+              <Share />
+              <span className={styles.actionCount}>
+                {this.props.shareCount}
+              </span>
+            </div>
+            <div className={styles.action}>
+              <Favorite />
+              <span className={styles.actionCount}>
+                {this.props.favoriteCount}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  renderType3() {
+    return (
+      <div className={`${styles.articleTemplate3} ${styles[this.props.size]}`}>
+        <div className={styles.authorsContainer}>
+          <Avatar
+            avatarUrl={this.props.avatarUrl}
+            avatarName={this.props.authorName}
+            avatarSignature={this.props.authorSignature}
+          />
+        </div>
+        <div class={styles.row}>
+          <div
+            class={`${styles.col6} ${styles.contentImg}`}
+            style={{ backgroundImage: `url(${this.props.url})` }}
+          ></div>
+          <div class={`${styles.col6} ${styles.articleTemplate2}`}>
+            <div className={styles.content}>
+              {this.props.publishedAt && (
+                <div className={styles.publishedAt}>
+                  {getDateLabel(this.props.publishedAt)}
+                </div>
+              )}
+              <div className={styles.category}>{this.props.category}</div>
+              <div className={styles.community}>{this.props.community}</div>
+
+              <div className={styles.title}>{this.props.title}</div>
+              <div className={styles.summary}>{this.props.summary}</div>
+              <div className={styles.actionsContainer}>
+                <div className={`${styles.action} ${styles.activeAction}`}>
+                  <Like />
+                  <span className={styles.actionCount}>
+                    {this.props.likeCount}
+                  </span>
+                </div>
+                <div className={styles.action}>
+                  <Dislike />
+                  <span className={styles.actionCount}>
+                    {this.props.disLikeCount}
+                  </span>
+                </div>
+                <div className={styles.action}>
+                  <Comment />
+                  <span className={styles.actionCount}>
+                    {this.props.commentCount}
+                  </span>
+                </div>
+                <div className={styles.action}>
+                  <Share />
+                  <span className={styles.actionCount}>
+                    {this.props.shareCount}
+                  </span>
+                </div>
+                <div className={styles.action}>
+                  <Favorite />
+                  <span className={styles.actionCount}>
+                    {this.props.favoriteCount}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  renderType4() {
+    return (
+      <div className={`${styles.articleTemplate4} ${styles[this.props.size]}`}>
+        <div className={styles.authorsContainer}>
+          <Avatar
+            avatarUrl={this.props.avatarUrl}
+            avatarName={this.props.authorName}
+            avatarSignature={this.props.authorSignature}
+          />
+        </div>
+        <div class={styles.articleContainer}>
+          {this.props.publishedAt && (
+            <div className={styles.publishedAt}>
+              {getDateLabel(this.props.publishedAt)}
+            </div>
+          )}
+          <div
+            class={styles.contentImg}
+            style={{ backgroundImage: `url(${this.props.url})` }}
+          ></div>
+          <div className={styles.content}>
+            <div className={styles.category}>{this.props.category}</div>
+            <div className={styles.community}>{this.props.community}</div>
+
+            <div className={styles.title}>{this.props.title}</div>
+            <div className={styles.summary}>{this.props.summary}</div>
+            <div className={styles.actionsContainer}>
+              <div className={`${styles.action} ${styles.activeAction}`}>
+                <Like />
+                <span className={styles.actionCount}>
+                  {this.props.likeCount}
+                </span>
+              </div>
+              <div className={styles.action}>
+                <Dislike />
+                <span className={styles.actionCount}>
+                  {this.props.disLikeCount}
+                </span>
+              </div>
+              <div className={styles.action}>
+                <Comment />
+                <span className={styles.actionCount}>
+                  {this.props.commentCount}
+                </span>
+              </div>
+              <div className={styles.action}>
+                <Share />
+                <span className={styles.actionCount}>
+                  {this.props.shareCount}
+                </span>
+              </div>
+              <div className={styles.action}>
+                <Favorite />
+                <span className={styles.actionCount}>
+                  {this.props.favoriteCount}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  renderDefault() {
     return (
       <div className={`${styles.article} ${styles[this.props.size]}`}>
         <div className={styles.authorsContainer}>
@@ -74,6 +277,11 @@ export class Article extends Component {
           className={styles.content}
           style={{ backgroundImage: `url(${this.props.url})` }}
         >
+          {this.props.publishedAt && (
+            <div className={styles.publishedAt}>
+              {getDateLabel(this.props.publishedAt)}
+            </div>
+          )}
           <div className={styles.category}>{this.props.category}</div>
           <div className={styles.community}>{this.props.community}</div>
           <div className={styles.title}>{this.props.title}</div>
@@ -117,7 +325,9 @@ export class Article extends Component {
 }
 
 Article.propTypes = {
+  type: PropTypes.oneOf(["default", "type2"]),
   size: PropTypes.oneOf(["small", "large"]),
+  publishedAt: PropTypes.string,
   category: PropTypes.string,
   community: PropTypes.string,
   title: PropTypes.string,
@@ -130,13 +340,14 @@ Article.propTypes = {
   disLikeCount: PropTypes.number,
   commentCount: PropTypes.number,
   shareCount: PropTypes.number,
-  favoriteCount: PropTypes.number
+  favoriteCount: PropTypes.number,
 };
 Article.defaultProps = {
+  type: "default",
   size: "small",
   likeCount: 0,
   disLikeCount: 0,
   commentCount: 0,
   shareCount: 0,
-  favoriteCount: 0
+  favoriteCount: 0,
 };

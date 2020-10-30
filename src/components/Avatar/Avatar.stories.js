@@ -11,14 +11,16 @@ export default {
   component: Avatar,
   decorators: [
     StoryRouter(),
-    story => <div style={{ padding: "3rem" }}>{story()}</div>,
-    withKnobs
-  ]
+    (story) => <div style={{ padding: "3rem" }}>{story()}</div>,
+    withKnobs,
+  ],
 };
 
 export const Basic = () => (
   <Avatar avatarUrl="https://s3.tamtam.pro/v2/storage/media/IMAGE/31/AVATAR_70d83b21836dec24e6ec10e5d38a0ac3d96cbed2.png" />
 );
+
+export const WithoutPicture = () => <Avatar />;
 
 export const WithName = () => (
   <Avatar
@@ -27,7 +29,7 @@ export const WithName = () => (
   />
 );
 
-export const Info = () => (
+export const WithInfo = () => (
   <Avatar
     avatarUrl="https://s3.tamtam.pro/v2/storage/media/IMAGE/31/AVATAR_70d83b21836dec24e6ec10e5d38a0ac3d96cbed2.png"
     avatarName="Emmanuel Degrève"
