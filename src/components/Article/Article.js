@@ -265,7 +265,10 @@ export class Article extends Component {
 
   renderDefault() {
     return (
-      <div className={`${styles.article} ${styles[this.props.size]}`}>
+      <div
+        className={`${styles.article} ${styles[this.props.size]}`}
+        onClick={this.props.openArticleReveal}
+      >
         <div className={styles.authorsContainer}>
           <Avatar
             avatarUrl={this.props.avatarUrl}
@@ -285,7 +288,7 @@ export class Article extends Component {
           <div className={styles.category}>{this.props.category}</div>
           <div className={styles.community}>{this.props.community}</div>
           <div className={styles.title}>{this.props.title}</div>
-          {this.props.size === "large" && (
+          {this.props.size === "large" && this.props.showSummary && (
             <div className={styles.summary}>{this.props.summary}</div>
           )}
           <div className={styles.actionsContainer}>
@@ -325,13 +328,14 @@ export class Article extends Component {
 }
 
 Article.propTypes = {
-  type: PropTypes.oneOf(["default", "type2"]),
-  size: PropTypes.oneOf(["small", "large"]),
+  type: PropTypes.oneOf(["default", "type2", "type3", "type4"]),
+  size: PropTypes.oneOf(["small", "smallBH", "medium", "large"]),
   publishedAt: PropTypes.string,
   category: PropTypes.string,
   community: PropTypes.string,
   title: PropTypes.string,
   summary: PropTypes.string,
+  showSummary: PropTypes.bool,
   url: PropTypes.string,
   avatarUrl: PropTypes.string,
   authorName: PropTypes.string,
@@ -345,6 +349,7 @@ Article.propTypes = {
 Article.defaultProps = {
   type: "default",
   size: "small",
+  showSummary: false,
   likeCount: 0,
   disLikeCount: 0,
   commentCount: 0,

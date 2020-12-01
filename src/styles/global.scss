@@ -1,10 +1,20 @@
-@import './variables';
+@import "./variables";
+
+// foundation
+@import "~foundation-sites/scss/foundation";
+@include foundation-everything(true);
+
+// Slick slider
+@import "base/slick.scss";
+@import "base/slick-theme.scss";
 
 html {
   box-sizing: border-box;
 }
 
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   box-sizing: border-box;
 }
 
@@ -23,11 +33,34 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: $main-body-font;
 }
 
-blockquote, dd, div, dl, dt, form, h1, h2, h3, h4, h5, h6, li, ol, p, pre, td, th, ul {
+blockquote,
+dd,
+div,
+dl,
+dt,
+form,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+li,
+ol,
+p,
+pre,
+td,
+th,
+ul {
   margin: 0;
   padding: 0;
 }
