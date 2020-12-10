@@ -2,55 +2,35 @@ import React, { Component, createRef } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
-import * as icons from "../Icons";
+import { SOCIAL_NETWORKS_HOSTS } from "../../config";
 import Communities from "./Communities";
 import Apps from "./Apps";
 import Notifs from "./Notifs";
 import MenuItem from "./MenuItem";
+import { Avatar } from "../Avatar/Avatar";
 import styles from "./Header.module.scss";
-
-// TODO move this
-export const getUserNameForAvatar = (firstName, lastName) => {
-  let fName = firstName.split(" ");
-  if (fName.length >= 3) {
-    return extractFirstLettre(fName, 3);
-  } else {
-    let lName = lastName.split(" ");
-    return extractFirstLettre(fName.concat(lName), 3);
-  }
-};
-
-function extractFirstLettre(arrayStr, length) {
-  let result = "";
-  for (let i = 0; i < arrayStr.length; i++) {
-    if (arrayStr[i]) {
-      result += arrayStr[i].substring(0, 1);
-    }
-  }
-  return result.toUpperCase();
-}
 
 const I18N = {
   en: {
     signIn: "Login / Sign up",
     logout: "Logout",
-    profile: "Profile"
+    profile: "Profile",
   },
   fr: {
     signIn: "Connexion / Inscription",
     logout: "Se déconnecter",
-    profile: "Profil"
+    profile: "Profil",
   },
   nl: {
     signIn: "Aanmelden / Inschrijven",
     logout: "Uitloggen",
-    profile: "Profiel"
-  }
+    profile: "Profiel",
+  },
 };
 
 export class Header extends Component {
   state = {
-    showSettings: false
+    showSettings: false,
   };
 
   settingsRef = createRef();
@@ -76,68 +56,99 @@ export class Header extends Component {
     this.setState({ showSettings: false });
   };
 
+  renderContactSocialNetworkBlock(contactSocialNetworks, socialNetworkName) {
+    if (!contactSocialNetworks) {
+      return null;
+    }
+
+    const socialNetwork = contactSocialNetworks[socialNetworkName];
+
+    if (socialNetwork) {
+      let accessValue =
+        socialNetworkName === "twitter"
+          ? socialNetwork.username
+          : socialNetwork.id;
+      let snUrl =
+        socialNetworkName === "linkedin"
+          ? socialNetwork.publicProfileUrl
+            ? socialNetwork.publicProfileUrl
+            : ""
+          : `${
+              SOCIAL_NETWORKS_HOSTS[socialNetworkName.toUpperCase()]
+            }/${accessValue}`;
+
+      return (
+        <li className="social">
+          <a href={`${snUrl}`} target="_blank">
+            <i className={`icon icon-social-${socialNetworkName}`} />
+          </a>
+        </li>
+      );
+    }
+
+    return null;
+  }
+
   renderLoggedIn() {
     const {
-      profileUrl,
-      eboxUrl,
-      homeUrl,
+      rightLinks,
       apps,
-      communities,
-      currentCommunity,
-      onCommunityChange,
+      onSearchClick,
       notifications,
       user,
+      contactSocialNetworks,
       lng,
       onLanguageChange,
-      onLogout
+      onLogout,
     } = this.props;
 
     const { avatarUrl, firstName, lastName, mainEmail } = user;
     const languages = ["fr", "nl", "en"];
 
-    let avatarDiv = null;
-    if (avatarUrl) {
-      avatarDiv = (
-        <div
-          className={styles.menuImgWrap}
-          style={{ backgroundImage: `url(${avatarUrl})` }}
-        />
-      );
-    } else {
-      avatarDiv = (
-        <div className={`${styles.menuImgWrap} ${styles.emptyAvatar}`}>
-          <span>{getUserNameForAvatar(firstName, lastName)}</span>
-        </div>
-      );
-    }
+    const avatarDiv = avatarUrl ? (
+      <Avatar
+        avatarUrl={avatarUrl}
+        firstName={firstName}
+        lastName={lastName}
+        showInfo={false}
+      />
+    ) : (
+      <Avatar firstName={firstName} lastName={lastName} showInfo={false} />
+    );
 
     return (
       <>
-        <nav className="top-bar-left">
-          <ul className="menu">
-            {/* <Communities
-              communities={communities}
-              currentCommunity={currentCommunity}
-              onCommunityChange={onCommunityChange}
-              lng={lng}
-            /> */}
-          </ul>
-        </nav>
         <div className={styles.headerRight}>
           <ul className={`${styles.menu} ${styles.buttons}`}>
-            <MenuItem icon="Profile" href={`${profileUrl}`} />
-            <MenuItem
-              icon="Ebox"
-              className={styles.ebox}
-              href={`${eboxUrl}`}
-              count={102}
-            />
+            {rightLinks.home.activated && (
+              <MenuItem
+                icon={rightLinks.home.icon}
+                href={`${rightLinks.home.url}`}
+              />
+            )}
+            {rightLinks.profile.activated && (
+              <MenuItem
+                icon={rightLinks.profile.icon}
+                href={`${rightLinks.profile.url}`}
+              />
+            )}
+            {rightLinks.ebox.activated && (
+              <MenuItem
+                icon={rightLinks.ebox.icon}
+                className={styles.ebox}
+                href={`${rightLinks.ebox.url}`}
+                count={102}
+              />
+            )}
             <Notifs
               notifications={notifications}
-              lng={"fr"}
+              lng={lng}
               onClick={this.handleNotificationClick}
             />
             <Apps apps={apps} />
+            {rightLinks.search.activated && (
+              <MenuItem icon={rightLinks.search.icon} onClick={onSearchClick} />
+            )}
           </ul>
 
           <ul className={styles.menu}>
@@ -147,22 +158,25 @@ export class Header extends Component {
               {avatarDiv}
               <ul className={`${styles.menuDropdown}`}>
                 <li className={styles.profileContainer}>
-                  {avatarDiv}
-                  <div className={styles.infos}>
-                    <span>{`${firstName} ${lastName}`}</span>
-                    <span className={styles.email}>{mainEmail}</span>
-                  </div>
+                  <Avatar
+                    avatarUrl={avatarUrl}
+                    firstName={firstName}
+                    lastName={lastName}
+                    avatarSignature={mainEmail}
+                  />
                 </li>
                 <li className={`${styles.menuProfile}`}>
                   <ul>
                     <li>
-                      <a href={`${homeUrl}profile`}> {I18N[lng]["profile"]}</a>
+                      <a href={rightLinks.profile.url}>
+                        {I18N[lng]["profile"]}
+                      </a>
                     </li>
                   </ul>
                 </li>
                 <li className={styles.menuLanguage}>
                   <ul>
-                    {languages.map(language => (
+                    {languages.map((language) => (
                       <li
                         id={language}
                         key={language}
@@ -178,16 +192,18 @@ export class Header extends Component {
                 </li>
                 <li className={styles.social}>
                   <ul>
-                    {/* TODO add links */}
-                    <li>
-                      <i className="icon icon-social-facebook" />
-                    </li>
-                    <li>
-                      <i className="icon icon-social-twitter" />
-                    </li>
-                    <li>
-                      <i className="icon icon-social-linkedin" />
-                    </li>
+                    {this.renderContactSocialNetworkBlock(
+                      contactSocialNetworks,
+                      "facebook"
+                    )}
+                    {this.renderContactSocialNetworkBlock(
+                      contactSocialNetworks,
+                      "twitter"
+                    )}
+                    {this.renderContactSocialNetworkBlock(
+                      contactSocialNetworks,
+                      "linkedin"
+                    )}
                   </ul>
                 </li>
                 <li className={styles.logout} onClick={onLogout}>
@@ -210,7 +226,7 @@ export class Header extends Component {
     return (
       <div className={styles.headerRight}>
         <ul className={styles.headerLanguages}>
-          {languages.map(language => (
+          {languages.map((language) => (
             <li
               key={language}
               className={lng === language ? styles.headerLanguageSelected : ""}
@@ -230,8 +246,13 @@ export class Header extends Component {
   render() {
     const {
       loggedIn = false,
+      loggedAs,
       appName,
       appLogoUrl,
+      communities,
+      currentCommunity,
+      onCommunityChange,
+      lng,
       avatarUrl,
       firstName,
       lastName,
@@ -247,35 +268,48 @@ export class Header extends Component {
 
     return (
       <header className={styles.header} {...otherProps}>
-        <span
-          className={`${styles.menuLogo} ${
-            this.state.showSettings ? styles.shadow : ""
-          }`}
-        >
-          <div>
-            <span
-              ref={this.settingsRef}
-              className={`icon-options-vertical ${styles.settingsIcon}`}
-              style={settings.length === 0 ? { visibility: "hidden" } : {}}
-            />
-            <ul
-              className={`${styles.menuDropdown} ${
-                this.state.showSettings ? styles.show : ""
-              }`}
-            >
-              {settings.map(({ label, url }) => (
-                <li key={url}>
-                  <Link to={url}>{label}</Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <Link to="/" className={styles.appInfo}>
-            <img className={styles.appLogo} src={appLogoUrl} alt="logo" />
-            <span className={styles.appName}>{appName}</span>
-          </Link>
-        </span>
-
+        <div className={styles.headerLeft}>
+          <span
+            className={`${styles.menuLogo} ${
+              this.state.showSettings ? styles.shadow : ""
+            }`}
+          >
+            <div>
+              <span
+                ref={this.settingsRef}
+                className={`icon-options-vertical ${styles.settingsIcon}`}
+                style={settings.length === 0 ? { visibility: "hidden" } : {}}
+              />
+              <ul
+                className={`${styles.menuDropdown} ${
+                  this.state.showSettings ? styles.show : ""
+                }`}
+              >
+                {settings.map(({ label, url }) => (
+                  <li key={url}>
+                    <Link to={url}>{label}</Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <Link to="/" className={styles.appInfo}>
+              <img className={styles.appLogo} src={appLogoUrl} alt="logo" />
+              <span className={styles.appName}>{appName}</span>
+            </Link>
+          </span>
+          {loggedIn && loggedAs !== "GUEST" && loggedAs !== "EMPTY" && (
+            <nav className="top-bar-left">
+              <ul className="menu">
+                <Communities
+                  communities={communities}
+                  currentCommunity={currentCommunity}
+                  onCommunityChange={onCommunityChange}
+                  lng={lng}
+                />
+              </ul>
+            </nav>
+          )}
+        </div>
         {loggedIn ? this.renderLoggedIn() : this.renderLoggedOut()}
       </header>
     );
@@ -284,6 +318,7 @@ export class Header extends Component {
 
 Header.propTypes = {
   loggedIn: PropTypes.bool.isRequired,
+  loggedAs: PropTypes.string,
   appName: PropTypes.string,
   appLogoUrl: PropTypes.string,
   avatarUrl: PropTypes.string,
@@ -292,5 +327,5 @@ Header.propTypes = {
   profileUrl: PropTypes.string,
   eboxUrl: PropTypes.string,
   lng: PropTypes.oneOf(["fr", "nl", "en"]).isRequired,
-  onLanguageChange: PropTypes.func.isRequired
+  onLanguageChange: PropTypes.func.isRequired,
 };

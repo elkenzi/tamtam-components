@@ -1,5 +1,8 @@
 @import "./variables";
 
+// base
+@import "base/foundation-settings.scss";
+
 // foundation
 @import "~foundation-sites/scss/foundation";
 @include foundation-everything(true);

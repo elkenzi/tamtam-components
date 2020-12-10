@@ -7,16 +7,16 @@ import styles from "./Header.module.scss";
 const I18N = {
   en: {
     nothingToShow: "Nothing to show",
-    notificationsOfUpdates: "Notifications of updates"
+    notificationsOfUpdates: "Notifications of updates",
   },
   fr: {
     nothingToShow: "Aucunes notification n'est diponible",
-    notificationsOfUpdates: "Notifications de mises à jour"
+    notificationsOfUpdates: "Notifications de mises à jour",
   },
   nl: {
     nothingToShow: "Niets om te laten zien'",
-    notificationsOfUpdates: "Meldingen van updates"
-  }
+    notificationsOfUpdates: "Meldingen van updates",
+  },
 };
 
 export default function Notifs({ notifications, lng, onClick }) {
@@ -27,7 +27,7 @@ export default function Notifs({ notifications, lng, onClick }) {
     }
 
     moment.locale(lng);
-    return notifications.map(notification => {
+    return notifications.map((notification) => {
       const createdAtDate = moment(notification.createdAt);
       const text =
         moment().diff(createdAtDate, "month", true) > 1
@@ -51,7 +51,9 @@ export default function Notifs({ notifications, lng, onClick }) {
     });
   };
 
-  const unreadNotifs = notifications.filter(notif => notif.status === "UNREAD");
+  const unreadNotifs = notifications.filter(
+    (notif) => notif.status === "UNREAD"
+  );
 
   return (
     <MenuItem

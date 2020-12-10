@@ -3,119 +3,163 @@ export const user = {
   lastName: "Degrève",
   mainEmail: "emmanuel.degreve@degandpartners.com",
   avatarUrl:
-    "https://s3.tamtam.pro/v2/storage/media/IMAGE/31/AVATAR_70d83b21836dec24e6ec10e5d38a0ac3d96cbed2.png"
+    "https://s3.tamtam.pro/v2/storage/media/IMAGE/31/AVATAR_70d83b21836dec24e6ec10e5d38a0ac3d96cbed2.png",
+};
+
+export const contactSocialNetworks = {
+  facebook: {
+    id: 568543643,
+    username: "Emmanuel Degrève",
+    publicProfileUrl: null,
+  },
+  linkedin: {
+    id: "dnuRIWeubQ",
+    username: "Emmanuel Degrève",
+    publicProfileUrl: null,
+  },
 };
 
 export const settings = [
   {
     label: "APPROBATIONS",
-    url: "/approvers-setting"
+    url: "/approvers-setting",
   },
   {
     label: "UTILISATEURS",
-    url: "/settings"
-  }
+    url: "/settings",
+  },
 ];
 
 const APP_LOGOS_BASE_URL = "https://s3.tamtam.pro/v2/apps";
 export const apps = [
   {
-    id: "event",
-    activated: 1,
-    url: "#",
-    order: 1,
-    logo: `${APP_LOGOS_BASE_URL}/event.png`,
-    name: "Event"
+    code: "blog",
+    name: { fr: "Blog", en: "Blog", nl: "Blog" },
+    url: "https://blog.rc2.tamtam.pro/",
+    icon: "https://s3.tamtam.pro/v2/apps/blog.png",
+    activated: true,
   },
   {
-    id: "talk",
-    activated: 0,
-    url: "#",
-    order: 1,
-    logo: `${APP_LOGOS_BASE_URL}/talk.png`,
-    name: "Talk"
+    code: "media",
+    name: { fr: "Media", en: "Media", nl: "Media" },
+    url: "https://media.rc2.tamtam.pro/",
+    icon: "https://s3.tamtam.pro/v2/apps/media.png",
+    activated: true,
   },
   {
-    id: "survey",
-    activated: 0,
-    url: "#",
-    order: 1,
-    logo: `${APP_LOGOS_BASE_URL}/survey.png`,
-    name: "Survey"
+    code: "forum",
+    name: { fr: "Forum", en: "Forum", nl: "Forum" },
+    url: "https://forum.rc2.tamtam.pro/",
+    icon: "https://s3.tamtam.pro/v2/apps/forum.png",
+    activated: true,
   },
   {
-    id: "sms",
-    activated: 1,
-    url: "#",
-    order: 1,
-    logo: `${APP_LOGOS_BASE_URL}/sms.png`,
-    name: "SMS"
+    code: "emailing",
+    name: { fr: "Emailing", en: "Emailing", nl: "Emailing" },
+    url: "https://sending.rc2.tamtam.pro/",
+    icon: "https://s3.tamtam.pro/v2/apps/emailing.png",
+    activated: true,
   },
   {
-    id: "emailing",
-    activated: 1,
-    url: "#",
-    order: 1,
-    logo: `${APP_LOGOS_BASE_URL}/emailing.png`,
-    name: "Emailing"
+    code: "ebox",
+    name: { fr: "E-Box", en: "E-Box", nl: "E-Box" },
+    url: "https://sending.rc2.tamtam.pro/e_box",
+    icon: "https://s3.tamtam.pro/v2/apps/ebox.png",
+    activated: true,
   },
   {
-    id: "blog",
-    activated: 1,
-    url: "#",
-    order: 1,
-    logo: `${APP_LOGOS_BASE_URL}/blog.png`,
-    name: "Blog"
+    code: "sms",
+    name: { fr: "SMS", en: "SMS", nl: "SMS" },
+    url: "https://sending.rc2.tamtam.pro/smsCampaigns",
+    icon: "https://s3.tamtam.pro/v2/apps/sms.png",
+    activated: true,
   },
   {
-    id: "ebox",
-    activated: 0,
-    url: "#",
-    order: 1,
-    logo: `${APP_LOGOS_BASE_URL}/ebox.png`,
-    name: "E-Box"
+    code: "talk",
+    name: { fr: "Talk", en: "Talk", nl: "Talk" },
+    url: "https://talk.rc2.tamtam.pro/",
+    icon: "https://s3.tamtam.pro/v2/apps/talk.png",
+    activated: false,
   },
   {
-    id: "directory",
-    activated: 1,
-    url: "#",
-    order: 1,
-    logo: `${APP_LOGOS_BASE_URL}/directory.png`,
-    name: "Directory"
+    code: "data",
+    name: { fr: "Accounting", en: "Accounting", nl: "Accounting" },
+    url: "https://accounting.rc2.tamtam.pro/",
+    icon: "https://s3.tamtam.pro/v2/apps/accounting.png",
+    activated: false,
   },
   {
-    id: "webtools",
-    activated: 0,
-    url: "#",
-    order: 1,
-    logo: `${APP_LOGOS_BASE_URL}/webtools.png`,
-    name: "Webtools"
+    code: "team",
+    name: { fr: "Powerteam", en: "Powerteam", nl: "Powerteam" },
+    url: "https://powerteam.rc2.tamtam.pro/",
+    icon: "https://s3.tamtam.pro/prod/apps/powerteam.png",
+    activated: false,
   },
   {
-    id: "media",
-    activated: 1,
-    url: "#",
-    order: 1,
-    logo: `${APP_LOGOS_BASE_URL}/media.png`,
-    name: "Media"
+    code: "webtools",
+    name: { fr: "Webtools", en: "Webtools", nl: "Webtools" },
+    url: "https://webtool.rc2.tamtam.pro/",
+    icon: "https://s3.tamtam.pro/v2/apps/webtools.png",
+    activated: false,
   },
   {
-    id: "forum",
-    activated: 1,
-    url: "#",
-    order: 1,
-    logo: `${APP_LOGOS_BASE_URL}/forum.png`,
-    name: "Forum"
+    code: "survey",
+    name: { fr: "Survey", en: "Survey", nl: "Survey" },
+    url: "https://survey.rc2.tamtam.pro/",
+    icon: "https://s3.tamtam.pro/v2/apps/survey.png",
+    activated: true,
   },
   {
-    id: "payment",
-    activated: 1,
-    url: "#",
-    order: 1,
-    logo: `${APP_LOGOS_BASE_URL}/payment.png`,
-    name: "Payment"
-  }
+    code: "event",
+    name: { fr: "Event", en: "Event", nl: "Event" },
+    url: "https://event.rc2.tamtam.pro/",
+    icon: "https://s3.tamtam.pro/v2/apps/event.png",
+    activated: true,
+  },
+  {
+    code: "directory",
+    name: { fr: "Directory (HQ)", en: "Directory (HQ)", nl: "Directory (HQ)" },
+    url: "https://rc2.tamtam.pro/folders",
+    icon: "https://s3.tamtam.pro/v2/apps/directory.png",
+    activated: true,
+  },
+  {
+    code: "payment",
+    name: { fr: "Payment", en: "Payment", nl: "Payment" },
+    url: "https://payment.rc2.tamtam.pro/",
+    icon: "https://s3.tamtam.pro/v2/apps/payment.png",
+    activated: true,
+  },
+  {
+    code: "portal",
+    name: { fr: "Portal", en: "Portal", nl: "Portal" },
+    url: "https://portal.rc2.tamtam.pro/",
+    icon: "https://s3.tamtam.pro/v2/apps/portal.png",
+    activated: true,
+  },
 ];
+
+export const rightLinks = {
+  home: {
+    activated: true,
+    icon: "Portal",
+    url: "",
+  },
+  profile: {
+    activated: true,
+    icon: "Profile",
+    url: "https://uat2.tamtam.pro/profile",
+  },
+  ebox: {
+    activated: true,
+    icon: "Ebox",
+    url: "https://uat2.emailing.tamtam.pro/e_box",
+  },
+  search: {
+    activated: true,
+    icon: "Search",
+  },
+};
 
 export const notifications = [
   {
@@ -135,7 +179,7 @@ export const notifications = [
     createdAt: "2018-10-29 17:31:48",
     expiredAt: null,
     updatedAt: "14/11/2019",
-    status: "UNREAD"
+    status: "UNREAD",
   },
   {
     id: 4,
@@ -157,7 +201,7 @@ export const notifications = [
     createdAt: "2018-10-26 08:54:36",
     expiredAt: null,
     updatedAt: "14/11/2019",
-    status: "READ"
+    status: "READ",
   },
   {
     id: 2,
@@ -179,8 +223,8 @@ export const notifications = [
     createdAt: "2018-10-24 14:58:41",
     expiredAt: null,
     updatedAt: "14/11/2019",
-    status: "READ"
-  }
+    status: "READ",
+  },
 ];
 
 export const communities = [
@@ -190,20 +234,20 @@ export const communities = [
       "Instituut van de Accountants en de Belastingconsulenten - Institut des Experts-comptables et des Conseils fiscaux",
     abbreviation: "IEC-IAB",
     avatarUrl:
-      "https://s3.tamtam.pro/v2/storage/media/IMAGE/2753/AVATAR_a726d59d13c723f15343ae75ead939fdd1f0895f.png"
+      "https://s3.tamtam.pro/v2/storage/media/IMAGE/2753/AVATAR_a726d59d13c723f15343ae75ead939fdd1f0895f.png",
   },
   {
     id: 9,
     name: "Forum For The Future",
     abbreviation: "F.F.F.",
     avatarUrl:
-      "https://s3.tamtam.pro/v2/storage/media/IMAGE/2174/AVATAR_a55cc7155830b08e45678b3bc4ed02f3e190fc96.png"
+      "https://s3.tamtam.pro/v2/storage/media/IMAGE/2174/AVATAR_a55cc7155830b08e45678b3bc4ed02f3e190fc96.png",
   },
   {
     id: 4,
     name: "DEG & PARTNERS CONSULTING COMPANY",
     abbreviation: "Deg & Partners",
     avatarUrl:
-      "https://s3.tamtam.pro/v2/storage/media/IMAGE/34/AVATAR_00e0170bb5fc8a8cae3fd79abdc36c943669673b.png"
-  }
+      "https://s3.tamtam.pro/v2/storage/media/IMAGE/34/AVATAR_00e0170bb5fc8a8cae3fd79abdc36c943669673b.png",
+  },
 ];

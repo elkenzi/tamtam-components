@@ -1,22 +1,23 @@
-export const getDateLabel = (date) => {
-  const d = new Date(date);
+export function addLandaSize(img, width = 0, height = 0) {
+  let result = img;
+  let found = false;
 
-  const result = d.toDateString().split(" ");
+  const splt = img.split(".");
+  const ext = splt[splt.length - 1];
 
-  const hours =
-    parseInt(d.getHours(), 10) < 10 ? "0" + d.getHours() : d.getHours();
-  const minutes =
-    parseInt(d.getMinutes(), 10) < 10 ? "0" + d.getMinutes() : d.getMinutes();
+  if (width > 0) {
+    result += `/w${width}`;
+    found = true;
+  }
+  if (height > 0) {
+    const sep = width > 0 ? "-" : "/";
+    result += `${sep}h${height}`;
+    found = true;
+  }
+  result += found ? "-noEnlarge" : "/noEnlarge";
 
-  return (
-    result[2] +
-    " " +
-    result[1] +
-    " " +
-    result[3] +
-    ", at " +
-    hours +
-    ":" +
-    minutes
+  return `${result}.${ext}`.replace(
+    "https://s3.eu-west-1.amazonaws.com/tamtam",
+    "https://s3.tamtam.pro"
   );
-};
+}

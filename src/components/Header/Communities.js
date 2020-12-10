@@ -1,68 +1,20 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
-
-// TODO move this
-export const getUserNameForAvatar = (firstName, lastName) => {
-  let fName = firstName.split(" ");
-  if (fName.length >= 3) {
-    return extractFirstLettre(fName, 3);
-  } else {
-    let lName = lastName.split(" ");
-    return extractFirstLettre(fName.concat(lName), 3);
-  }
-};
-
-function extractFirstLettre(arrayStr, length) {
-  let result = "";
-  for (let i = 0; i < arrayStr.length; i++) {
-    if (arrayStr[i]) {
-      result += arrayStr[i].substring(0, 1);
-    }
-  }
-  return result.toUpperCase();
-}
+import styles from "./Header.module.scss";
 
 const I18N = {
   en: {
-    communities: "Communities"
+    communities: "Communities",
   },
   fr: {
-    communities: "Communautés"
+    communities: "Communautés",
   },
   nl: {
-    communities: "Gemeenschappen"
-  }
+    communities: "Gemeenschappen",
+  },
 };
 
 export default class Communities extends Component {
-  state = {
-    show: false
-  };
-
-  handleShow = () => this.setState(prevState => ({ show: !prevState.show }));
-
-  getUserAvatar() {
-    const { avatarUrl, firstName, lastName } = this.props.auth.user;
-
-    let avatarDiv = null;
-    if (avatarUrl) {
-      avatarDiv = (
-        <div
-          className="menu__img-wrap m-b-s"
-          style={{ backgroundImage: `url(${avatarUrl})` }}
-        ></div>
-      );
-    } else {
-      avatarDiv = (
-        <div className="menu__img-wrap empty-avatar m-b-s">
-          <span>{getUserNameForAvatar(firstName, lastName)}</span>
-        </div>
-      );
-    }
-
-    return avatarDiv;
-  }
-
   renderCommunities() {
     const { communities, onCommunityChange } = this.props;
 
@@ -78,7 +30,7 @@ export default class Communities extends Component {
         : "img/default-logo.png";
       let logoBlock = (
         <span
-          className="boxes__box__logo"
+          className={styles.boxes__box__logo}
           style={{ backgroundImage: `url(${logo})` }}
         ></span>
       );
@@ -89,7 +41,10 @@ export default class Communities extends Component {
         clientName = clientName.substr(0, 30) + "...";
       }
       clientsBlock.push(
-        <li className="menu__sub-child" key={`client-${communities[i].id}`}>
+        <li
+          className={styles.menu__subChild}
+          key={`client-${communities[i].id}`}
+        >
           <NavLink
             to="/"
             activeClassName="active"
@@ -103,7 +58,7 @@ export default class Communities extends Component {
     }
 
     return (
-      <div className="menu__dropdown">
+      <div className={styles.menu__dropdown}>
         <ul>{clientsBlock}</ul>
       </div>
     );
@@ -127,21 +82,10 @@ export default class Communities extends Component {
     }
 
     return (
-      <li
-        className="menu__has-child menu__community flex-container p-x-m"
-        onMouseEnter={this.handleShow}
-        onMouseLeave={this.handleShow}
-      >
-        <span
-          className="menu__link no-padding--left"
-          style={{ cursor: "pointer" }}
-        >
+      <li className={`${styles.menu__hasChild} ${styles.menu__community}`}>
+        <span className={`${styles.menu__link}`} style={{ cursor: "pointer" }}>
           <span>{navText}</span>
-          {this.state.show ? (
-            <i className="icon icon-arrow-up" />
-          ) : (
-            <i className="icon icon-arrow-down" />
-          )}
+          <i className="icon icon-arrow-down" />
         </span>
         {this.renderCommunities()}
       </li>

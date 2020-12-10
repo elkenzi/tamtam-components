@@ -5,14 +5,14 @@ import styles from "./Header.module.scss";
 
 const I18N = {
   en: {
-    apps: "TAMTAM applications"
+    apps: "TAMTAM applications",
   },
   fr: {
-    apps: "Applications TAMTAM"
+    apps: "Applications TAMTAM",
   },
   nl: {
-    apps: "TAMTAM-toepassingen"
-  }
+    apps: "TAMTAM-toepassingen",
+  },
 };
 
 export default function Apps({ apps, language = "fr" }) {
@@ -22,12 +22,19 @@ export default function Apps({ apps, language = "fr" }) {
         <div className={styles.socialLinksHeader}>{I18N[language]["apps"]}</div>
         <div className={styles.socialLinksBody}>
           <ul className={styles.appsContainer}>
-            {apps.map(({ url, logo, name, id }) => (
-              <li key={id} className={styles.appsColumn}>
-                <a className={styles.appWrapper} href={url}>
-                  <img alt="" src={`${logo}`} />
-                  <div className={styles.appName}>{name}</div>
-                </a>
+            {apps.map(({ code, url, activated, icon, name }) => (
+              <li key={"app-" + code} className={styles.appsColumn}>
+                {activated ? (
+                  <a className={styles.appWrapper} href={url}>
+                    <img alt="" src={`${icon}`} />
+                    <div className={styles.appName}>{name[language]}</div>
+                  </a>
+                ) : (
+                  <span className={`${styles.appWrapper} ${styles.disabled}`}>
+                    <img alt="" src={`${icon}`} />
+                    <div className={styles.appName}>{name[language]}</div>
+                  </span>
+                )}
               </li>
             ))}
           </ul>

@@ -8,7 +8,7 @@ export const SVG_ICONS = {
   PROFILE: "profile.svg",
   NOTIFS: "notifs.svg",
   APPS: "apps.svg",
-  EBOX: "ebox.svg"
+  EBOX: "ebox.svg",
 };
 
 export default function MenuItem({
@@ -16,7 +16,7 @@ export default function MenuItem({
   icon,
   children,
   count = 0,
-  className = ""
+  className = "",
 }) {
   const Icon = icons[icon];
   return (

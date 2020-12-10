@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import moment from "moment";
 
 import styles from "./Article.module.scss";
 import { Avatar } from "../Avatar/Avatar";
-import { getDateLabel } from "../../utils";
 
 const Like = () => (
   <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
@@ -78,6 +78,7 @@ export class Article extends Component {
   }
 
   renderType2() {
+    const publishedAtDate = moment(this.props.publishedAt);
     return (
       <div className={`${styles.articleTemplate2} ${styles[this.props.size]}`}>
         <div className={styles.authorsContainer}>
@@ -90,7 +91,7 @@ export class Article extends Component {
         <div className={styles.content}>
           {this.props.publishedAt && (
             <div className={styles.publishedAt}>
-              {getDateLabel(this.props.publishedAt)}
+              {publishedAtDate.format("DD MMM YYYY [at] hh:mm")}
             </div>
           )}
           <div className={styles.category}>{this.props.category}</div>
@@ -134,6 +135,7 @@ export class Article extends Component {
   }
 
   renderType3() {
+    const publishedAtDate = moment(this.props.publishedAt);
     return (
       <div className={`${styles.articleTemplate3} ${styles[this.props.size]}`}>
         <div className={styles.authorsContainer}>
@@ -143,16 +145,16 @@ export class Article extends Component {
             avatarSignature={this.props.authorSignature}
           />
         </div>
-        <div class={styles.row}>
+        <div className={styles.row}>
           <div
-            class={`${styles.col6} ${styles.contentImg}`}
+            className={`${styles.col6} ${styles.contentImg}`}
             style={{ backgroundImage: `url(${this.props.url})` }}
           ></div>
-          <div class={`${styles.col6} ${styles.articleTemplate2}`}>
+          <div className={`${styles.col6} ${styles.articleTemplate2}`}>
             <div className={styles.content}>
               {this.props.publishedAt && (
                 <div className={styles.publishedAt}>
-                  {getDateLabel(this.props.publishedAt)}
+                  {publishedAtDate.format("DD MMM YYYY [at] hh:mm")}
                 </div>
               )}
               <div className={styles.category}>{this.props.category}</div>
@@ -200,6 +202,7 @@ export class Article extends Component {
   }
 
   renderType4() {
+    const publishedAtDate = moment(this.props.publishedAt);
     return (
       <div className={`${styles.articleTemplate4} ${styles[this.props.size]}`}>
         <div className={styles.authorsContainer}>
@@ -212,7 +215,7 @@ export class Article extends Component {
         <div class={styles.articleContainer}>
           {this.props.publishedAt && (
             <div className={styles.publishedAt}>
-              {getDateLabel(this.props.publishedAt)}
+              {publishedAtDate.format("DD MMM YYYY [at] hh:mm")}
             </div>
           )}
           <div
@@ -264,6 +267,7 @@ export class Article extends Component {
   }
 
   renderDefault() {
+    const publishedAtDate = moment(this.props.publishedAt);
     return (
       <div
         className={`${styles.article} ${styles[this.props.size]}`}
@@ -282,7 +286,7 @@ export class Article extends Component {
         >
           {this.props.publishedAt && (
             <div className={styles.publishedAt}>
-              {getDateLabel(this.props.publishedAt)}
+              {publishedAtDate.format("DD MMM YYYY [at] hh:mm")}
             </div>
           )}
           <div className={styles.category}>{this.props.category}</div>
