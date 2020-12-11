@@ -8,17 +8,10 @@ import { TTP_API_URL } from "../../config";
 import { addLandaSize, getUserNameForAvatar } from "../../utils";
 
 export class AvatarCard extends Component {
-  constructor() {
-    super();
-    this.state = {
-      isSelected: false,
-    };
-
-    this.handleClick = this.handleClick.bind(this);
-  }
-  handleClick() {
-    this.setState({ isSelected: !this.state.isSelected });
-  }
+  handleAvatarClick = (e) => {
+    e.stopPropagation();
+    this.props.onAvatarClick();
+  };
 
   renderAvatar() {
     const {
@@ -28,31 +21,27 @@ export class AvatarCard extends Component {
       id,
       firstName,
       lastName,
-      // isSelected,
+      company,
+      isSelected,
+      showAvatarEdit,
+      onAvatarClick,
     } = this.props;
 
-    const checkClasses = classnames(
-      styles.check,
-      this.state.isSelected && styles.active
-    );
+    const checkClasses = classnames(styles.check, isSelected && styles.active);
     const IconCheck = icons["Check"];
     const checkDiv = (
       <div className={checkClasses}>
-        {/* <i id={`check-${id}`} /> */}
         <IconCheck />
       </div>
     );
 
     if (avatarUrl || avatar) {
-      const classes = classnames(
-        styles.avatar,
-        this.state.isSelected && styles.selected
-      );
+      const classes = classnames(styles.avatar, isSelected && styles.selected);
       return (
         <div
           id={`avatar-${id}`}
           className={classes}
-          onClick={this.handleClick}
+          onClick={onSelected}
           style={{
             backgroundImage: `url(${
               avatarUrl
@@ -62,6 +51,11 @@ export class AvatarCard extends Component {
           }}
         >
           {checkDiv}
+          {showAvatarEdit && (
+            <a className={styles.updateButton} onClick={this.handleAvatarClick}>
+              <i className={` ${styles.icon} icon-note`}></i>
+            </a>
+          )}
         </div>
       );
     }
@@ -69,24 +63,44 @@ export class AvatarCard extends Component {
     const classes = classnames(
       styles.avatar,
       styles.emptyAvatar,
-      this.state.isSelected && styles.selected
+      isSelected && styles.selected
     );
+    const avatarUserName =
+      firstName || lastName
+        ? getUserNameForAvatar(firstName, lastName)
+        : getUserNameForAvatar(company, "");
     return (
-      <div id={`avatar-${id}`} className={classes} onClick={this.handleClick}>
-        <span>{getUserNameForAvatar(firstName, lastName)}</span>
+      <div id={`avatar-${id}`} className={classes} onClick={onSelected}>
+        <span>{avatarUserName}</span>
         {checkDiv}
+        {showAvatarEdit && (
+          <a className={styles.updateButton} onClick={this.handleAvatarClick}>
+            <i className={` ${styles.icon} icon-note`}></i>
+          </a>
+        )}
       </div>
     );
   }
 
+  renderHeadline() {
+    const { headline } = this.props;
+    if (headline) {
+      return <h5>{headline}</h5>;
+    } else {
+      return <h5>&nbsp;</h5>;
+    }
+  }
+
   render() {
-    const { theme, firstName, lastName } = this.props;
+    const { theme, firstName, lastName, company } = this.props;
+    const avatarInfo =
+      firstName || lastName ? firstName + " " + lastName : company;
     return (
       <div className={`${styles.userCard} ${styles[theme]}`}>
         {this.renderAvatar()}
         <div className={styles.header}>
-          <h3 key="h3">{firstName + " " + lastName}</h3>
-          <h5>&nbsp;</h5>
+          <h3 key="h3">{avatarInfo}</h3>
+          {this.renderHeadline()}
         </div>
       </div>
     );

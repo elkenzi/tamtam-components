@@ -16,19 +16,7 @@ const user = {
   lastName: "BAETEN",
   isSelected: false,
   lng: "en",
-  blogRoleInOrganization: [
-    {
-      meta: {
-        headlines: {
-          en: "Head Tax @ VB0-FEB",
-          fr: "Head Tax @ FEB",
-          nl: "Head Tax @ VBO",
-        },
-      },
-      role: "REDACTOR",
-      mandated: false,
-    },
-  ],
+  headline: "REDACTOR",
 };
 
 export default {
@@ -51,12 +39,44 @@ export const Light = () => (
   </div>
 );
 
+export const LightEdit = () => (
+  <div class="grid-container">
+    <div className="grid-x">
+      <div className="cell small-12 medium-4 large-3">
+        <AvatarCard
+          theme="light"
+          showAvatarEdit={true}
+          onAvatarClick={action("onAvatarClick")}
+          {...user}
+        />
+      </div>
+    </div>
+  </div>
+);
+
 export const Dark = () => (
   <div style={{ background: "#29394d", padding: "3rem" }}>
     <div class="grid-container">
       <div className="grid-x">
         <div className="cell small-12 medium-4 large-3">
           <AvatarCard theme="dark" {...user} />
+        </div>
+      </div>
+    </div>
+  </div>
+);
+
+export const DarkEdit = () => (
+  <div style={{ background: "#29394d", padding: "3rem" }}>
+    <div class="grid-container">
+      <div className="grid-x">
+        <div className="cell small-12 medium-4 large-3">
+          <AvatarCard
+            theme="dark"
+            showAvatarEdit={true}
+            onAvatarClick={action("onAvatarClick")}
+            {...user}
+          />
         </div>
       </div>
     </div>

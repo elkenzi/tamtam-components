@@ -58,6 +58,10 @@ export class UserCard extends Component {
   handleClick() {
     this.setState({ isSelected: !this.state.isSelected });
   }
+  handleAvatarClick = (e) => {
+    e.stopPropagation();
+    this.props.onAvatarClick();
+  };
   getHeadlineValue(headlines) {
     if (headlines.fr) {
       return headlines.fr;
@@ -113,7 +117,7 @@ export class UserCard extends Component {
         >
           {checkDiv}
           {showAvatarEdit && (
-            <a className={styles.updateButton} onClick={onAvatarClick}>
+            <a className={styles.updateButton} onClick={this.handleAvatarClick}>
               <i className={` ${styles.icon} icon-note`}></i>
             </a>
           )}
@@ -131,7 +135,7 @@ export class UserCard extends Component {
         <span>{getUserNameForAvatar(firstName, lastName)}</span>
         {checkDiv}
         {showAvatarEdit && (
-          <a className={styles.updateButton} onClick={onAvatarClick}>
+          <a className={styles.updateButton} onClick={this.handleAvatarClick}>
             <i className={` ${styles.icon} icon-note`}></i>
           </a>
         )}
