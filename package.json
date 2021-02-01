@@ -164,7 +164,6 @@
   "dependencies": {
     "classnames": "^2.2.6",
     "foundation-sites": "^6.6.3",
-    "jquery": "^3.5.1",
     "moment": "^2.29.1",
     "react-modal": "^3.12.1",
     "react-slick": "^0.27.13",
