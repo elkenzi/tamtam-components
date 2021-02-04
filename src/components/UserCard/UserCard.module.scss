@@ -171,16 +171,21 @@
     transform: rotate(255deg);
     transition: transform 0.4s linear 0s, border-left-width 0s linear 0.35s;
   }
+  span {
+    transition: opacity 1s ease-in-out;
+    -moz-transition: opacity 1s ease-in-out;
+    -webkit-transition: opacity 1s ease-in-out;
+  }
   .updateButton {
     position: absolute;
-    top: 40%;
-    left: 41%;
+    top: 42%;
+    left: 44%;
     cursor: pointer;
     z-index: 99;
     opacity: 0;
-    transition: opacity 1.5s ease-in-out;
-    -moz-transition: opacity 1.5s ease-in-out;
-    -webkit-transition: opacity 1.5s ease-in-out;
+    transition: opacity 1s ease-in-out;
+    -moz-transition: opacity 1s ease-in-out;
+    -webkit-transition: opacity 1s ease-in-out;
 
     i.icon {
       color: #fff;
@@ -192,5 +197,43 @@
     .updateButton {
       opacity: 1;
     }
+
+    span {
+      opacity: 0;
+    }
+  }
+}
+
+.extraInfos {
+  z-index: 100;
+  position: absolute;
+  top: 2.5rem;
+  right: 3.5rem;
+  border: 1.6px solid #ccc;
+  height: 2.5rem;
+  width: 2.5rem;
+  cursor: pointer;
+  background-color: #fff;
+  border-radius: 5rem;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+
+  &__logo {
+    width: 2rem;
+    height: 2rem;
+    background-size: cover;
+    border-radius: 5rem;
+  }
+
+  i {
+    font-size: 1.5rem;
+    color: #ccc;
   }
 }

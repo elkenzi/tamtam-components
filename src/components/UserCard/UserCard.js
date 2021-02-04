@@ -49,18 +49,18 @@ const I18N = {
 export class UserCard extends Component {
   constructor() {
     super();
-    this.state = {
-      isSelected: false,
-    };
 
-    this.handleClick = this.handleClick.bind(this);
+    this.selectUser = this.selectUser.bind(this);
+    this.showUserFormModal = this.showUserFormModal.bind(this);
+    this.handleAvatarClick = this.handleAvatarClick.bind(this);
   }
-  handleClick() {
-    this.setState({ isSelected: !this.state.isSelected });
+  selectUser() {
+    const { id } = this.props;
+    this.props.toggleUser(id);
   }
   handleAvatarClick = (e) => {
     e.stopPropagation();
-    this.props.onAvatarClick();
+    this.props.onAvatarClick(this.props);
   };
   getHeadlineValue(headlines) {
     if (headlines.fr) {
@@ -77,19 +77,14 @@ export class UserCard extends Component {
     const {
       avatar,
       avatarUrl,
-      onSelected,
       id,
       firstName,
       lastName,
-      // isSelected,
+      isSelected,
       showAvatarEdit,
-      onAvatarClick,
     } = this.props;
 
-    const checkClasses = classnames(
-      styles.check,
-      this.state.isSelected && styles.active
-    );
+    const checkClasses = classnames(styles.check, isSelected && styles.active);
     const IconCheck = icons["Check"];
     const checkDiv = (
       <div className={checkClasses}>
@@ -98,15 +93,12 @@ export class UserCard extends Component {
     );
 
     if (avatarUrl || avatar) {
-      const classes = classnames(
-        styles.avatar,
-        this.state.isSelected && styles.selected
-      );
+      const classes = classnames(styles.avatar, isSelected && styles.selected);
       return (
         <div
           id={`avatar-${id}`}
           className={classes}
-          onClick={this.handleClick}
+          onClick={this.selectUser}
           style={{
             backgroundImage: `url(${
               avatarUrl
@@ -128,10 +120,10 @@ export class UserCard extends Component {
     const classes = classnames(
       styles.avatar,
       styles.emptyAvatar,
-      this.state.isSelected && styles.selected
+      isSelected && styles.selected
     );
     return (
-      <div id={`avatar-${id}`} className={classes} onClick={this.handleClick}>
+      <div id={`avatar-${id}`} className={classes} onClick={this.selectUser}>
         <span>{getUserNameForAvatar(firstName, lastName)}</span>
         {checkDiv}
         {showAvatarEdit && (
@@ -195,11 +187,39 @@ export class UserCard extends Component {
     return defaultSignatureDiv;
   }
 
+  renderUserExtraButton() {
+    const { metas } = this.props;
+    let logoPath =
+      metas && metas.organization && metas.organization.path
+        ? metas.organization.path
+        : null;
+    return (
+      <div className={styles.extraInfos} onClick={this.showUserFormModal}>
+        {logoPath ? (
+          <div
+            src={logoPath}
+            className={styles.extraInfos__logo}
+            style={{ backgroundImage: `url(${logoPath})` }}
+          ></div>
+        ) : (
+          <i className="icon icon-briefcase"></i>
+        )}
+      </div>
+    );
+  }
+
+  showUserFormModal() {
+    const { metas, id } = this.props;
+    let user = { metas, id };
+    this.props.displayUserMetaFormModal(user);
+  }
+
   render() {
     const { theme } = this.props;
     return (
       <div className={`${styles.userCard} ${styles[theme]}`}>
         {this.renderAvatar()}
+        {this.renderUserExtraButton()}
         <div className={styles.header}>{this.renderSignature()}</div>
       </div>
     );

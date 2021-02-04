@@ -7,10 +7,10 @@ import StoryRouter from "storybook-react-router";
 import { UserCard } from "./UserCard";
 
 const user = {
-  avatar:
-    "storage/media/IMAGE/6227/AVATAR_8fd1ef687196faf8db7d4a8bce0d4bd0f1cbc134.png",
-  avatarUrl:
-    "https://s3.tamtam.pro/rc/storage/media/IMAGE/6227/AVATAR_8fd1ef687196faf8db7d4a8bce0d4bd0f1cbc134.png",
+  // avatar:
+  //   "storage/media/IMAGE/6227/AVATAR_8fd1ef687196faf8db7d4a8bce0d4bd0f1cbc134.png",
+  // avatarUrl:
+  //   "https://s3.tamtam.pro/rc/storage/media/IMAGE/6227/AVATAR_8fd1ef687196faf8db7d4a8bce0d4bd0f1cbc134.png",
   id: "",
   firstName: "Jean",
   lastName: "BAETEN",
