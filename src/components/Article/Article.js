@@ -82,11 +82,13 @@ export class Article extends Component {
     return (
       <div className={`${styles.articleTemplate2} ${styles[this.props.size]}`}>
         <div className={styles.authorsContainer}>
-          <Avatar
-            avatarUrl={this.props.avatarUrl}
-            avatarName={this.props.authorName}
-            avatarSignature={this.props.authorSignature}
-          />
+          {!this.props.isExternal && (
+            <Avatar
+              avatarUrl={this.props.avatarUrl}
+              avatarName={this.props.authorName}
+              avatarSignature={this.props.authorSignature}
+            />
+          )}
         </div>
         <div className={styles.content}>
           {this.props.publishedAt && (
@@ -139,11 +141,13 @@ export class Article extends Component {
     return (
       <div className={`${styles.articleTemplate3} ${styles[this.props.size]}`}>
         <div className={styles.authorsContainer}>
-          <Avatar
-            avatarUrl={this.props.avatarUrl}
-            avatarName={this.props.authorName}
-            avatarSignature={this.props.authorSignature}
-          />
+          {!this.props.isExternal && (
+            <Avatar
+              avatarUrl={this.props.avatarUrl}
+              avatarName={this.props.authorName}
+              avatarSignature={this.props.authorSignature}
+            />
+          )}
         </div>
         <div className={styles.row}>
           <div
@@ -206,11 +210,13 @@ export class Article extends Component {
     return (
       <div className={`${styles.articleTemplate4} ${styles[this.props.size]}`}>
         <div className={styles.authorsContainer}>
-          <Avatar
-            avatarUrl={this.props.avatarUrl}
-            avatarName={this.props.authorName}
-            avatarSignature={this.props.authorSignature}
-          />
+          {!this.props.isExternal && (
+            <Avatar
+              avatarUrl={this.props.avatarUrl}
+              avatarName={this.props.authorName}
+              avatarSignature={this.props.authorSignature}
+            />
+          )}
         </div>
         <div class={styles.articleContainer}>
           {this.props.publishedAt && (
@@ -274,11 +280,13 @@ export class Article extends Component {
         onClick={this.props.openArticleReveal}
       >
         <div className={styles.authorsContainer}>
-          <Avatar
-            avatarUrl={this.props.avatarUrl}
-            avatarName={this.props.authorName}
-            avatarSignature={this.props.authorSignature}
-          />
+          {!this.props.isExternal && (
+            <Avatar
+              avatarUrl={this.props.avatarUrl}
+              avatarName={this.props.authorName}
+              avatarSignature={this.props.authorSignature}
+            />
+          )}
         </div>
         <div
           className={styles.content}
@@ -333,6 +341,8 @@ export class Article extends Component {
 
 Article.propTypes = {
   type: PropTypes.oneOf(["default", "type2", "type3", "type4"]),
+  isExternal: PropTypes.bool,
+  fetching: PropTypes.bool,
   size: PropTypes.oneOf(["small", "smallBH", "medium", "large"]),
   publishedAt: PropTypes.string,
   category: PropTypes.string,
@@ -353,6 +363,8 @@ Article.propTypes = {
 Article.defaultProps = {
   type: "default",
   size: "small",
+  isExternal: false,
+  fetching: false,
   showSummary: false,
   likeCount: 0,
   disLikeCount: 0,
