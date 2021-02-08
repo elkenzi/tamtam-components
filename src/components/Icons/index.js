@@ -5,3 +5,6 @@ export * from "./Apps";
 export * from "./Portal";
 export * from "./Search";
 export * from "./Check";
+export * from "./IconFacebook";
+export * from "./IconLinkedin";
+export * from "./IconTwitter";

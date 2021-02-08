@@ -1,6 +1,6 @@
 import React from "react";
 
-export default () => (
+export const IconFacebook = () => (
   <svg width="23" height="22" viewBox="0 0 23 22" fill="none">
     <path
       d="M11.3028 22C17.5451 22 22.6055 17.0751 22.6055 11C22.6055 4.92487 17.5451 0 11.3028 0C5.06041 0 0 4.92487 0 11C0 17.0751 5.06041 22 11.3028 22Z"
