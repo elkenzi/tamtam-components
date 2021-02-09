@@ -5,31 +5,7 @@ import { withKnobs } from "@storybook/addon-knobs";
 import StoryRouter from "storybook-react-router";
 
 import { AuthorCard } from "./AuthorCard";
-
-const author2 = {
-  // avatar:
-  //   "storage/media/IMAGE/6227/AVATAR_8fd1ef687196faf8db7d4a8bce0d4bd0f1cbc134.png",
-  // avatarUrl:
-  //   "https://s3.tamtam.pro/rc/storage/media/IMAGE/6227/AVATAR_8fd1ef687196faf8db7d4a8bce0d4bd0f1cbc134.png",
-  id: "",
-  firstName: "Jean",
-  lastName: "BAETEN",
-  isSelected: false,
-  lng: "en",
-  blogRoleInOrganization: [
-    {
-      meta: {
-        headlines: {
-          en: "Head Tax @ VB0-FEB",
-          fr: "Head Tax @ FEB",
-          nl: "Head Tax @ VBO",
-        },
-      },
-      role: "REDACTOR",
-      mandated: false,
-    },
-  ],
-};
+import { Fetching } from "./Fetching";
 
 const author = {
   id: 8650,
@@ -91,6 +67,19 @@ export const Default = () => (
           author={author}
           lng="en"
         />
+      </div>
+    </div>
+  </div>
+);
+
+export const FetchingAuthor = () => (
+  <div
+    className="grid-container"
+    style={{ background: "#FAFBFB", padding: "200px 20px 20px" }}
+  >
+    <div className="grid-x">
+      <div className="cell small-12 medium-4 large-4">
+        <AuthorCard isFetching={true} />
       </div>
     </div>
   </div>
