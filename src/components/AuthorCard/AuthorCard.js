@@ -1,12 +1,9 @@
-import React, { Component } from "react";
-import Skeleton from "react-loading-skeleton";
-import PropTypes from "prop-types";
-import classnames from "classnames";
+import React from "react";
 
 import { IconFacebook, IconTwitter, IconLinkedin } from "../Icons";
 import styles from "./AuthorCard.module.scss";
 import { TTP_API_URL, SOCIAL_NETWORKS_HOSTS } from "../../config";
-import { addLandaSize, getUserNameForAvatar } from "../../utils";
+import { addLandaSize } from "../../utils";
 import { Fetching } from "./Fetching";
 import { I18N } from "../../i18n";
 

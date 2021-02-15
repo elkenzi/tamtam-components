@@ -116,19 +116,17 @@ export class UserCard extends Component {
         ? {}
         : blogRoleInOrganization[0].meta.headlines;
     let defaultSignatureDiv = [];
-    defaultSignatureDiv.push(<h3 key="h3">{firstName + " " + lastName}</h3>);
+    defaultSignatureDiv.push(<h3>{firstName + " " + lastName}</h3>);
 
     if (headlines && headlines[language]) {
-      defaultSignatureDiv.push(<h4 key="h5">{headlines[language]}</h4>);
+      defaultSignatureDiv.push(<h4>{headlines[language]}</h4>);
     } else if (headlines) {
-      defaultSignatureDiv.push(
-        <h4 key="h5">{this.getHeadlineValue(headlines)}</h4>
-      );
+      defaultSignatureDiv.push(<h4>{this.getHeadlineValue(headlines)}</h4>);
     }
     if (blogRoleInOrganization && blogRoleInOrganization.length > 0) {
       const role = blogRoleInOrganization[0].role;
       defaultSignatureDiv.push(
-        <h5 key="h4">
+        <h5>
           <span>
             {I18N[language][role] + " "}
             {blogRoleInOrganization[0].role !== "CHIEF_EDITOR" && (
@@ -144,7 +142,7 @@ export class UserCard extends Component {
         </h5>
       );
     } else if (role && role.id !== undefined) {
-      defaultSignatureDiv.push(<h5 key="h5">{I18N[language][role.type]}</h5>);
+      defaultSignatureDiv.push(<h5>{I18N[language][role.type]}</h5>);
     }
     return defaultSignatureDiv;
   }

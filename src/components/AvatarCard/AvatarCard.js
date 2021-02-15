@@ -108,7 +108,7 @@ export class AvatarCard extends Component {
         <div className={`${styles.userCard} ${styles[theme]}`}>
           {this.renderAvatar()}
           <div className={styles.header}>
-            <h3 key="h3">{avatarInfo}</h3>
+            <h3>{avatarInfo}</h3>
             {this.renderHeadline()}
           </div>
         </div>

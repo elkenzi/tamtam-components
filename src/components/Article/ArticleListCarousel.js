@@ -40,7 +40,6 @@ export class ArticleListCarousel extends Component {
       }
       step++;
     }
-    console.log(slides);
 
     const settings = {
       dots: true,

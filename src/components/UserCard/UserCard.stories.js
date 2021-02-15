@@ -6,7 +6,7 @@ import StoryRouter from "storybook-react-router";
 
 import { UserCard } from "./UserCard";
 
-import jsonData from "./data.json";
+import jsonData from "./data2.json";
 import user from "./user.json";
 
 const users = jsonData.data;
@@ -22,12 +22,12 @@ export default {
 };
 
 export const Light = () => (
-  <div class="grid-container">
+  <div className="grid-container">
     <div className="grid-x">
       <div className="cell small-12 medium-4 large-3">
         <UserCard
           theme="light"
-          user={user}
+          user={users[Math.floor(Math.random() * 66)]}
           isFetching={boolean("isFetching", false)}
         />
       </div>
@@ -36,7 +36,7 @@ export const Light = () => (
 );
 
 export const LightEdit = () => (
-  <div class="grid-container">
+  <div className="grid-container">
     <div className="grid-x">
       <div className="cell small-12 medium-4 large-3">
         <UserCard
@@ -53,7 +53,7 @@ export const LightEdit = () => (
 
 export const Dark = () => (
   <div style={{ background: "#29394d", padding: "3rem" }}>
-    <div class="grid-container">
+    <div className="grid-container">
       <div className="grid-x">
         <div className="cell small-12 medium-4 large-3">
           <UserCard
@@ -69,7 +69,7 @@ export const Dark = () => (
 
 export const DarkEdit = () => (
   <div style={{ background: "#29394d", padding: "3rem" }}>
-    <div class="grid-container">
+    <div className="grid-container">
       <div className="grid-x">
         <div className="cell small-12 medium-4 large-3">
           <UserCard

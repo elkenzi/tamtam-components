@@ -22,7 +22,7 @@ export default {
 const dispositions = ["type7", "type3", "type7", "default", "type2"];
 
 export const Default = () => (
-  <div class="grid-container">
+  <div className="grid-container">
     <ArticleListCarousel dispositions={dispositions} articles={articles} />
   </div>
 );

@@ -1,7 +1,5 @@
 import React from "react";
-import { storiesOf } from "@storybook/react";
-import { action } from "@storybook/addon-actions";
-import { withKnobs, text, select, boolean } from "@storybook/addon-knobs";
+import { withKnobs, boolean } from "@storybook/addon-knobs";
 import StoryRouter from "storybook-react-router";
 
 import { Article } from "./Article";
@@ -12,7 +10,6 @@ import jsonData from "./data2.json";
 
 const articles = jsonData.data;
 // const article = jsonData.data[0];
-console.log(jsonData.data.length);
 
 export default {
   title: "Article",
@@ -25,7 +22,7 @@ export default {
 };
 
 export const DefaultSmall = () => (
-  <div class="grid-container">
+  <div className="grid-container">
     <div className="grid-x">
       <div className="cell small-12 medium-4">
         <Article
@@ -39,7 +36,7 @@ export const DefaultSmall = () => (
 );
 
 export const DefaultLarge = () => (
-  <div class="grid-container">
+  <div className="grid-container">
     <div className="grid-x">
       <div className="cell small-12 medium-8">
         <Article
@@ -54,7 +51,7 @@ export const DefaultLarge = () => (
 );
 
 export const Type2 = () => (
-  <div class="grid-container">
+  <div className="grid-container">
     <div className="grid-x">
       <div className="cell small-12 medium-4">
         <Article
@@ -69,7 +66,7 @@ export const Type2 = () => (
 );
 
 export const Type3 = () => (
-  <div class="grid-container">
+  <div className="grid-container">
     <div className="grid-x">
       <div className="cell small-12 medium-6">
         <Article
@@ -88,7 +85,7 @@ export const Type3 = () => (
 );
 
 export const Type4 = () => (
-  <div class="grid-container">
+  <div className="grid-container">
     <div className="grid-x">
       <div className="cell small-12 medium-4">
         <Article

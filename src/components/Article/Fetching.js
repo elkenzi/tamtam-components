@@ -26,11 +26,11 @@ export const Fetching = (props) => {
     return (
       <div className={`${styles.articleTemplate4} ${styles[size]}`}>
         {renderAvatar()}
-        <div class={styles.articleContainer}>
+        <div className={styles.articleContainer}>
           <div className={styles.publishedAt}>
             <Skeleton width={100} height={15} />
           </div>
-          <div class={styles.contentImg}>
+          <div className={styles.contentImg}>
             <Skeleton width="100%" height="100%" />
           </div>
           {renderContent()}

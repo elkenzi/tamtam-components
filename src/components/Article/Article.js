@@ -1,14 +1,11 @@
 import React from "react";
 import Slider from "react-slick";
-import PropTypes from "prop-types";
 import moment from "moment";
 
-import Skeleton from "react-loading-skeleton";
 import styles from "./Article.module.scss";
-import { Avatar } from "../Avatar/Avatar";
 import { AuthorAvatar } from "../Avatar/AuthorAvatar";
 import { Fetching } from "./Fetching";
-import { prepareArticle, addLandaSize } from "../../utils";
+import { prepareArticle } from "../../utils";
 
 export const Article = ({
   article,
@@ -21,6 +18,8 @@ export const Article = ({
   onEdit,
   onDelete,
 }) => {
+  if (isFetching) return <Fetching type={type} size={size} />;
+
   const data = prepareArticle(article);
   const {
     title,
@@ -53,7 +52,7 @@ export const Article = ({
         <div className={styles.authorsContainer}>
           <ul>
             {authors.map((author) => (
-              <li>
+              <li key={`author-${author.id}`}>
                 <AuthorAvatar author={author} />
               </li>
             ))}
@@ -102,7 +101,7 @@ export const Article = ({
         <div className={styles.authorsContainer}>
           <ul>
             {authors.map((author) => (
-              <li>
+              <li key={`author-${author.id}`}>
                 <AuthorAvatar author={author} />
               </li>
             ))}
@@ -141,7 +140,7 @@ export const Article = ({
         <div className={styles.authorsContainer}>
           <ul>
             {authors.map((author) => (
-              <li>
+              <li key={`author-${author.id}`}>
                 <AuthorAvatar author={author} />
               </li>
             ))}
@@ -157,7 +156,9 @@ export const Article = ({
             style={{ backgroundImage: `url(${mediaUrl})` }}
           >
             {showStatus && (
-              <div class={`${styles.status} ${styles[status.toLowerCase()]}`}>
+              <div
+                className={`${styles.status} ${styles[status.toLowerCase()]}`}
+              >
                 {status}
               </div>
             )}
@@ -227,13 +228,13 @@ export const Article = ({
         <div className={styles.authorsContainer}>
           <ul>
             {authors.map((author) => (
-              <li>
+              <li key={`author-${author.id}`}>
                 <AuthorAvatar author={author} />
               </li>
             ))}
           </ul>
         </div>
-        <div class={styles.articleContainer}>
+        <div className={styles.articleContainer}>
           {publishedAt && (
             <div className={styles.publishedAt}>
               {moment(new Date(publishedAt)).format("DD MMM YYYY [at] hh:mm")}
@@ -241,7 +242,7 @@ export const Article = ({
           )}
 
           {medias && medias.length > 0 ? (
-            <div class={styles.contentImg}>
+            <div className={styles.contentImg}>
               <Slider {...settings}>
                 {medias.map((media) => {
                   return (
@@ -262,7 +263,7 @@ export const Article = ({
             </div>
           ) : (
             <div
-              class={styles.contentImg}
+              className={styles.contentImg}
               style={{ backgroundImage: `url(${mediaUrl})` }}
             ></div>
           )}
@@ -327,51 +328,17 @@ export const Article = ({
     );
   };
 
-  if (isFetching) {
-    return <Fetching type={type} size={size} />;
-  } else {
-    switch (type) {
-      case "type2":
-        return renderType2();
-        break;
-      case "type3":
-        return renderType3();
-        break;
-      case "type4":
-        return renderType4();
-        break;
-      default:
-        return renderDefault();
-    }
+  switch (type) {
+    case "type2":
+      return renderType2();
+      break;
+    case "type3":
+      return renderType3();
+      break;
+    case "type4":
+      return renderType4();
+      break;
+    default:
+      return renderDefault();
   }
 };
-
-// Article.propTypes = {
-//   type: PropTypes.oneOf(["default", "type2", "type3", "type4"]),
-//   size: PropTypes.oneOf(["small", "smallBH", "medium", "large"]),
-//   publishedAt: PropTypes.string,
-//   category: PropTypes.string,
-//   community: PropTypes.string,
-//   title: PropTypes.string,
-//   summary: PropTypes.string,
-//   showSummary: PropTypes.bool,
-//   url: PropTypes.string,
-//   avatarUrl: PropTypes.string,
-//   authorName: PropTypes.string,
-//   authorSignature: PropTypes.string,
-//   likeCount: PropTypes.number,
-//   disLikeCount: PropTypes.number,
-//   commentCount: PropTypes.number,
-//   shareCount: PropTypes.number,
-//   favoriteCount: PropTypes.number,
-// };
-// Article.defaultProps = {
-//   type: "default",
-//   size: "small",
-//   showSummary: false,
-//   likeCount: 0,
-//   disLikeCount: 0,
-//   commentCount: 0,
-//   shareCount: 0,
-//   favoriteCount: 0,
-// };

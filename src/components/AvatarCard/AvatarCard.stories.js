@@ -18,7 +18,7 @@ export default {
 };
 
 export const Light = () => (
-  <div class="grid-container">
+  <div className="grid-container">
     <div className="grid-x">
       <div className="cell small-12 medium-4 large-3">
         <AvatarCard
@@ -34,7 +34,7 @@ export const Light = () => (
 );
 
 export const LightEdit = () => (
-  <div class="grid-container">
+  <div className="grid-container">
     <div className="grid-x">
       <div className="cell small-12 medium-4 large-3">
         <AvatarCard
@@ -51,7 +51,7 @@ export const LightEdit = () => (
 
 export const Dark = () => (
   <div style={{ background: "#29394d", padding: "3rem" }}>
-    <div class="grid-container">
+    <div className="grid-container">
       <div className="grid-x">
         <div className="cell small-12 medium-4 large-3">
           <AvatarCard
@@ -67,7 +67,7 @@ export const Dark = () => (
 
 export const DarkEdit = () => (
   <div style={{ background: "#29394d", padding: "3rem" }}>
-    <div class="grid-container">
+    <div className="grid-container">
       <div className="grid-x">
         <div className="cell small-12 medium-4 large-3">
           <AvatarCard
