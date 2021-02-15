@@ -4,7 +4,7 @@
   padding: 130px 12px 0;
   background: #fff;
   border-radius: 5px;
-  height: 400px;
+  height: 310px;
   display: flex;
   flex-direction: column;
   &::before {
@@ -20,6 +20,12 @@
   }
 }
 .avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: bold;
+  background: #eee;
   cursor: pointer;
   background-position: center center;
   position: absolute;

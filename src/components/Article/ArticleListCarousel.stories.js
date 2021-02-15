@@ -6,6 +6,9 @@ import StoryRouter from "storybook-react-router";
 
 import { ArticleListCarousel } from "./ArticleListCarousel";
 
+import jsonData from "./data2.json";
+const articles = jsonData.data;
+
 export default {
   title: "ArticleListCarousel",
   component: ArticleListCarousel,
@@ -16,28 +19,7 @@ export default {
   ],
 };
 
-const article = {
-  publishedAt: 1604068542385,
-  category: "Droit",
-  community: "ITAA",
-  title:
-    "Tempore quo primis auspiciis in mundanum fulgorem surgeret Tempore quo primis auspiciis in mundanum fulgorem surgeret",
-  summary:
-    "Thalassius vero ea tempestate praefectus praetorio praesens ipse quoque adrogantis ingenii, considerans halassius vero ea temt empestate vero ea tempestate praefectus praetorio praesens ipse quoque adrogantis ingenii, considerans ea tempestate praefectus praetorio praesens ipse quoque adrogantis",
-  url:
-    "https://s3.tamtam.pro/v2/storage/media/IMAGE/10734/5787ad358aca73e88049f053f60ab0d542934e85.jpeg",
-  avatarUrl:
-    "https://s3.tamtam.pro/v2/storage/media/IMAGE/31/AVATAR_70d83b21836dec24e6ec10e5d38a0ac3d96cbed2.png",
-  authorName: "Emmanuel Degrève",
-  authorSignature: "Partner et Conseil Fiscal",
-};
 const dispositions = ["type7", "type3", "type7", "default", "type2"];
-let articles = [];
-for (let i = 1; i < 24; i++) {
-  let art = { ...article };
-  art.title = i + " " + article.title;
-  articles.push(art);
-}
 
 export const Default = () => (
   <div class="grid-container">

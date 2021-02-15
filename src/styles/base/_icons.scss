@@ -1,0 +1,93 @@
+@font-face {
+  font-family: "tamtam";
+  src: url("../fonts/tamtam.eot?gd29ag");
+  src: url("../fonts/tamtam.eot?gd29ag#iefix") format("embedded-opentype"),
+    url("../fonts/tamtam.ttf?gd29ag") format("truetype"),
+    url("../fonts/tamtam.woff?gd29ag") format("woff"),
+    url("../fonts/tamtam.svg?gd29ag#tamtam") format("svg");
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-ttp-"],
+[class*=" icon-ttp-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: "tamtam" !important;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-ttp-eye:before {
+  content: "\e913";
+}
+.icon-ttp-edit:before {
+  content: "\e90e";
+}
+.icon-ttp-megaphone:before {
+  content: "\e914";
+}
+.icon-ttp-trash:before {
+  content: "\e900";
+}
+.icon-ttp-paper-airplane:before {
+  content: "\e915";
+}
+.icon-ttp-earth:before {
+  content: "\e912";
+}
+.icon-ttp-thumb-up:before {
+  content: "\e90f";
+}
+.icon-ttp-thumb-down:before {
+  content: "\e910";
+}
+.icon-ttp-comment:before {
+  content: "\e911";
+}
+.icon-ttp-medias:before {
+  content: "\e90d";
+}
+.icon-ttp-three-dots:before {
+  content: "\e90b";
+}
+.icon-ttp-plus:before {
+  content: "\e90c";
+}
+.icon-ttp-close:before {
+  content: "\e90a";
+}
+.icon-ttp-check-outline:before {
+  content: "\e908";
+}
+.icon-ttp-close-outline:before {
+  content: "\e909";
+}
+.icon-ttp-plus-outline:before {
+  content: "\e907";
+}
+.icon-ttp-magnifying-glass:before {
+  content: "\e903";
+}
+.icon-ttp-filter:before {
+  content: "\e905";
+}
+.icon-ttp-tools:before {
+  content: "\e902";
+}
+.icon-ttp-check:before {
+  content: "\e901";
+}
+.icon-ttp-settings:before {
+  content: "\e904";
+}
+.icon-ttp-folder:before {
+  content: "\e906";
+}

@@ -6,45 +6,9 @@ import * as icons from "../Icons";
 import styles from "./UserCard.module.scss";
 import { TTP_API_URL } from "../../config";
 import { addLandaSize, getUserNameForAvatar } from "../../utils";
+import { Fetching } from "./Fetching";
 
-const I18N = {
-  en: {
-    Official: "Official",
-    Manager: "Manager",
-    "Legal Reprentative": "Legal Reprentative",
-    "Organization roles": "Organization roles",
-    "Blog roles": "Blog roles",
-    "Editor-in-chief": "Editor-in-chief",
-    Redactor: "Redactor",
-    Author: "Author",
-    Mandated: "Mandated",
-    "Not Mandated": "Not Mandated",
-  },
-  fr: {
-    Official: "Officiel",
-    Manager: "Directeur",
-    "Legal Reprentative": "Représentant légal",
-    "Organization roles": "Rôles de l'organisation",
-    "Blog roles": "Rôles du blog",
-    "Editor-in-chief": "Éditeur en chef",
-    Redactor: "Rédacteur",
-    Author: "Auteur",
-    Mandated: "Mandaté",
-    "Not Mandated": "Non Mandaté",
-  },
-  nl: {
-    Official: "Officieel",
-    Manager: "Manager",
-    "Legal Reprentative": "Wettelijke vertegenwoordiger",
-    "Organization roles": "organisatie rollen",
-    "Blog roles": "blog rollen",
-    "Editor-in-chief": "Hoofdredacteur",
-    Redactor: "Redacteur",
-    Author: "Auteur",
-    Mandated: "gemandateerde",
-    "Not Mandated": "niet Gemandateerde",
-  },
-};
+import { I18N } from "../../i18n";
 
 export class UserCard extends Component {
   constructor() {
@@ -82,7 +46,7 @@ export class UserCard extends Component {
       lastName,
       isSelected,
       showAvatarEdit,
-    } = this.props;
+    } = this.props.user;
 
     const checkClasses = classnames(styles.check, isSelected && styles.active);
     const IconCheck = icons["Check"];
@@ -141,12 +105,12 @@ export class UserCard extends Component {
       lastName,
       role,
       blogRoleInOrganization,
-      lng,
-    } = this.props;
+      language,
+    } = this.props.user;
 
     let headlines =
       !blogRoleInOrganization ||
-      blogRoleInOrganization.length == 0 ||
+      blogRoleInOrganization.length === 0 ||
       !blogRoleInOrganization[0].meta ||
       !blogRoleInOrganization[0].meta.headlines
         ? {}
@@ -154,41 +118,39 @@ export class UserCard extends Component {
     let defaultSignatureDiv = [];
     defaultSignatureDiv.push(<h3 key="h3">{firstName + " " + lastName}</h3>);
 
-    if (headlines && headlines[lng]) {
-      defaultSignatureDiv.push(<h4 key="h5">{headlines[lng]}</h4>);
+    if (headlines && headlines[language]) {
+      defaultSignatureDiv.push(<h4 key="h5">{headlines[language]}</h4>);
     } else if (headlines) {
       defaultSignatureDiv.push(
         <h4 key="h5">{this.getHeadlineValue(headlines)}</h4>
       );
     }
     if (blogRoleInOrganization && blogRoleInOrganization.length > 0) {
-      const role =
-        blogRoleInOrganization[0].role.charAt(0) +
-        blogRoleInOrganization[0].role.substring(1).toLowerCase();
+      const role = blogRoleInOrganization[0].role;
       defaultSignatureDiv.push(
         <h5 key="h4">
           <span>
-            {I18N[lng][role] + " "}
+            {I18N[language][role] + " "}
             {blogRoleInOrganization[0].role !== "CHIEF_EDITOR" && (
               <span className="mandated">
                 (
-                {blogRoleInOrganization[0].mandated == 0
-                  ? I18N[lng]["Not Mandated"]
-                  : I18N[lng]["Mandated"]}
+                {blogRoleInOrganization[0].mandated === 0
+                  ? I18N[language]["Not_Mandated"]
+                  : I18N[language]["Mandated"]}
                 )
               </span>
             )}
           </span>
         </h5>
       );
-    } else if (role && role.id != undefined) {
-      defaultSignatureDiv.push(<h5 key="h5">{I18N[lng][role.type]}</h5>);
+    } else if (role && role.id !== undefined) {
+      defaultSignatureDiv.push(<h5 key="h5">{I18N[language][role.type]}</h5>);
     }
     return defaultSignatureDiv;
   }
 
   renderUserExtraButton() {
-    const { metas } = this.props;
+    const { metas } = this.props.user;
     let logoPath =
       metas && metas.organization && metas.organization.path
         ? metas.organization.path
@@ -209,19 +171,21 @@ export class UserCard extends Component {
   }
 
   showUserFormModal() {
-    const { metas, id } = this.props;
+    const { metas, id } = this.props.user;
     let user = { metas, id };
     this.props.displayUserMetaFormModal(user);
   }
 
   render() {
-    const { theme } = this.props;
-    return (
-      <div className={`${styles.userCard} ${styles[theme]}`}>
-        {this.renderAvatar()}
-        {this.renderUserExtraButton()}
-        <div className={styles.header}>{this.renderSignature()}</div>
-      </div>
-    );
+    const { theme, isFetching } = this.props;
+    if (isFetching) return <Fetching theme={theme} />;
+    else
+      return (
+        <div className={`${styles.userCard} ${styles[theme]}`}>
+          {this.renderAvatar()}
+          {this.renderUserExtraButton()}
+          <div className={styles.header}>{this.renderSignature()}</div>
+        </div>
+      );
   }
 }

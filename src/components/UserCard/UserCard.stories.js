@@ -1,35 +1,15 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
-import { withKnobs } from "@storybook/addon-knobs";
+import { withKnobs, boolean } from "@storybook/addon-knobs";
 import StoryRouter from "storybook-react-router";
 
 import { UserCard } from "./UserCard";
 
-const user = {
-  // avatar:
-  //   "storage/media/IMAGE/6227/AVATAR_8fd1ef687196faf8db7d4a8bce0d4bd0f1cbc134.png",
-  // avatarUrl:
-  //   "https://s3.tamtam.pro/rc/storage/media/IMAGE/6227/AVATAR_8fd1ef687196faf8db7d4a8bce0d4bd0f1cbc134.png",
-  id: "",
-  firstName: "Jean",
-  lastName: "BAETEN",
-  isSelected: false,
-  lng: "en",
-  blogRoleInOrganization: [
-    {
-      meta: {
-        headlines: {
-          en: "Head Tax @ VB0-FEB",
-          fr: "Head Tax @ FEB",
-          nl: "Head Tax @ VBO",
-        },
-      },
-      role: "REDACTOR",
-      mandated: false,
-    },
-  ],
-};
+import jsonData from "./data.json";
+import user from "./user.json";
+
+const users = jsonData.data;
 
 export default {
   title: "UserCard",
@@ -45,7 +25,11 @@ export const Light = () => (
   <div class="grid-container">
     <div className="grid-x">
       <div className="cell small-12 medium-4 large-3">
-        <UserCard theme="light" {...user} />
+        <UserCard
+          theme="light"
+          user={user}
+          isFetching={boolean("isFetching", false)}
+        />
       </div>
     </div>
   </div>
@@ -59,7 +43,8 @@ export const LightEdit = () => (
           theme="light"
           showAvatarEdit={true}
           onAvatarClick={action("onAvatarClick")}
-          {...user}
+          user={users[Math.floor(Math.random() * 66)]}
+          isFetching={boolean("isFetching", false)}
         />
       </div>
     </div>
@@ -71,7 +56,11 @@ export const Dark = () => (
     <div class="grid-container">
       <div className="grid-x">
         <div className="cell small-12 medium-4 large-3">
-          <UserCard theme="dark" {...user} />
+          <UserCard
+            theme="dark"
+            user={users[Math.floor(Math.random() * 66)]}
+            isFetching={boolean("isFetching", false)}
+          />
         </div>
       </div>
     </div>
@@ -87,7 +76,8 @@ export const DarkEdit = () => (
             theme="dark"
             showAvatarEdit={true}
             onAvatarClick={action("onAvatarClick")}
-            {...user}
+            user={users[Math.floor(Math.random() * 66)]}
+            isFetching={boolean("isFetching", false)}
           />
         </div>
       </div>

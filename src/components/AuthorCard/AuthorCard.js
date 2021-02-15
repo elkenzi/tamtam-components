@@ -8,18 +8,7 @@ import styles from "./AuthorCard.module.scss";
 import { TTP_API_URL, SOCIAL_NETWORKS_HOSTS } from "../../config";
 import { addLandaSize, getUserNameForAvatar } from "../../utils";
 import { Fetching } from "./Fetching";
-
-const I18N = {
-  en: {
-    ARTCILES: "Articles",
-  },
-  fr: {
-    ARTCILES: "Articles",
-  },
-  nl: {
-    ARTCILES: "Artikelen",
-  },
-};
+import { I18N } from "../../i18n";
 
 export const AuthorCard = ({
   lng = "en",
@@ -29,24 +18,41 @@ export const AuthorCard = ({
   if (isFetching) {
     return <Fetching />;
   } else {
-    const { metas, contactSocialNetworks } = author;
-    const { organization } = metas;
+    const { blogRoleInOrganization, roles, contactSocialNetworks } = author;
+    let organization = null;
+    if (roles && roles.length > 0) {
+      organization = roles[0].organization;
+    }
+
     const renderAvatar = () => {
       const { avatar, avatarUrl } = author;
-      return (
-        <div
-          id={`avatar-${author.id}`}
-          onClick={() => console.log("handle click")}
-          className={styles.avatar}
-          style={{
-            backgroundImage: `url(${
-              avatarUrl
-                ? addLandaSize(avatarUrl, 260)
-                : TTP_API_URL + "/" + avatar
-            })`,
-          }}
-        ></div>
-      );
+
+      if (avatar || avatarUrl)
+        return (
+          <div
+            id={`avatar-${author.id}`}
+            onClick={() => console.log("handle click")}
+            className={styles.avatar}
+            style={{
+              backgroundImage: `url(${
+                avatarUrl
+                  ? addLandaSize(avatarUrl, 260)
+                  : TTP_API_URL + "/" + avatar
+              })`,
+            }}
+          ></div>
+        );
+      else
+        return (
+          <div
+            id={`avatar-${author.id}`}
+            onClick={() => console.log("handle click")}
+            className={styles.avatar}
+          >
+            {author.firstName.charAt(0).toUpperCase() +
+              author.lastName.charAt(0).toUpperCase()}
+          </div>
+        );
     };
     const renderSocialNetwork = (name) => {
       const { contactSocialNetworks } = author;
@@ -98,14 +104,19 @@ export const AuthorCard = ({
 
       return null;
     };
+    const renderHeadline = () => {
+      if (blogRoleInOrganization && blogRoleInOrganization.length > 0) {
+        return <p>{I18N[lng][blogRoleInOrganization[0].role]}</p>;
+      }
+      return null;
+    };
     return (
       <div className={styles["author-card"]}>
         {renderAvatar()}
         <h3>
-          <span>{author.firstName}</span>
-          <span>{author.lastName}</span>
+          <span>{author.firstName}</span>&nbsp; <span>{author.lastName}</span>
         </h3>
-        <p>{author.headline}</p>
+        {renderHeadline()}
         {contactSocialNetworks && (
           <ul className={styles.social}>
             {renderSocialNetwork("facebook")}
@@ -114,19 +125,19 @@ export const AuthorCard = ({
           </ul>
         )}
         <div className={styles.footer}>
-          {organization ? (
+          {organization && organization.avatarUrl ? (
             <a href={organization.url} target="_blank" rel="noreferrer">
               <img
                 height={40}
                 className="org-img"
-                src={organization.path}
+                src={organization.avatarUrl}
                 alt={organization.name}
               />
             </a>
           ) : (
             <span></span>
           )}
-          <div>{`${author.nbArticle} ${I18N[lng]["ARTCILES"]}`}</div>
+          <div>{`${author.countArticle} ${I18N[lng]["ARTCILES"]}`}</div>
         </div>
       </div>
     );

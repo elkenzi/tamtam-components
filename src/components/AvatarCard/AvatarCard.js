@@ -6,6 +6,8 @@ import * as icons from "../Icons";
 import styles from "../UserCard/UserCard.module.scss";
 import { TTP_API_URL } from "../../config";
 import { addLandaSize, getUserNameForAvatar } from "../../utils";
+import { Fetching } from "./Fetching";
+import { I18N } from "../../i18n";
 
 export class AvatarCard extends Component {
   handleAvatarClick = (e) => {
@@ -15,17 +17,20 @@ export class AvatarCard extends Component {
 
   renderAvatar() {
     const {
-      avatar,
-      avatarUrl,
+      lng,
       onSelected,
-      id,
-      firstName,
-      lastName,
-      company,
       isSelected,
       showAvatarEdit,
       onAvatarClick,
     } = this.props;
+    const {
+      avatar,
+      avatarUrl,
+      id,
+      firstName,
+      lastName,
+      company,
+    } = this.props.user;
 
     const checkClasses = classnames(styles.check, isSelected && styles.active);
     const IconCheck = icons["Check"];
@@ -92,17 +97,21 @@ export class AvatarCard extends Component {
   }
 
   render() {
-    const { theme, firstName, lastName, company } = this.props;
+    const { theme, isFetching } = this.props;
+    const { firstName, lastName, company } = this.props.user;
     const avatarInfo =
       firstName || lastName ? firstName + " " + lastName : company;
-    return (
-      <div className={`${styles.userCard} ${styles[theme]}`}>
-        {this.renderAvatar()}
-        <div className={styles.header}>
-          <h3 key="h3">{avatarInfo}</h3>
-          {this.renderHeadline()}
+
+    if (isFetching) return <Fetching theme={theme} />;
+    else
+      return (
+        <div className={`${styles.userCard} ${styles[theme]}`}>
+          {this.renderAvatar()}
+          <div className={styles.header}>
+            <h3 key="h3">{avatarInfo}</h3>
+            {this.renderHeadline()}
+          </div>
         </div>
-      </div>
-    );
+      );
   }
 }

@@ -41,14 +41,14 @@ export class ArticleList extends Component {
         className={`${styles.articleList1} grid-x grid-margin-x grid-margin-x`}
       >
         <div className="cell small-12 medium-8">
-          <Article size="large" showSummary={true} {...articles[0]} />
+          <Article size="large" showSummary={true} article={articles[0]} />
         </div>
         {articles.length > 1 && (
           <div className={`cell small-12 medium-4`}>
             <div className={styles.articleTpl1_btm}>
-              <Article {...articles[1]} />
+              <Article article={articles[1]} />
             </div>
-            {articles.length > 2 && <Article {...articles[2]} />}
+            {articles.length > 2 && <Article article={articles[2]} />}
           </div>
         )}
       </div>
@@ -64,11 +64,11 @@ export class ArticleList extends Component {
     return (
       <div className={`${styles.articleList1} grid-x`}>
         <div className="cell small-12 medium-4">
-          <Article type="type2" {...articles[0]} />
+          <Article type="type2" article={articles[0]} />
         </div>
         {articles.length > 1 && (
           <div className={`${styles.articleTpl1} cell small-12 medium-8`}>
-            <Article type="type3" {...articles[1]} />
+            <Article type="type3" article={articles[1]} />
           </div>
         )}
       </div>
@@ -84,11 +84,11 @@ export class ArticleList extends Component {
     return (
       <div className={`${styles.articleList1} grid-x`}>
         <div className="cell small-12 medium-4">
-          <Article type="type2" {...articles[0]} />
+          <Article type="type2" article={articles[0]} />
         </div>
         {articles.length > 1 && (
           <div className={`${styles.articleTpl1} cell small-12 medium-8`}>
-            <Article size="medium" {...articles[1]} />
+            <Article size="medium" article={articles[1]} />
           </div>
         )}
       </div>
@@ -104,16 +104,16 @@ export class ArticleList extends Component {
     return (
       <div className={`${styles.articleList1} grid-x grid-margin-x`}>
         <div className="cell small-12 medium-4">
-          <Article type="type4" {...articles[0]} />
+          <Article type="type4" article={articles[0]} />
         </div>
         {articles.length > 1 && (
           <div className="cell small-12 medium-4">
-            <Article type="type4" {...articles[1]} />
+            <Article type="type4" article={articles[1]} />
           </div>
         )}
         {articles.length > 2 && (
           <div className="cell small-12 medium-4">
-            <Article type="type4" {...articles[2]} />
+            <Article type="type4" article={articles[2]} />
           </div>
         )}
       </div>
@@ -129,11 +129,11 @@ export class ArticleList extends Component {
     return (
       <div className={`${styles.articleList1} grid-x`}>
         <div className="cell small-12 medium-4">
-          <Article size="smallBH" {...articles[0]} />
+          <Article size="smallBH" article={articles[0]} />
         </div>
         {articles.length > 1 && (
           <div className={`${styles.articleTpl1} cell small-12 medium-8`}>
-            <Article size="smallBH" {...articles[1]} />
+            <Article size="smallBH" article={articles[1]} />
           </div>
         )}
       </div>
@@ -149,16 +149,16 @@ export class ArticleList extends Component {
     return (
       <div className={`${styles.articleList1} grid-x grid-margin-x`}>
         <div className="cell small-12 medium-4">
-          <Article type="type2" {...articles[0]} />
+          <Article type="type2" article={articles[0]} />
         </div>
         {articles.length > 1 && (
           <div className="cell small-12 medium-4">
-            <Article type="type2" {...articles[1]} />
+            <Article type="type2" article={articles[1]} />
           </div>
         )}
         {articles.length > 2 && (
           <div className="cell small-12 medium-4">
-            <Article type="type2" {...articles[2]} />
+            <Article type="type2" article={articles[2]} />
           </div>
         )}
       </div>
@@ -174,11 +174,11 @@ export class ArticleList extends Component {
     return (
       <div className={`${styles.articleList1} grid-x`}>
         <div className="cell small-12 medium-4">
-          <Article size="medium" {...articles[0]} />
+          <Article size="medium" article={articles[0]} />
         </div>
         {articles.length > 1 && (
           <div className={`${styles.articleTpl1} cell small-12 medium-8`}>
-            <Article type="type3" {...articles[1]} />
+            <Article type="type3" article={articles[1]} />
           </div>
         )}
       </div>
