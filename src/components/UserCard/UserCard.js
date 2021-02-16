@@ -24,7 +24,7 @@ export class UserCard extends Component {
   }
   handleAvatarClick = (e) => {
     e.stopPropagation();
-    this.props.onAvatarClick(this.props);
+    this.props.onAvatarClick(this.props.user);
   };
   getHeadlineValue(headlines) {
     if (headlines.fr) {
@@ -38,15 +38,8 @@ export class UserCard extends Component {
     return null;
   }
   renderAvatar() {
-    const {
-      avatar,
-      avatarUrl,
-      id,
-      firstName,
-      lastName,
-      isSelected,
-      showAvatarEdit,
-    } = this.props.user;
+    const { user, showAvatarEdit, isSelected } = this.props;
+    const { avatar, avatarUrl, id, firstName, lastName } = user;
 
     const checkClasses = classnames(styles.check, isSelected && styles.active);
     const IconCheck = icons["Check"];
@@ -57,10 +50,13 @@ export class UserCard extends Component {
     );
 
     if (avatarUrl || avatar) {
-      const classes = classnames(styles.avatar, isSelected && styles.selected);
+      const classes = classnames(
+        styles.avatar,
+        isSelected && styles.selected,
+        showAvatarEdit && styles.editAvatar
+      );
       return (
         <div
-          id={`avatar-${id}`}
           className={classes}
           onClick={this.selectUser}
           style={{
@@ -84,10 +80,11 @@ export class UserCard extends Component {
     const classes = classnames(
       styles.avatar,
       styles.emptyAvatar,
-      isSelected && styles.selected
+      isSelected && styles.selected,
+      showAvatarEdit && styles.editAvatar
     );
     return (
-      <div id={`avatar-${id}`} className={classes} onClick={this.selectUser}>
+      <div className={classes} onClick={this.selectUser}>
         <span>{getUserNameForAvatar(firstName, lastName)}</span>
         {checkDiv}
         {showAvatarEdit && (
@@ -106,6 +103,7 @@ export class UserCard extends Component {
       role,
       blogRoleInOrganization,
       language,
+      id,
     } = this.props.user;
 
     let headlines =
@@ -116,17 +114,21 @@ export class UserCard extends Component {
         ? {}
         : blogRoleInOrganization[0].meta.headlines;
     let defaultSignatureDiv = [];
-    defaultSignatureDiv.push(<h3>{firstName + " " + lastName}</h3>);
+    defaultSignatureDiv.push(
+      <h3 key={`h3-${id}`}>{firstName + " " + lastName}</h3>
+    );
 
     if (headlines && headlines[language]) {
-      defaultSignatureDiv.push(<h4>{headlines[language]}</h4>);
+      defaultSignatureDiv.push(<h4 key={`h4-${id}`}>{headlines[language]}</h4>);
     } else if (headlines) {
-      defaultSignatureDiv.push(<h4>{this.getHeadlineValue(headlines)}</h4>);
+      defaultSignatureDiv.push(
+        <h4 key={`h4-${id}`}>{this.getHeadlineValue(headlines)}</h4>
+      );
     }
     if (blogRoleInOrganization && blogRoleInOrganization.length > 0) {
       const role = blogRoleInOrganization[0].role;
       defaultSignatureDiv.push(
-        <h5>
+        <h5 key={`h5-${id}`}>
           <span>
             {I18N[language][role] + " "}
             {blogRoleInOrganization[0].role !== "CHIEF_EDITOR" && (
@@ -142,7 +144,9 @@ export class UserCard extends Component {
         </h5>
       );
     } else if (role && role.id !== undefined) {
-      defaultSignatureDiv.push(<h5>{I18N[language][role.type]}</h5>);
+      defaultSignatureDiv.push(
+        <h5 key={`h5-${id}`}>{I18N[language][role.type]}</h5>
+      );
     }
     return defaultSignatureDiv;
   }
@@ -176,14 +180,16 @@ export class UserCard extends Component {
 
   render() {
     const { theme, isFetching } = this.props;
-    if (isFetching) return <Fetching theme={theme} />;
-    else
-      return (
-        <div className={`${styles.userCard} ${styles[theme]}`}>
-          {this.renderAvatar()}
-          {this.renderUserExtraButton()}
-          <div className={styles.header}>{this.renderSignature()}</div>
-        </div>
-      );
+    if (isFetching) {
+      return <Fetching theme={theme} />;
+    }
+
+    return (
+      <div className={`${styles.userCard} ${styles[theme]}`}>
+        {this.renderAvatar()}
+        {this.renderUserExtraButton()}
+        <div className={styles.header}>{this.renderSignature()}</div>
+      </div>
+    );
   }
 }

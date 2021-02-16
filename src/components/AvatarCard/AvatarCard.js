@@ -10,27 +10,24 @@ import { Fetching } from "./Fetching";
 import { I18N } from "../../i18n";
 
 export class AvatarCard extends Component {
+  constructor() {
+    super();
+
+    this.selectUser = this.selectUser.bind(this);
+    this.handleAvatarClick = this.handleAvatarClick.bind(this);
+  }
+  selectUser() {
+    const { id } = this.props;
+    this.props.toggleUser(id);
+  }
   handleAvatarClick = (e) => {
     e.stopPropagation();
-    this.props.onAvatarClick();
+    this.props.onAvatarClick(this.props.user);
   };
 
   renderAvatar() {
-    const {
-      lng,
-      onSelected,
-      isSelected,
-      showAvatarEdit,
-      onAvatarClick,
-    } = this.props;
-    const {
-      avatar,
-      avatarUrl,
-      id,
-      firstName,
-      lastName,
-      company,
-    } = this.props.user;
+    const { isSelected, showAvatarEdit, user } = this.props;
+    const { avatar, avatarUrl, firstName, lastName, company } = user;
 
     const checkClasses = classnames(styles.check, isSelected && styles.active);
     const IconCheck = icons["Check"];
@@ -41,12 +38,15 @@ export class AvatarCard extends Component {
     );
 
     if (avatarUrl || avatar) {
-      const classes = classnames(styles.avatar, isSelected && styles.selected);
+      const classes = classnames(
+        styles.avatar,
+        isSelected && styles.selected,
+        showAvatarEdit && styles.editAvatar
+      );
       return (
         <div
-          id={`avatar-${id}`}
           className={classes}
-          onClick={onSelected}
+          onClick={this.selectUser}
           style={{
             backgroundImage: `url(${
               avatarUrl
@@ -68,14 +68,15 @@ export class AvatarCard extends Component {
     const classes = classnames(
       styles.avatar,
       styles.emptyAvatar,
-      isSelected && styles.selected
+      isSelected && styles.selected,
+      showAvatarEdit && styles.editAvatar
     );
     const avatarUserName =
       firstName || lastName
         ? getUserNameForAvatar(firstName, lastName)
         : getUserNameForAvatar(company, "");
     return (
-      <div id={`avatar-${id}`} className={classes} onClick={onSelected}>
+      <div className={classes} onClick={this.selectUser}>
         <span>{avatarUserName}</span>
         {checkDiv}
         {showAvatarEdit && (
@@ -98,20 +99,23 @@ export class AvatarCard extends Component {
 
   render() {
     const { theme, isFetching } = this.props;
+
+    if (isFetching) {
+      return <Fetching theme={theme} />;
+    }
+
     const { firstName, lastName, company } = this.props.user;
     const avatarInfo =
       firstName || lastName ? firstName + " " + lastName : company;
 
-    if (isFetching) return <Fetching theme={theme} />;
-    else
-      return (
-        <div className={`${styles.userCard} ${styles[theme]}`}>
-          {this.renderAvatar()}
-          <div className={styles.header}>
-            <h3>{avatarInfo}</h3>
-            {this.renderHeadline()}
-          </div>
+    return (
+      <div className={`${styles.userCard} ${styles[theme]}`}>
+        {this.renderAvatar()}
+        <div className={styles.header}>
+          <h3>{avatarInfo}</h3>
+          {this.renderHeadline()}
         </div>
-      );
+      </div>
+    );
   }
 }
