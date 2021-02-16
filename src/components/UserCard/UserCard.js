@@ -19,7 +19,7 @@ export class UserCard extends Component {
     this.handleAvatarClick = this.handleAvatarClick.bind(this);
   }
   selectUser() {
-    const { id } = this.props;
+    const { id } = this.props.user;
     this.props.toggleUser(id);
   }
   handleAvatarClick = (e) => {

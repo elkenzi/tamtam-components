@@ -16,10 +16,12 @@ export class AvatarCard extends Component {
     this.selectUser = this.selectUser.bind(this);
     this.handleAvatarClick = this.handleAvatarClick.bind(this);
   }
+
   selectUser() {
-    const { id } = this.props;
-    this.props.toggleUser(id);
+    const { user } = this.props;
+    this.props.toggleUser(user);
   }
+
   handleAvatarClick = (e) => {
     e.stopPropagation();
     this.props.onAvatarClick(this.props.user);
