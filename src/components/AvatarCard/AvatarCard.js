@@ -91,7 +91,7 @@ export class AvatarCard extends Component {
   }
 
   renderHeadline() {
-    const { headline } = this.props;
+    const { headline } = this.props.user;
     if (headline) {
       return <h5>{headline}</h5>;
     } else {
