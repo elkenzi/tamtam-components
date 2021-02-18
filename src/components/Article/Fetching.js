@@ -83,8 +83,6 @@ export const Fetching = (props) => {
 
         <div className={styles.title}>
           <Skeleton width="100%" height={20} />
-          <br />
-          <Skeleton width="100%" height={20} />
         </div>
         <div className={styles.summary}>
           <Skeleton width="100%" height={15} />
