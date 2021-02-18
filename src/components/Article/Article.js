@@ -136,7 +136,7 @@ export const Article = ({
 
   const renderType3 = () => {
     return (
-      <div className={`${styles.articleTemplate3} ${styles[size]}`}>
+      <div className={size ? styles[size] : ""}>
         <div className={styles.authorsContainer}>
           <ul>
             {authors.map((author) => (
@@ -196,6 +196,12 @@ export const Article = ({
                   )}
                 </div>
               )}
+              <div
+                className={styles.category}
+                style={{ background: `${category.colorCode}` }}
+              >
+                {category.name}
+              </div>
               <div
                 className={styles.community}
                 style={{ borderLeftColor: category.colorCode }}

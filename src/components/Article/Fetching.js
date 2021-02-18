@@ -41,7 +41,7 @@ export const Fetching = (props) => {
 
   const renderType3 = () => {
     return (
-      <div className={`${styles.articleTemplate3} ${styles[size]}`}>
+      <div>
         {renderAvatar()}
         <div className={styles.row}>
           <div className={`${styles.col6} ${styles.contentImg}`}>
@@ -83,6 +83,7 @@ export const Fetching = (props) => {
 
         <div className={styles.title}>
           <Skeleton width="100%" height={20} />
+          <br />
           <Skeleton width="100%" height={20} />
         </div>
         <div className={styles.summary}>
