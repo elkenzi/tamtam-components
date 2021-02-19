@@ -21,3 +21,23 @@ export function addLandaSize(img, width = 0, height = 0) {
     "https://s3.tamtam.pro"
   );
 }
+
+function extractFirstLettre(arrayStr, length) {
+  let result = "";
+  for (let i = 0; i < arrayStr.length; i++) {
+    if (arrayStr[i] != undefined) {
+      result += arrayStr[i].substring(0, 1);
+    }
+  }
+  return result.toUpperCase();
+}
+
+export const getUserNameForAvatar = (firstName = "", lastName = "") => {
+  let fName = firstName.split(" ");
+  if (fName.length >= 3) {
+    return extractFirstLettre(fName, 3);
+  } else {
+    let lName = lastName.split(" ");
+    return extractFirstLettre(fName.concat(lName), 3);
+  }
+};
