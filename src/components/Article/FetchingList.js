@@ -4,7 +4,7 @@ import { Fetching } from "./Fetching";
 
 import styles from "./ArticleList.module.scss";
 
-export const FetchingList = ({ dispositions = ["default"] }) => {
+export const FetchingList = ({ dispositions }) => {
   const renderFetching = (disposition) => {
     switch (disposition) {
       case "type2":
