@@ -134,7 +134,8 @@ export class UserCard extends Component {
             {blogRoleInOrganization[0].role !== "CHIEF_EDITOR" && (
               <span className="mandated">
                 (
-                {blogRoleInOrganization[0].mandated === 0
+                {blogRoleInOrganization[0].mandated === 0 ||
+                blogRoleInOrganization[0].mandated === false
                   ? I18N[language]["Not_Mandated"]
                   : I18N[language]["Mandated"]}
                 )
