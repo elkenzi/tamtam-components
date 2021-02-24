@@ -5,8 +5,8 @@ import { Fetching } from "./Fetching";
 import styles from "./ArticleList.module.scss";
 
 export const FetchingList = ({ dispositions = ["default"] }) => {
-  const renderFetching = () => {
-    switch (dispositions[0]) {
+  const renderFetching = (disposition) => {
+    switch (disposition) {
       case "type2":
         return renderType2();
         break;
@@ -132,5 +132,14 @@ export const FetchingList = ({ dispositions = ["default"] }) => {
     );
   };
 
-  return renderFetching();
+  return (
+    <>
+      {dispositions && dispositions.length > 0
+        ? renderFetching(dispositions[0])
+        : renderFetching()}
+      {dispositions && dispositions.length > 1
+        ? renderFetching(dispositions[1])
+        : renderFetching()}
+    </>
+  );
 };

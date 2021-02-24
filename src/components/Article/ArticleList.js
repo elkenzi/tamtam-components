@@ -243,7 +243,7 @@ export const ArticleList = ({ dispositions, isFetching, articles }) => {
   const getSliceLimit = (count, disposition) => {
     let fin = count + CAROUSEL_DISPOSITIONS[disposition];
     if (fin < articles.length) return fin;
-    else return articles.length - 1;
+    else return articles.length;
   };
 
   let blocs = [];
