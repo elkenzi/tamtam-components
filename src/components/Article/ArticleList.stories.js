@@ -17,7 +17,15 @@ export default {
     withKnobs,
   ],
 };
-const dispositions = ["type7", "type3", "type7", "default", "type2"];
+const dispositions = [
+  "default",
+  "type2",
+  "type3",
+  "type4",
+  "type5",
+  "type6",
+  "type7",
+];
 
 export const Default = () => (
   <ArticleList

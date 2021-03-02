@@ -21,7 +21,7 @@ export const ArticleList = ({ dispositions, isFetching, articles }) => {
         key={key}
         className={`${styles.articleList1} grid-x grid-margin-x grid-margin-x`}
       >
-        <div className="cell small-12 medium-8">
+        <div className="cell small-12">
           <Article
             size="large"
             showSummary={true}
@@ -29,16 +29,6 @@ export const ArticleList = ({ dispositions, isFetching, articles }) => {
             isFetching={isFetching}
           />
         </div>
-        {articles.length > 1 && (
-          <div className={`cell small-12 medium-4`}>
-            <div className={styles.articleTpl1_btm}>
-              <Article article={articles[1]} isFetching={isFetching} />
-            </div>
-            {articles.length > 2 && (
-              <Article article={articles[2]} isFetching={isFetching} />
-            )}
-          </div>
-        )}
       </div>
     );
   };

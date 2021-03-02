@@ -32,17 +32,9 @@ export const FetchingList = ({ dispositions }) => {
 
   const renderDefault = () => {
     return (
-      <div
-        className={`${styles.articleList1} grid-x grid-margin-x grid-margin-x`}
-      >
-        <div className="cell small-12 medium-8">
+      <div className={`${styles.articleList1} grid-x`}>
+        <div className="cell small-12">
           <Fetching size="large" />
-        </div>
-        <div className={`cell small-12 medium-4`}>
-          <div className={styles.articleTpl1_btm}>
-            <Fetching />
-          </div>
-          <Fetching />
         </div>
       </div>
     );
