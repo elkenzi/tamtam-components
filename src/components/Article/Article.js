@@ -18,6 +18,8 @@ export const Article = ({
   onPublish,
   onEdit,
   onDelete,
+  saveFavorite,
+  currentCommunity,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -82,6 +84,7 @@ export const Article = ({
   };
 
   const renderSocialStats = () => {
+    if (!currentCommunity) return null;
     return (
       <div className={styles.actionsContainer}>
         <div>
@@ -153,14 +156,17 @@ export const Article = ({
               </a>
             </div>
           </div>
-          <div
-            className={classnames(
-              styles.action,
-              social && social.isFavorite ? styles.activeAction : ""
-            )}
-          >
-            <i className="icon-ttp-star-o" />
-          </div>
+          {saveFavorite && (
+            <div
+              className={classnames(
+                styles.action,
+                social && social.isFavorite ? styles.activeAction : ""
+              )}
+              onClick={() => saveFavorite()}
+            >
+              <i className="icon-ttp-star-o" />
+            </div>
+          )}
         </div>
       </div>
     );

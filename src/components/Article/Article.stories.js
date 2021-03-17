@@ -77,6 +77,7 @@ export const Type3 = () => (
           onDelete={() => console.log("onDelete")}
           onPublish={() => console.log("onPublish")}
           onEdit={() => console.log("onEdit")}
+          saveFavorite={() => console.log("saveFavorite")}
           isFetching={boolean("isFetching", false)}
         />
       </div>
