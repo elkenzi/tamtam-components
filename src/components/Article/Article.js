@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Slider from "react-slick";
 import moment from "moment";
 
@@ -6,6 +6,7 @@ import styles from "./Article.module.scss";
 import { AuthorAvatar } from "../Avatar/AuthorAvatar";
 import { Fetching } from "./Fetching";
 import { prepareArticle } from "../../utils";
+import classnames from "classnames";
 
 export const Article = ({
   article,
@@ -18,6 +19,8 @@ export const Article = ({
   onEdit,
   onDelete,
 }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
   if (isFetching) return <Fetching type={type} size={size} />;
 
   const data = prepareArticle(article);
@@ -36,6 +39,7 @@ export const Article = ({
     countDislikes,
     countComments,
     authors,
+    social,
   } = data;
   const hasActions = onDelete || onEdit || onPublish ? true : false;
   const mediaUrl = medias && medias.length > 0 ? medias[0].path : mainMedia;
@@ -80,17 +84,83 @@ export const Article = ({
   const renderSocialStats = () => {
     return (
       <div className={styles.actionsContainer}>
-        <div className={styles.action}>
-          <i className="icon-ttp-thumb-up" />
-          <span className={styles.actionCount}>{countLikes}</span>
+        <div>
+          <div className={styles.stat}>
+            <i className="icon-ttp-thumb-up" />
+            <span className={styles.actionCount}>{countLikes}</span>
+          </div>
+          <div className={styles.stat}>
+            <i className="icon-ttp-thumb-down" />
+            <span className={styles.actionCount}>{countDislikes}</span>
+          </div>
+          <div className={styles.stat}>
+            <i className="icon-ttp-comment" />
+            <span className={styles.actionCount}>{countComments}</span>
+          </div>
         </div>
-        <div className={styles.action}>
-          <i className="icon-ttp-thumb-down" />
-          <span className={styles.actionCount}>{countDislikes}</span>
-        </div>
-        <div className={styles.action}>
-          <i className="icon-ttp-comment" />
-          <span className={styles.actionCount}>{countComments}</span>
+        <div className={styles.actions}>
+          <div
+            className={classnames(
+              styles.action,
+              social && social.isLiked === 1 ? styles.activeAction : ""
+            )}
+          >
+            <i className="icon-ttp-thumb-up" />
+          </div>
+          <div
+            className={classnames(
+              styles.action,
+              social && social.isLiked === 0 ? styles.activeAction : ""
+            )}
+          >
+            <i className="icon-ttp-thumb-down" />
+          </div>
+          <div className={styles.action}>
+            <i className="icon-ttp-comment" />
+          </div>
+          <div className={styles.action} onClick={() => setIsOpen(!isOpen)}>
+            <i className="icon-ttp-share" />
+            <div
+              className={classnames(
+                styles.sharePopup,
+                isOpen ? "show" : "hide"
+              )}
+            >
+              <a
+                className={styles.action}
+                href={`https://www.facebook.com/sharer/sharer.php?u=${url}`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <i className="icon-ttp-facebook" />
+              </a>
+              <a
+                className={styles.action}
+                href={`https://www.linkedin.com/sharing/share-offsite/?url=${url}`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <i className="icon-ttp-linkedin" />
+              </a>
+
+              <a
+                className={styles.action}
+                href={`https://twitter.com/intent/tweet?url=${url}`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <i className="icon-ttp-twitter" />
+              </a>
+            </div>
+          </div>
+          <div
+            className={classnames(
+              styles.action,
+              social && social.isFavorite ? styles.activeAction : ""
+            )}
+          >
+            <i className="icon-ttp-star-o" />
+          </div>
         </div>
       </div>
     );
@@ -298,7 +368,13 @@ export const Article = ({
 
   const renderDefault = () => {
     return (
-      <div className={`${styles.article} ${styles[size]}`}>
+      <div
+        className={classnames(
+          styles.article,
+          styles.default,
+          size ? styles[size] : ""
+        )}
+      >
         {renderAvatar()}
         <div
           className={styles.content}
