@@ -41,7 +41,7 @@ export const Article = ({
     countDislikes,
     countComments,
     authors,
-    social,
+    socialData,
   } = data;
   const hasActions = onDelete || onEdit || onPublish ? true : false;
   const mediaUrl = medias && medias.length > 0 ? medias[0].path : mainMedia;
@@ -105,7 +105,7 @@ export const Article = ({
           <div
             className={classnames(
               styles.action,
-              social && social.isLiked === 1 ? styles.activeAction : ""
+              socialData.isLiked === 1 ? styles.activeAction : ""
             )}
           >
             <i className="icon-ttp-thumb-up" />
@@ -113,7 +113,7 @@ export const Article = ({
           <div
             className={classnames(
               styles.action,
-              social && social.isLiked === 0 ? styles.activeAction : ""
+              socialData.isLiked === 0 ? styles.activeAction : ""
             )}
           >
             <i className="icon-ttp-thumb-down" />
@@ -160,7 +160,7 @@ export const Article = ({
             <div
               className={classnames(
                 styles.action,
-                social && social.isFavorite ? styles.activeAction : ""
+                socialData.isFavorite === 1 ? styles.activeAction : ""
               )}
               onClick={() => saveFavorite()}
             >

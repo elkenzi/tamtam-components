@@ -147,7 +147,18 @@ export const prepareArticle = (article, navCommunityId = 0) => {
     countDislikes,
     countComments,
     publishedAt,
+    social,
   } = article;
+
+  let socialData = { countLikes, countDislikes, countComments };
+
+  if (social) {
+    socialData = {
+      ...socialData,
+      isLiked: social.isLiked,
+      isFavorite: social.isFavorite,
+    };
+  }
 
   return {
     id,
@@ -174,5 +185,6 @@ export const prepareArticle = (article, navCommunityId = 0) => {
     countDislikes,
     countComments,
     publishedAt,
+    socialData,
   };
 };
