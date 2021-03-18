@@ -65,7 +65,7 @@ export const ArticleList = ({
               isFetching={isFetching}
               currentCommunity={currentCommunity}
               saveFavorite={() =>
-                saveFavorite(articles[0].id, currentCommunity)
+                saveFavorite(articles[1].id, currentCommunity)
               }
             />
           </div>
@@ -98,7 +98,7 @@ export const ArticleList = ({
               isFetching={isFetching}
               currentCommunity={currentCommunity}
               saveFavorite={() =>
-                saveFavorite(articles[0].id, currentCommunity)
+                saveFavorite(articles[1].id, currentCommunity)
               }
             />
           </div>
@@ -131,7 +131,7 @@ export const ArticleList = ({
               isFetching={isFetching}
               currentCommunity={currentCommunity}
               saveFavorite={() =>
-                saveFavorite(articles[0].id, currentCommunity)
+                saveFavorite(articles[1].id, currentCommunity)
               }
             />
           </div>
@@ -144,7 +144,7 @@ export const ArticleList = ({
               isFetching={isFetching}
               currentCommunity={currentCommunity}
               saveFavorite={() =>
-                saveFavorite(articles[0].id, currentCommunity)
+                saveFavorite(articles[2].id, currentCommunity)
               }
             />
           </div>
@@ -177,7 +177,7 @@ export const ArticleList = ({
               isFetching={isFetching}
               currentCommunity={currentCommunity}
               saveFavorite={() =>
-                saveFavorite(articles[0].id, currentCommunity)
+                saveFavorite(articles[1].id, currentCommunity)
               }
             />
           </div>
@@ -210,7 +210,7 @@ export const ArticleList = ({
               isFetching={isFetching}
               currentCommunity={currentCommunity}
               saveFavorite={() =>
-                saveFavorite(articles[0].id, currentCommunity)
+                saveFavorite(articles[1].id, currentCommunity)
               }
             />
           </div>
@@ -223,7 +223,7 @@ export const ArticleList = ({
               isFetching={isFetching}
               currentCommunity={currentCommunity}
               saveFavorite={() =>
-                saveFavorite(articles[0].id, currentCommunity)
+                saveFavorite(articles[2].id, currentCommunity)
               }
             />
           </div>
@@ -256,7 +256,7 @@ export const ArticleList = ({
               isFetching={isFetching}
               currentCommunity={currentCommunity}
               saveFavorite={() =>
-                saveFavorite(articles[0].id, currentCommunity)
+                saveFavorite(articles[1].id, currentCommunity)
               }
             />
           </div>
