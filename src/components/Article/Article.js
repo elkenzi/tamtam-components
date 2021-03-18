@@ -18,6 +18,8 @@ export const Article = ({
   onPublish,
   onEdit,
   onDelete,
+  onLike,
+  onDislike,
   saveFavorite,
   currentCommunity,
 }) => {
@@ -107,6 +109,7 @@ export const Article = ({
               styles.action,
               socialData.isLiked === 1 ? styles.activeAction : ""
             )}
+            onClick={() => onLike()}
           >
             <i className="icon-ttp-thumb-up" />
           </div>
@@ -115,6 +118,7 @@ export const Article = ({
               styles.action,
               socialData.isLiked === 0 ? styles.activeAction : ""
             )}
+            onClick={() => onDislike()}
           >
             <i className="icon-ttp-thumb-down" />
           </div>

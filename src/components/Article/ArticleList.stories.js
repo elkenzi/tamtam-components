@@ -33,9 +33,8 @@ export const Default = () => (
     dispositions={dispositions}
     isFetching={boolean("isFetching", false)}
     currentCommunity={44}
-    saveFavorite={(articleId, organization) =>
-      console.log(articleId, organization)
-    }
+    saveFavorite={(articleId) => console.log(articleId)}
+    onLike={(articleId, like) => console.log(articleId, like)}
   />
 );
 
