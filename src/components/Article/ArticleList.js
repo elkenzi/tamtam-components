@@ -33,8 +33,8 @@ export const ArticleList = ({
             showSummary={true}
             article={articles[0]}
             isFetching={isFetching}
-            saveFavorite={saveFavorite}
             currentCommunity={currentCommunity}
+            saveFavorite={() => saveFavorite(articles[0].id, currentCommunity)}
           />
         </div>
       </div>
@@ -49,7 +49,13 @@ export const ArticleList = ({
     return (
       <div className={`${styles.articleList1} grid-x`} key={key}>
         <div className="cell small-12 medium-4">
-          <Article type="type2" article={articles[0]} isFetching={isFetching} />
+          <Article
+            type="type2"
+            article={articles[0]}
+            isFetching={isFetching}
+            currentCommunity={currentCommunity}
+            saveFavorite={() => saveFavorite(articles[0].id, currentCommunity)}
+          />
         </div>
         {articles.length > 1 && (
           <div className={`${styles.articleTpl1} cell small-12 medium-8`}>
@@ -57,6 +63,10 @@ export const ArticleList = ({
               type="type3"
               article={articles[1]}
               isFetching={isFetching}
+              currentCommunity={currentCommunity}
+              saveFavorite={() =>
+                saveFavorite(articles[0].id, currentCommunity)
+              }
             />
           </div>
         )}
@@ -72,7 +82,13 @@ export const ArticleList = ({
     return (
       <div className={`${styles.articleList1} grid-x`} key={key}>
         <div className="cell small-12 medium-4">
-          <Article type="type2" article={articles[0]} isFetching={isFetching} />
+          <Article
+            type="type2"
+            article={articles[0]}
+            isFetching={isFetching}
+            currentCommunity={currentCommunity}
+            saveFavorite={() => saveFavorite(articles[0].id, currentCommunity)}
+          />
         </div>
         {articles.length > 1 && (
           <div className={`${styles.articleTpl1} cell small-12 medium-8`}>
@@ -80,6 +96,10 @@ export const ArticleList = ({
               size="medium"
               article={articles[1]}
               isFetching={isFetching}
+              currentCommunity={currentCommunity}
+              saveFavorite={() =>
+                saveFavorite(articles[0].id, currentCommunity)
+              }
             />
           </div>
         )}
@@ -95,7 +115,13 @@ export const ArticleList = ({
     return (
       <div className={`${styles.articleList1} grid-x grid-margin-x`} key={key}>
         <div className="cell small-12 medium-4">
-          <Article type="type4" article={articles[0]} isFetching={isFetching} />
+          <Article
+            type="type4"
+            article={articles[0]}
+            isFetching={isFetching}
+            currentCommunity={currentCommunity}
+            saveFavorite={() => saveFavorite(articles[0].id, currentCommunity)}
+          />
         </div>
         {articles.length > 1 && (
           <div className="cell small-12 medium-4">
@@ -103,6 +129,10 @@ export const ArticleList = ({
               type="type4"
               article={articles[1]}
               isFetching={isFetching}
+              currentCommunity={currentCommunity}
+              saveFavorite={() =>
+                saveFavorite(articles[0].id, currentCommunity)
+              }
             />
           </div>
         )}
@@ -112,6 +142,10 @@ export const ArticleList = ({
               type="type4"
               article={articles[2]}
               isFetching={isFetching}
+              currentCommunity={currentCommunity}
+              saveFavorite={() =>
+                saveFavorite(articles[0].id, currentCommunity)
+              }
             />
           </div>
         )}
@@ -131,6 +165,8 @@ export const ArticleList = ({
             size="smallBH"
             article={articles[0]}
             isFetching={isFetching}
+            currentCommunity={currentCommunity}
+            saveFavorite={() => saveFavorite(articles[0].id, currentCommunity)}
           />
         </div>
         {articles.length > 1 && (
@@ -139,6 +175,10 @@ export const ArticleList = ({
               size="smallBH"
               article={articles[1]}
               isFetching={isFetching}
+              currentCommunity={currentCommunity}
+              saveFavorite={() =>
+                saveFavorite(articles[0].id, currentCommunity)
+              }
             />
           </div>
         )}
@@ -154,7 +194,13 @@ export const ArticleList = ({
     return (
       <div className={`${styles.articleList1} grid-x grid-margin-x`} key={key}>
         <div className="cell small-12 medium-4">
-          <Article type="type2" article={articles[0]} isFetching={isFetching} />
+          <Article
+            type="type2"
+            article={articles[0]}
+            isFetching={isFetching}
+            currentCommunity={currentCommunity}
+            saveFavorite={() => saveFavorite(articles[0].id, currentCommunity)}
+          />
         </div>
         {articles.length > 1 && (
           <div className="cell small-12 medium-4">
@@ -162,6 +208,10 @@ export const ArticleList = ({
               type="type2"
               article={articles[1]}
               isFetching={isFetching}
+              currentCommunity={currentCommunity}
+              saveFavorite={() =>
+                saveFavorite(articles[0].id, currentCommunity)
+              }
             />
           </div>
         )}
@@ -171,6 +221,10 @@ export const ArticleList = ({
               type="type2"
               article={articles[2]}
               isFetching={isFetching}
+              currentCommunity={currentCommunity}
+              saveFavorite={() =>
+                saveFavorite(articles[0].id, currentCommunity)
+              }
             />
           </div>
         )}
@@ -190,6 +244,8 @@ export const ArticleList = ({
             size="medium"
             article={articles[0]}
             isFetching={isFetching}
+            currentCommunity={currentCommunity}
+            saveFavorite={() => saveFavorite(articles[0].id, currentCommunity)}
           />
         </div>
         {articles.length > 1 && (
@@ -198,6 +254,10 @@ export const ArticleList = ({
               type="type3"
               article={articles[1]}
               isFetching={isFetching}
+              currentCommunity={currentCommunity}
+              saveFavorite={() =>
+                saveFavorite(articles[0].id, currentCommunity)
+              }
             />
           </div>
         )}

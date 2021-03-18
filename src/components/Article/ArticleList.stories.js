@@ -32,6 +32,10 @@ export const Default = () => (
     articles={articles}
     dispositions={dispositions}
     isFetching={boolean("isFetching", false)}
+    currentCommunity={44}
+    saveFavorite={(articleId, organization) =>
+      console.log(articleId, organization)
+    }
   />
 );
 
