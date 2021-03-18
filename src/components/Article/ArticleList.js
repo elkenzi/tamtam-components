@@ -6,7 +6,13 @@ import { CAROUSEL_DISPOSITIONS } from "../../config";
 
 import { FetchingList } from "./FetchingList";
 
-export const ArticleList = ({ dispositions, isFetching, articles }) => {
+export const ArticleList = ({
+  dispositions,
+  isFetching,
+  articles,
+  saveFavorite,
+  currentCommunity,
+}) => {
   if (isFetching) {
     return <FetchingList dispositions={dispositions} />;
   }
@@ -27,6 +33,8 @@ export const ArticleList = ({ dispositions, isFetching, articles }) => {
             showSummary={true}
             article={articles[0]}
             isFetching={isFetching}
+            saveFavorite={saveFavorite}
+            currentCommunity={currentCommunity}
           />
         </div>
       </div>
