@@ -12,6 +12,7 @@ export const ArticleList = ({
   articles,
   saveFavorite,
   onLike,
+  openModal,
   currentCommunity,
 }) => {
   if (isFetching) {
@@ -38,6 +39,7 @@ export const ArticleList = ({
             saveFavorite={() => saveFavorite(articles[0].id)}
             onLike={() => onLike(articles[0].id, 1)}
             onDislike={() => onLike(articles[0].id, 0)}
+            openModal={openModal}
           />
         </div>
       </div>

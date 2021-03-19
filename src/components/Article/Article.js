@@ -21,6 +21,7 @@ export const Article = ({
   onLike,
   onDislike,
   saveFavorite,
+  openModal,
   currentCommunity,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -90,15 +91,15 @@ export const Article = ({
     return (
       <div className={styles.actionsContainer}>
         <div>
-          <div className={styles.stat}>
+          <div className={styles.stat} onClick={() => openModal()}>
             <i className="icon-ttp-thumb-up" />
             <span className={styles.actionCount}>{countLikes}</span>
           </div>
-          <div className={styles.stat}>
+          <div className={styles.stat} onClick={() => openModal()}>
             <i className="icon-ttp-thumb-down" />
             <span className={styles.actionCount}>{countDislikes}</span>
           </div>
-          <div className={styles.stat}>
+          <div className={styles.stat} onClick={() => openModal()}>
             <i className="icon-ttp-comment" />
             <span className={styles.actionCount}>{countComments}</span>
           </div>
@@ -122,7 +123,7 @@ export const Article = ({
           >
             <i className="icon-ttp-thumb-down" />
           </div>
-          <div className={styles.action}>
+          <div className={styles.action} onClick={() => openModal()}>
             <i className="icon-ttp-comment" />
           </div>
           <div className={styles.action} onClick={() => setIsOpen(!isOpen)}>
