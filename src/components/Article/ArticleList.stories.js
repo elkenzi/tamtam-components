@@ -35,7 +35,7 @@ export const Default = () => (
     currentCommunity={44}
     saveFavorite={(articleId) => console.log(articleId)}
     onLike={(articleId, like) => console.log(articleId, like)}
-    openModal={() => console.log("open modal")}
+    openModal={(article) => console.log(article)}
   />
 );
 
