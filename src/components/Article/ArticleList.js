@@ -62,6 +62,7 @@ export const ArticleList = ({
             saveFavorite={() => saveFavorite(articles[0].id)}
             onLike={() => onLike(articles[0].id, 1)}
             onDislike={() => onLike(articles[0].id, 0)}
+            openModal={() => openModal(articles[0])}
           />
         </div>
         {articles.length > 1 && (
@@ -74,6 +75,7 @@ export const ArticleList = ({
               saveFavorite={() => saveFavorite(articles[1].id)}
               onLike={() => onLike(articles[1].id, 1)}
               onDislike={() => onLike(articles[1].id, 0)}
+              openModal={() => openModal(articles[1])}
             />
           </div>
         )}
@@ -97,6 +99,7 @@ export const ArticleList = ({
             saveFavorite={() => saveFavorite(articles[0].id)}
             onLike={() => onLike(articles[0].id, 1)}
             onDislike={() => onLike(articles[0].id, 0)}
+            openModal={() => openModal(articles[0])}
           />
         </div>
         {articles.length > 1 && (
@@ -109,6 +112,7 @@ export const ArticleList = ({
               saveFavorite={() => saveFavorite(articles[1].id)}
               onLike={() => onLike(articles[1].id, 1)}
               onDislike={() => onLike(articles[1].id, 0)}
+              openModal={() => openModal(articles[1])}
             />
           </div>
         )}
@@ -132,6 +136,7 @@ export const ArticleList = ({
             saveFavorite={() => saveFavorite(articles[0].id)}
             onLike={() => onLike(articles[0].id, 1)}
             onDislike={() => onLike(articles[0].id, 0)}
+            openModal={() => openModal(articles[0])}
           />
         </div>
         {articles.length > 1 && (
@@ -144,6 +149,7 @@ export const ArticleList = ({
               saveFavorite={() => saveFavorite(articles[1].id)}
               onLike={() => onLike(articles[1].id, 1)}
               onDislike={() => onLike(articles[1].id, 0)}
+              openModal={() => openModal(articles[1])}
             />
           </div>
         )}
@@ -157,6 +163,7 @@ export const ArticleList = ({
               saveFavorite={() => saveFavorite(articles[2].id)}
               onLike={() => onLike(articles[2].id, 1)}
               onDislike={() => onLike(articles[2].id, 0)}
+              openModal={() => openModal(articles[2])}
             />
           </div>
         )}
@@ -180,6 +187,7 @@ export const ArticleList = ({
             saveFavorite={() => saveFavorite(articles[0].id)}
             onLike={() => onLike(articles[0].id, 1)}
             onDislike={() => onLike(articles[0].id, 0)}
+            openModal={() => openModal(articles[0])}
           />
         </div>
         {articles.length > 1 && (
@@ -192,6 +200,7 @@ export const ArticleList = ({
               saveFavorite={() => saveFavorite(articles[1].id)}
               onLike={() => onLike(articles[1].id, 1)}
               onDislike={() => onLike(articles[1].id, 0)}
+              openModal={() => openModal(articles[1])}
             />
           </div>
         )}
@@ -215,6 +224,7 @@ export const ArticleList = ({
             saveFavorite={() => saveFavorite(articles[0].id)}
             onLike={() => onLike(articles[0].id, 1)}
             onDislike={() => onLike(articles[0].id, 0)}
+            openModal={() => openModal(articles[0])}
           />
         </div>
         {articles.length > 1 && (
@@ -227,6 +237,7 @@ export const ArticleList = ({
               saveFavorite={() => saveFavorite(articles[1].id)}
               onLike={() => onLike(articles[1].id, 1)}
               onDislike={() => onLike(articles[1].id, 0)}
+              openModal={() => openModal(articles[1])}
             />
           </div>
         )}
@@ -240,6 +251,7 @@ export const ArticleList = ({
               saveFavorite={() => saveFavorite(articles[2].id)}
               onLike={() => onLike(articles[2].id, 1)}
               onDislike={() => onLike(articles[2].id, 0)}
+              openModal={() => openModal(articles[2])}
             />
           </div>
         )}
@@ -263,6 +275,7 @@ export const ArticleList = ({
             saveFavorite={() => saveFavorite(articles[0].id)}
             onLike={() => onLike(articles[0].id, 1)}
             onDislike={() => onLike(articles[0].id, 0)}
+            openModal={() => openModal(articles[0])}
           />
         </div>
         {articles.length > 1 && (
@@ -275,6 +288,7 @@ export const ArticleList = ({
               saveFavorite={() => saveFavorite(articles[1].id)}
               onLike={() => onLike(articles[1].id, 1)}
               onDislike={() => onLike(articles[1].id, 0)}
+              openModal={() => openModal(articles[1])}
             />
           </div>
         )}
