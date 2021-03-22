@@ -112,28 +112,26 @@ export const Article = ({
           <div
             className={classnames(
               styles.action,
+              articleId === article.id && isSavingLike
+                ? "animate__bounceIn"
+                : "",
               socialData.isLiked === 1 ? styles.activeAction : ""
             )}
             onClick={() => onLike()}
           >
-            {articleId === article.id && isSavingLike ? (
-              <i className="icon-sb-spinner rotating" />
-            ) : (
-              <i className="icon-sb-thumb-up" />
-            )}
+            <i className="icon-sb-thumb-up" />
           </div>
           <div
             className={classnames(
               styles.action,
+              articleId === article.id && isSavingDislike
+                ? "animate__bounceIn"
+                : "",
               socialData.isLiked === 0 ? styles.activeAction : ""
             )}
             onClick={() => onDislike()}
           >
-            {articleId === article.id && isSavingDislike ? (
-              <i className="icon-sb-spinner rotating" />
-            ) : (
-              <i className="icon-sb-thumb-down" />
-            )}
+            <i className="icon-sb-thumb-down" />
           </div>
           <div className={styles.action} onClick={() => openModal()}>
             <i className="icon-sb-comment" />
@@ -177,15 +175,14 @@ export const Article = ({
             <div
               className={classnames(
                 styles.action,
+                articleId === article.id && isSavingFavorite
+                  ? "animate__bounceIn"
+                  : "",
                 socialData.isFavorite === 1 ? styles.activeAction : ""
               )}
               onClick={() => saveFavorite()}
             >
-              {articleId === article.id && isSavingFavorite ? (
-                <i className="icon-sb-spinner rotating" />
-              ) : (
-                <i className="icon-sb-star-o" />
-              )}
+              <i className="icon-sb-star-o" />
             </div>
           )}
         </div>
