@@ -81,3 +81,15 @@ a {
 ul {
   list-style-type: none;
 }
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+.rotating {
+  animation: rotation 1s infinite linear;
+}

@@ -25,6 +25,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-ttp-spinner:before {
+  content: "\e984";
+}
 .icon-ttp-stats:before {
   content: "\e91f";
 }

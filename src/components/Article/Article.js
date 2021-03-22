@@ -22,6 +22,10 @@ export const Article = ({
   onDislike,
   saveFavorite,
   openModal,
+  articleId,
+  isSavingFavorite,
+  isSavingLike,
+  isSavingDislike,
   currentCommunity,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -169,7 +173,11 @@ export const Article = ({
               )}
               onClick={() => saveFavorite()}
             >
-              <i className="icon-ttp-star-o" />
+              {articleId === article.id && isSavingFavorite ? (
+                <i className="icon-ttp-spinner rotating" />
+              ) : (
+                <i className="icon-ttp-star-o" />
+              )}
             </div>
           )}
         </div>
