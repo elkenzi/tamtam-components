@@ -1,19 +1,20 @@
 @font-face {
-  font-family: "tamtam";
-  src: url("../fonts/tamtam.eot?m6o04b");
-  src: url("../fonts/tamtam.eot?m6o04b#iefix") format("embedded-opentype"),
-    url("../fonts/tamtam.ttf?m6o04b") format("truetype"),
-    url("../fonts/tamtam.woff?m6o04b") format("woff"),
-    url("../fonts/tamtam.svg?m6o04b#tamtam") format("svg");
+  font-family: "tamtam-sb";
+  src: url("../fonts/tamtam-sb.eot?97th27");
+  src: url("../fonts/tamtam-sb.eot?97th27#iefix") format("embedded-opentype"),
+    url("../fonts/tamtam-sb.ttf?97th27") format("truetype"),
+    url("../fonts/tamtam-sb.woff?97th27") format("woff"),
+    url("../fonts/tamtam-sb.svg?97th27#tamtam") format("svg");
   font-weight: normal;
   font-style: normal;
   font-display: block;
 }
 
-[class^="icon-ttp-"],
-[class*=" icon-ttp-"] {
+[class^="icon-sb-"],
+[class*=" icon-sb-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: "tamtam" !important;
+  font-family: "tamtam-sb" !important;
+  speak: never;
   font-style: normal;
   font-weight: normal;
   font-variant: normal;
@@ -25,129 +26,129 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-ttp-spinner:before {
+.icon-sb-spinner:before {
   content: "\e984";
 }
-.icon-ttp-stats:before {
+.icon-sb-stats:before {
   content: "\e91f";
 }
-.icon-ttp-article-edit:before {
+.icon-sb-article-edit:before {
   content: "\e920";
 }
-.icon-ttp-print:before {
+.icon-sb-print:before {
   content: "\e921";
 }
-.icon-ttp-instagram:before {
+.icon-sb-instagram:before {
   content: "\e922";
 }
-.icon-ttp-timetable-1:before {
+.icon-sb-timetable-1:before {
   content: "\e923";
 }
-.icon-ttp-share:before {
+.icon-sb-share:before {
   content: "\e925";
 }
-.icon-ttp-email:before {
+.icon-sb-email:before {
   content: "\e926";
 }
-.icon-ttp-chevron-up:before {
+.icon-sb-chevron-up:before {
   content: "\e91d";
 }
-.icon-ttp-chevron-down:before {
+.icon-sb-chevron-down:before {
   content: "\e91e";
 }
-.icon-ttp-feather:before {
+.icon-sb-feather:before {
   content: "\e919";
 }
-.icon-ttp-article:before {
+.icon-sb-article:before {
   content: "\e91a";
 }
-.icon-ttp-newspaper:before {
+.icon-sb-newspaper:before {
   content: "\e91b";
 }
-.icon-ttp-author:before {
+.icon-sb-author:before {
   content: "\e91c";
 }
-.icon-ttp-facebook:before {
+.icon-sb-facebook:before {
   content: "\e916";
   color: #3b5998;
 }
-.icon-ttp-linkedin:before {
+.icon-sb-linkedin:before {
   content: "\e917";
   color: #007ab9;
 }
-.icon-ttp-twitter:before {
+.icon-sb-twitter:before {
   content: "\e918";
   color: #55acee;
 }
-.icon-ttp-magnifier:before {
+.icon-sb-magnifier:before {
   content: "\e903";
 }
-.icon-ttp-eye:before {
+.icon-sb-eye:before {
   content: "\e913";
 }
-.icon-ttp-edit:before {
+.icon-sb-edit:before {
   content: "\e90e";
 }
-.icon-ttp-megaphone:before {
+.icon-sb-megaphone:before {
   content: "\e914";
 }
-.icon-ttp-trash:before {
+.icon-sb-trash:before {
   content: "\e900";
 }
-.icon-ttp-paper-airplane:before {
+.icon-sb-paper-airplane:before {
   content: "\e915";
 }
-.icon-ttp-earth:before {
+.icon-sb-earth:before {
   content: "\e912";
 }
-.icon-ttp-thumb-up:before {
+.icon-sb-thumb-up:before {
   content: "\e90f";
 }
-.icon-ttp-thumb-down:before {
+.icon-sb-thumb-down:before {
   content: "\e910";
 }
-.icon-ttp-comment:before {
+.icon-sb-comment:before {
   content: "\e911";
 }
-.icon-ttp-medias:before {
+.icon-sb-medias:before {
   content: "\e90d";
 }
-.icon-ttp-three-dots:before {
+.icon-sb-three-dots:before {
   content: "\e90b";
 }
-.icon-ttp-plus:before {
+.icon-sb-plus:before {
   content: "\e90c";
 }
-.icon-ttp-close:before {
+.icon-sb-close:before {
   content: "\e90a";
 }
-.icon-ttp-check-outline:before {
+.icon-sb-check-outline:before {
   content: "\e908";
 }
-.icon-ttp-close-outline:before {
+.icon-sb-close-outline:before {
   content: "\e909";
 }
-.icon-ttp-plus-outline:before {
+.icon-sb-plus-outline:before {
   content: "\e907";
 }
-.icon-ttp-filter:before {
+.icon-sb-filter:before {
   content: "\e905";
 }
-.icon-ttp-tools:before {
+.icon-sb-tools:before {
   content: "\e902";
 }
-.icon-ttp-check:before {
+.icon-sb-check:before {
   content: "\e901";
 }
-.icon-ttp-settings:before {
+.icon-sb-settings:before {
   content: "\e904";
 }
-.icon-ttp-folder:before {
+.icon-sb-folder:before {
   content: "\e906";
 }
-.icon-ttp-star:before {
+.icon-sb-star:before {
   content: "\f005";
 }
-.icon-ttp-star-o:before {
+.icon-sb-star-o:before {
   content: "\f006";
 }

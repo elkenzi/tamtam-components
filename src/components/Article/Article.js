@@ -57,7 +57,7 @@ export const Article = ({
     if (isExternal) {
       return (
         <div className={styles.isExternal}>
-          <i className="icon-ttp-earth" />
+          <i className="icon-sb-earth" />
         </div>
       );
     } else {
@@ -96,15 +96,15 @@ export const Article = ({
       <div className={styles.actionsContainer}>
         <div>
           <div className={styles.stat} onClick={() => openModal()}>
-            <i className="icon-ttp-thumb-up" />
+            <i className="icon-sb-thumb-up" />
             <span className={styles.actionCount}>{countLikes}</span>
           </div>
           <div className={styles.stat} onClick={() => openModal()}>
-            <i className="icon-ttp-thumb-down" />
+            <i className="icon-sb-thumb-down" />
             <span className={styles.actionCount}>{countDislikes}</span>
           </div>
           <div className={styles.stat} onClick={() => openModal()}>
-            <i className="icon-ttp-comment" />
+            <i className="icon-sb-comment" />
             <span className={styles.actionCount}>{countComments}</span>
           </div>
         </div>
@@ -116,7 +116,7 @@ export const Article = ({
             )}
             onClick={() => onLike()}
           >
-            <i className="icon-ttp-thumb-up" />
+            <i className="icon-sb-thumb-up" />
           </div>
           <div
             className={classnames(
@@ -125,13 +125,13 @@ export const Article = ({
             )}
             onClick={() => onDislike()}
           >
-            <i className="icon-ttp-thumb-down" />
+            <i className="icon-sb-thumb-down" />
           </div>
           <div className={styles.action} onClick={() => openModal()}>
-            <i className="icon-ttp-comment" />
+            <i className="icon-sb-comment" />
           </div>
           <div className={styles.action} onClick={() => setIsOpen(!isOpen)}>
-            <i className="icon-ttp-share" />
+            <i className="icon-sb-share" />
             <div
               className={classnames(
                 styles.sharePopup,
@@ -144,7 +144,7 @@ export const Article = ({
                 target="_blank"
                 rel="noreferrer"
               >
-                <i className="icon-ttp-facebook" />
+                <i className="icon-sb-facebook" />
               </a>
               <a
                 className={styles.action}
@@ -152,7 +152,7 @@ export const Article = ({
                 target="_blank"
                 rel="noreferrer"
               >
-                <i className="icon-ttp-linkedin" />
+                <i className="icon-sb-linkedin" />
               </a>
 
               <a
@@ -161,7 +161,7 @@ export const Article = ({
                 target="_blank"
                 rel="noreferrer"
               >
-                <i className="icon-ttp-twitter" />
+                <i className="icon-sb-twitter" />
               </a>
             </div>
           </div>
@@ -174,9 +174,9 @@ export const Article = ({
               onClick={() => saveFavorite()}
             >
               {articleId === article.id && isSavingFavorite ? (
-                <i className="icon-ttp-spinner rotating" />
+                <i className="icon-sb-spinner rotating" />
               ) : (
-                <i className="icon-ttp-star-o" />
+                <i className="icon-sb-star-o" />
               )}
             </div>
           )}
@@ -256,13 +256,13 @@ export const Article = ({
                 {status !== "PUBLISHED" && onPublish && (
                   <div>
                     <button onClick={() => onPublish()}>
-                      <i className="icon-ttp-paper-airplane"></i>
+                      <i className="icon-sb-paper-airplane"></i>
                     </button>
                   </div>
                 )}
                 {onEdit && (
                   <button>
-                    <i className="icon-ttp-edit" onClick={() => onEdit()}></i>
+                    <i className="icon-sb-edit" onClick={() => onEdit()}></i>
                   </button>
                 )}
                 {onDelete && (
@@ -270,7 +270,7 @@ export const Article = ({
                     className={styles["btn-delete"]}
                     onClick={() => onDelete()}
                   >
-                    <i className="icon-ttp-trash"></i>
+                    <i className="icon-sb-trash"></i>
                   </button>
                 )}
               </div>
