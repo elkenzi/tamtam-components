@@ -116,7 +116,11 @@ export const Article = ({
             )}
             onClick={() => onLike()}
           >
-            <i className="icon-sb-thumb-up" />
+            {articleId === article.id && isSavingLike ? (
+              <i className="icon-sb-spinner rotating" />
+            ) : (
+              <i className="icon-sb-thumb-up" />
+            )}
           </div>
           <div
             className={classnames(
@@ -125,7 +129,11 @@ export const Article = ({
             )}
             onClick={() => onDislike()}
           >
-            <i className="icon-sb-thumb-down" />
+            {articleId === article.id && isSavingDislike ? (
+              <i className="icon-sb-spinner rotating" />
+            ) : (
+              <i className="icon-sb-thumb-down" />
+            )}
           </div>
           <div className={styles.action} onClick={() => openModal()}>
             <i className="icon-sb-comment" />
