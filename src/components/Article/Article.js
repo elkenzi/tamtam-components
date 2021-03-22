@@ -112,26 +112,34 @@ export const Article = ({
           <div
             className={classnames(
               styles.action,
-              articleId === article.id && isSavingLike
-                ? "animate__bounceIn"
-                : "",
               socialData.isLiked === 1 ? styles.activeAction : ""
             )}
             onClick={() => onLike()}
           >
-            <i className="icon-sb-thumb-up" />
+            <i
+              className={classnames(
+                "icon-sb-thumb-up",
+                articleId === article.id && isSavingLike
+                  ? "animate__bounceIn"
+                  : ""
+              )}
+            />
           </div>
           <div
             className={classnames(
               styles.action,
-              articleId === article.id && isSavingDislike
-                ? "animate__bounceIn"
-                : "",
               socialData.isLiked === 0 ? styles.activeAction : ""
             )}
             onClick={() => onDislike()}
           >
-            <i className="icon-sb-thumb-down" />
+            <i
+              className={classnames(
+                "icon-sb-thumb-down",
+                articleId === article.id && isSavingDislike
+                  ? "animate__bounceIn"
+                  : ""
+              )}
+            />
           </div>
           <div className={styles.action} onClick={() => openModal()}>
             <i className="icon-sb-comment" />
@@ -175,14 +183,18 @@ export const Article = ({
             <div
               className={classnames(
                 styles.action,
-                articleId === article.id && isSavingFavorite
-                  ? "animate__bounceIn"
-                  : "",
                 socialData.isFavorite === 1 ? styles.activeAction : ""
               )}
               onClick={() => saveFavorite()}
             >
-              <i className="icon-sb-star-o" />
+              <i
+                className={classnames(
+                  "icon-sb-star-o",
+                  articleId === article.id && isSavingFavorite
+                    ? "animate__bounceIn"
+                    : ""
+                )}
+              />
             </div>
           )}
         </div>
