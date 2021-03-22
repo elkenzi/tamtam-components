@@ -36,7 +36,7 @@ export const Default = () => (
     saveFavorite={(articleId) => console.log(articleId)}
     onLike={(articleId, like) => console.log(articleId, like)}
     openModal={(article) => console.log(article)}
-    isSavingFavorite={true}
+    isSavingFavorite={false}
     isSavingLike={false}
     isSavingDislike={false}
   />
