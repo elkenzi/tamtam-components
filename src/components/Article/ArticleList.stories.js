@@ -19,6 +19,7 @@ export default {
 };
 const dispositions = [
   "default",
+  "type1",
   "type2",
   "type3",
   "type4",
@@ -26,6 +27,8 @@ const dispositions = [
   "type6",
   "type7",
 ];
+
+// const dispositions = ["default", "type1"];
 
 export const Default = () => (
   <ArticleList

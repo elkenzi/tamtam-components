@@ -54,6 +54,69 @@ export const ArticleList = ({
     );
   };
 
+  const renderType1 = ({ key, articles }) => {
+    if (!articles || articles.length === 0) {
+      return null;
+    }
+    return (
+      <div key={key} className={`${styles.articleList1} grid-x grid-margin-x`}>
+        <div className="cell small-8">
+          <Article
+            size="large"
+            showSummary={true}
+            article={articles[0]}
+            isFetching={isFetching}
+            currentCommunity={currentCommunity}
+            saveFavorite={() => saveFavorite(articles[0].id)}
+            onLike={() => onLike(articles[0].id, 1)}
+            onDislike={() => onLike(articles[0].id, 0)}
+            openModal={() => openModal(articles[0])}
+            isSavingFavorite={isSavingFavorite}
+            isSavingLike={isSavingLike}
+            isSavingDislike={isSavingDislike}
+            articleId={articleId}
+          />
+        </div>
+        <div className={`${styles.articleTpl2} cell small-4`}>
+          {articles.length > 1 && (
+            <Article
+              size="small"
+              showSummary={true}
+              article={articles[1]}
+              isFetching={isFetching}
+              currentCommunity={currentCommunity}
+              saveFavorite={() => saveFavorite(articles[1].id)}
+              onLike={() => onLike(articles[1].id, 1)}
+              onDislike={() => onLike(articles[1].id, 0)}
+              openModal={() => openModal(articles[1])}
+              isSavingFavorite={isSavingFavorite}
+              isSavingLike={isSavingLike}
+              isSavingDislike={isSavingDislike}
+              articleId={articleId}
+            />
+          )}
+          {articles.length > 2 && (
+            <Article
+              size="small"
+              showSummary={true}
+              article={articles[2]}
+              isFetching={isFetching}
+              currentCommunity={currentCommunity}
+              saveFavorite={() => saveFavorite(articles[2].id)}
+              onLike={() => onLike(articles[2].id, 1)}
+              onDislike={() => onLike(articles[2].id, 0)}
+              openModal={() => openModal(articles[2])}
+              isSavingFavorite={isSavingFavorite}
+              isSavingLike={isSavingLike}
+              isSavingDislike={isSavingDislike}
+              articleId={articleId}
+            />
+          )}
+        </div>
+      </div>
+    );
+  };
+
   const renderType2 = ({ key, articles }) => {
     if (!articles || articles.length === 0) {
       return null;
@@ -362,6 +425,9 @@ export const ArticleList = ({
 
   const renderList = (bloc) => {
     switch (bloc.disposition) {
+      case "type1":
+        return renderType1(bloc);
+        break;
       case "type2":
         return renderType2(bloc);
         break;
@@ -411,7 +477,6 @@ export const ArticleList = ({
       count += CAROUSEL_DISPOSITIONS[disposition];
     });
   }
-
   return (
     <>
       {blocs.map((bloc) => {

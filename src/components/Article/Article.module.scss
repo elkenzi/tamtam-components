@@ -117,6 +117,9 @@
   .actions {
     border-top: 1px solid rgba(109, 127, 146, 0.4);
   }
+  .content {
+    min-height: 216px;
+  }
 }
 .status {
   width: 100px;

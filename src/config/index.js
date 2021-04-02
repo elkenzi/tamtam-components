@@ -3,7 +3,8 @@ export const TTP_API_URL = `http://local.api.tamtam.pro`;
 export const TTP_HOME_URL = `http://local.tamtam.pro/`;
 
 export const CAROUSEL_DISPOSITIONS = {
-  default: 3,
+  default: 1,
+  type1: 3,
   type2: 2,
   type3: 2,
   type4: 3,
