@@ -27,7 +27,6 @@ export const Article = ({
   isSavingLike,
   isSavingDislike,
   currentCommunity,
-  user,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -92,7 +91,7 @@ export const Article = ({
   };
 
   const renderSocialStats = () => {
-    if (!currentCommunity || !user) return null;
+    if (!currentCommunity) return null;
     return (
       <div className={styles.actionsContainer}>
         <div>

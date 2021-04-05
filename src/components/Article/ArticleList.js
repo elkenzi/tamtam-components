@@ -18,7 +18,6 @@ export const ArticleList = ({
   isSavingDislike,
   articleId,
   currentCommunity,
-  user,
 }) => {
   if (isFetching) {
     return <FetchingList dispositions={dispositions} />;
@@ -41,7 +40,6 @@ export const ArticleList = ({
             article={articles[0]}
             isFetching={isFetching}
             currentCommunity={currentCommunity}
-            user={user}
             saveFavorite={() => saveFavorite(articles[0].id)}
             onLike={() => onLike(articles[0].id, 1)}
             onDislike={() => onLike(articles[0].id, 0)}
@@ -69,7 +67,6 @@ export const ArticleList = ({
             article={articles[0]}
             isFetching={isFetching}
             currentCommunity={currentCommunity}
-            user={user}
             saveFavorite={() => saveFavorite(articles[0].id)}
             onLike={() => onLike(articles[0].id, 1)}
             onDislike={() => onLike(articles[0].id, 0)}
@@ -88,7 +85,6 @@ export const ArticleList = ({
               article={articles[1]}
               isFetching={isFetching}
               currentCommunity={currentCommunity}
-              user={user}
               saveFavorite={() => saveFavorite(articles[1].id)}
               onLike={() => onLike(articles[1].id, 1)}
               onDislike={() => onLike(articles[1].id, 0)}
@@ -106,7 +102,6 @@ export const ArticleList = ({
               article={articles[2]}
               isFetching={isFetching}
               currentCommunity={currentCommunity}
-              user={user}
               saveFavorite={() => saveFavorite(articles[2].id)}
               onLike={() => onLike(articles[2].id, 1)}
               onDislike={() => onLike(articles[2].id, 0)}
@@ -135,7 +130,6 @@ export const ArticleList = ({
             article={articles[0]}
             isFetching={isFetching}
             currentCommunity={currentCommunity}
-            user={user}
             saveFavorite={() => saveFavorite(articles[0].id)}
             onLike={() => onLike(articles[0].id, 1)}
             onDislike={() => onLike(articles[0].id, 0)}
@@ -153,7 +147,6 @@ export const ArticleList = ({
               article={articles[1]}
               isFetching={isFetching}
               currentCommunity={currentCommunity}
-              user={user}
               saveFavorite={() => saveFavorite(articles[1].id)}
               onLike={() => onLike(articles[1].id, 1)}
               onDislike={() => onLike(articles[1].id, 0)}
@@ -182,7 +175,6 @@ export const ArticleList = ({
             article={articles[0]}
             isFetching={isFetching}
             currentCommunity={currentCommunity}
-            user={user}
             saveFavorite={() => saveFavorite(articles[0].id)}
             onLike={() => onLike(articles[0].id, 1)}
             onDislike={() => onLike(articles[0].id, 0)}
@@ -200,7 +192,6 @@ export const ArticleList = ({
               article={articles[1]}
               isFetching={isFetching}
               currentCommunity={currentCommunity}
-              user={user}
               saveFavorite={() => saveFavorite(articles[1].id)}
               onLike={() => onLike(articles[1].id, 1)}
               onDislike={() => onLike(articles[1].id, 0)}
@@ -229,7 +220,6 @@ export const ArticleList = ({
             article={articles[0]}
             isFetching={isFetching}
             currentCommunity={currentCommunity}
-            user={user}
             saveFavorite={() => saveFavorite(articles[0].id)}
             onLike={() => onLike(articles[0].id, 1)}
             onDislike={() => onLike(articles[0].id, 0)}
@@ -247,7 +237,6 @@ export const ArticleList = ({
               article={articles[1]}
               isFetching={isFetching}
               currentCommunity={currentCommunity}
-              user={user}
               saveFavorite={() => saveFavorite(articles[1].id)}
               onLike={() => onLike(articles[1].id, 1)}
               onDislike={() => onLike(articles[1].id, 0)}
@@ -266,7 +255,6 @@ export const ArticleList = ({
               article={articles[2]}
               isFetching={isFetching}
               currentCommunity={currentCommunity}
-              user={user}
               saveFavorite={() => saveFavorite(articles[2].id)}
               onLike={() => onLike(articles[2].id, 1)}
               onDislike={() => onLike(articles[2].id, 0)}
@@ -295,7 +283,6 @@ export const ArticleList = ({
             article={articles[0]}
             isFetching={isFetching}
             currentCommunity={currentCommunity}
-            user={user}
             saveFavorite={() => saveFavorite(articles[0].id)}
             onLike={() => onLike(articles[0].id, 1)}
             onDislike={() => onLike(articles[0].id, 0)}
@@ -313,7 +300,6 @@ export const ArticleList = ({
               article={articles[1]}
               isFetching={isFetching}
               currentCommunity={currentCommunity}
-              user={user}
               saveFavorite={() => saveFavorite(articles[1].id)}
               onLike={() => onLike(articles[1].id, 1)}
               onDislike={() => onLike(articles[1].id, 0)}
@@ -342,7 +328,6 @@ export const ArticleList = ({
             article={articles[0]}
             isFetching={isFetching}
             currentCommunity={currentCommunity}
-            user={user}
             saveFavorite={() => saveFavorite(articles[0].id)}
             onLike={() => onLike(articles[0].id, 1)}
             onDislike={() => onLike(articles[0].id, 0)}
@@ -360,7 +345,6 @@ export const ArticleList = ({
               article={articles[1]}
               isFetching={isFetching}
               currentCommunity={currentCommunity}
-              user={user}
               saveFavorite={() => saveFavorite(articles[1].id)}
               onLike={() => onLike(articles[1].id, 1)}
               onDislike={() => onLike(articles[1].id, 0)}
@@ -379,7 +363,6 @@ export const ArticleList = ({
               article={articles[2]}
               isFetching={isFetching}
               currentCommunity={currentCommunity}
-              user={user}
               saveFavorite={() => saveFavorite(articles[2].id)}
               onLike={() => onLike(articles[2].id, 1)}
               onDislike={() => onLike(articles[2].id, 0)}
@@ -408,7 +391,6 @@ export const ArticleList = ({
             article={articles[0]}
             isFetching={isFetching}
             currentCommunity={currentCommunity}
-            user={user}
             saveFavorite={() => saveFavorite(articles[0].id)}
             onLike={() => onLike(articles[0].id, 1)}
             onDislike={() => onLike(articles[0].id, 0)}
@@ -426,7 +408,6 @@ export const ArticleList = ({
               article={articles[1]}
               isFetching={isFetching}
               currentCommunity={currentCommunity}
-              user={user}
               saveFavorite={() => saveFavorite(articles[1].id)}
               onLike={() => onLike(articles[1].id, 1)}
               onDislike={() => onLike(articles[1].id, 0)}
