@@ -35,7 +35,7 @@ export const Default = () => (
     articles={articles}
     dispositions={dispositions}
     isFetching={boolean("isFetching", false)}
-    currentCommunity={44}
+    navCommunityId={44}
     saveFavorite={(articleId) => console.log(articleId)}
     onLike={(articleId, like) => console.log(articleId, like)}
     openModal={(article) => console.log(article)}

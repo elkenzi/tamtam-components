@@ -1,9 +1,20 @@
-const TTP_FFF_BLOG = "https://blog.be.accountants/";
-const TTP_BE_ACCOUNTANTS_BLOG = "https://blog.forumforthefuture.be/";
-const TTP_DAP_BLOG = "https://blog.degandpartners.com/";
 const TTP_API_URL = "http://api.tamtam.pro";
 
-const getArticleFullUrl = (article, navCommunityId = 0) => {
+const getArticleFullUrl = (article, env = "", navCommunityId = 0) => {
+  let baBlog = "https://blog.be.accountants";
+  let fffBlog = "https://blog.forumforthefuture.be";
+  let dapBlog = "https://blog.degandpartners.com";
+
+  if (env === "local") {
+    baBlog = "http://local.blog.be.accountants:3030";
+    fffBlog = "http://local.blog.forumforthefuture.be:3030";
+    dapBlog = "http://local.blog.degandpartners.com:3030";
+  } else if (env) {
+    baBlog = `https://blog.${env}.be.accountants`;
+    fffBlog = `https://blog.${env}.forumforthefuture.be`;
+    dapBlog = `https://blog.${env}.degandpartners.com`;
+  }
+
   const { url, id, organization, language, isExternal, externalUrl } = article;
   if (isExternal) {
     return externalUrl;
@@ -14,14 +25,14 @@ const getArticleFullUrl = (article, navCommunityId = 0) => {
   if (
     organization &&
     [8, 9, 4].includes(organization.id) &&
-    organization.id !== navCommunityId
+    organization.id !== parseInt(navCommunityId)
   ) {
     if (organization.id === 9) {
-      return `${TTP_FFF_BLOG}${fullUrl.substring(1)}`;
+      return `${fffBlog}${fullUrl}`;
     } else if (organization.id === 8) {
-      return `${TTP_BE_ACCOUNTANTS_BLOG}${fullUrl.substring(1)}`;
+      return `${baBlog}${fullUrl}`;
     } else if (organization.id === 4) {
-      return `${TTP_DAP_BLOG}${fullUrl.substring(1)}`;
+      return `${dapBlog}${fullUrl}`;
     }
   }
 
@@ -132,7 +143,7 @@ export const addLandaSize = (img, width = 0, height = 0) => {
   );
 };
 
-export const prepareArticle = (article, navCommunityId = 0) => {
+export const prepareArticle = (article, env = "", navCommunityId = 0) => {
   const {
     id,
     title,
@@ -174,7 +185,7 @@ export const prepareArticle = (article, navCommunityId = 0) => {
       name: getCategoryName(category, "fr"),
       colorCode: category && category.colorCode ? category.colorCode : "",
     },
-    url: getArticleFullUrl(article, navCommunityId),
+    url: getArticleFullUrl(article, env, navCommunityId),
     mainMedia: getMainMedia(article),
     album: getAlbum(article),
     authors: getAuthors(article, "fr"),

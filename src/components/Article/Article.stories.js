@@ -29,6 +29,7 @@ export const DefaultSmall = () => (
           article={articles[Math.floor(Math.random() * 21)]}
           size="small"
           isFetching={boolean("isFetching", false)}
+          navCommunityId="4"
         />
       </div>
     </div>

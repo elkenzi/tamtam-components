@@ -11,6 +11,7 @@ import classnames from "classnames";
 export const Article = ({
   article,
   type,
+  env,
   size,
   isFetching,
   showSummary,
@@ -26,13 +27,12 @@ export const Article = ({
   isSavingFavorite,
   isSavingLike,
   isSavingDislike,
-  currentCommunity,
+  navCommunityId,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   if (isFetching) return <Fetching type={type} size={size} />;
-
-  const data = prepareArticle(article);
+  const data = prepareArticle(article, env, navCommunityId);
   const {
     title,
     url,
@@ -91,7 +91,7 @@ export const Article = ({
   };
 
   const renderSocialStats = () => {
-    if (!currentCommunity) return null;
+    if (!navCommunityId) return null;
     return (
       <div className={styles.actionsContainer}>
         <div>
