@@ -28,6 +28,7 @@ export const Article = ({
   isSavingLike,
   isSavingDislike,
   navCommunityId,
+  Link,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -75,12 +76,14 @@ export const Article = ({
     }
   };
 
-  const renderTitle = () => {
-    if (isExternal)
+  const articleLink = () => {
+    if (Link)
       return (
-        <a href={url} target="_blank" rel="noreferrer" className={styles.title}>
-          <h3>{title}</h3>
-        </a>
+        <Link href={url}>
+          <a className={styles.title}>
+            <h3>{title}</h3>
+          </a>
+        </Link>
       );
     else
       return (
@@ -88,6 +91,16 @@ export const Article = ({
           <h3>{title}</h3>
         </a>
       );
+  };
+
+  const renderTitle = () => {
+    if (isExternal)
+      return (
+        <a href={url} target="_blank" rel="noreferrer" className={styles.title}>
+          <h3>{title}</h3>
+        </a>
+      );
+    else return articleLink();
   };
 
   const renderSocialStats = () => {

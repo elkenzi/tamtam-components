@@ -19,6 +19,7 @@ export const ArticleList = ({
   articleId,
   navCommunityId,
   env,
+  Link,
 }) => {
   if (isFetching) {
     return <FetchingList dispositions={dispositions} />;
@@ -50,6 +51,7 @@ export const ArticleList = ({
             isSavingLike={isSavingLike}
             isSavingDislike={isSavingDislike}
             articleId={articleId}
+            Link={Link}
           />
         </div>
       </div>

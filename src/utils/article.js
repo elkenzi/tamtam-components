@@ -9,6 +9,10 @@ const getArticleFullUrl = (article, env = "", navCommunityId = 0) => {
     baBlog = "http://local.blog.be.accountants:3030";
     fffBlog = "http://local.blog.forumforthefuture.be:3030";
     dapBlog = "http://local.blog.degandpartners.com:3030";
+  } else if (env === "v2") {
+    baBlog = "https://blog.be.accountants";
+    fffBlog = "https://blog.forumforthefuture.be";
+    dapBlog = "https://blog.degandpartners.com";
   } else if (env) {
     baBlog = `https://blog.${env}.be.accountants`;
     fffBlog = `https://blog.${env}.forumforthefuture.be`;
@@ -22,11 +26,7 @@ const getArticleFullUrl = (article, env = "", navCommunityId = 0) => {
 
   let fullUrl = `/${language}/article/${url}/${id}`;
 
-  if (
-    organization &&
-    [8, 9, 4].includes(organization.id) &&
-    organization.id !== parseInt(navCommunityId)
-  ) {
+  if (organization && [8, 9, 4].includes(organization.id)) {
     if (organization.id === 9) {
       return `${fffBlog}${fullUrl}`;
     } else if (organization.id === 8) {
