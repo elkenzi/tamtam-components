@@ -80,6 +80,7 @@ export const ArticleList = ({
             isSavingLike={isSavingLike}
             isSavingDislike={isSavingDislike}
             articleId={articleId}
+            Link={Link}
           />
         </div>
         <div className={`${styles.articleTpl2} cell small-4`}>
@@ -99,6 +100,7 @@ export const ArticleList = ({
               isSavingLike={isSavingLike}
               isSavingDislike={isSavingDislike}
               articleId={articleId}
+              Link={Link}
             />
           )}
           {articles.length > 2 && (
@@ -117,6 +119,7 @@ export const ArticleList = ({
               isSavingLike={isSavingLike}
               isSavingDislike={isSavingDislike}
               articleId={articleId}
+              Link={Link}
             />
           )}
         </div>
@@ -146,6 +149,7 @@ export const ArticleList = ({
             isSavingLike={isSavingLike}
             isSavingDislike={isSavingDislike}
             articleId={articleId}
+            Link={Link}
           />
         </div>
         {articles.length > 1 && (
@@ -164,6 +168,7 @@ export const ArticleList = ({
               isSavingLike={isSavingLike}
               isSavingDislike={isSavingDislike}
               articleId={articleId}
+              Link={Link}
             />
           </div>
         )}
@@ -193,6 +198,7 @@ export const ArticleList = ({
             isSavingLike={isSavingLike}
             isSavingDislike={isSavingDislike}
             articleId={articleId}
+            Link={Link}
           />
         </div>
         {articles.length > 1 && (
@@ -211,6 +217,7 @@ export const ArticleList = ({
               isSavingLike={isSavingLike}
               isSavingDislike={isSavingDislike}
               articleId={articleId}
+              Link={Link}
             />
           </div>
         )}
@@ -240,6 +247,7 @@ export const ArticleList = ({
             isSavingLike={isSavingLike}
             isSavingDislike={isSavingDislike}
             articleId={articleId}
+            Link={Link}
           />
         </div>
         {articles.length > 1 && (
@@ -258,6 +266,7 @@ export const ArticleList = ({
               isSavingLike={isSavingLike}
               isSavingDislike={isSavingDislike}
               articleId={articleId}
+              Link={Link}
             />
           </div>
         )}
@@ -277,6 +286,7 @@ export const ArticleList = ({
               isSavingLike={isSavingLike}
               isSavingDislike={isSavingDislike}
               articleId={articleId}
+              Link={Link}
             />
           </div>
         )}
@@ -306,6 +316,7 @@ export const ArticleList = ({
             isSavingLike={isSavingLike}
             isSavingDislike={isSavingDislike}
             articleId={articleId}
+            Link={Link}
           />
         </div>
         {articles.length > 1 && (
@@ -324,6 +335,7 @@ export const ArticleList = ({
               isSavingLike={isSavingLike}
               isSavingDislike={isSavingDislike}
               articleId={articleId}
+              Link={Link}
             />
           </div>
         )}
@@ -353,6 +365,7 @@ export const ArticleList = ({
             isSavingLike={isSavingLike}
             isSavingDislike={isSavingDislike}
             articleId={articleId}
+            Link={Link}
           />
         </div>
         {articles.length > 1 && (
@@ -371,6 +384,7 @@ export const ArticleList = ({
               isSavingLike={isSavingLike}
               isSavingDislike={isSavingDislike}
               articleId={articleId}
+              Link={Link}
             />
           </div>
         )}
@@ -390,6 +404,7 @@ export const ArticleList = ({
               isSavingLike={isSavingLike}
               isSavingDislike={isSavingDislike}
               articleId={articleId}
+              Link={Link}
             />
           </div>
         )}
@@ -419,6 +434,7 @@ export const ArticleList = ({
             isSavingLike={isSavingLike}
             isSavingDislike={isSavingDislike}
             articleId={articleId}
+            Link={Link}
           />
         </div>
         {articles.length > 1 && (
@@ -437,6 +453,7 @@ export const ArticleList = ({
               isSavingLike={isSavingLike}
               isSavingDislike={isSavingDislike}
               articleId={articleId}
+              Link={Link}
             />
           </div>
         )}
