@@ -26,11 +26,7 @@ const getArticleFullUrl = (article, env = "", navCommunityId = 0) => {
 
   let fullUrl = `/${language}/article/${url}/${id}`;
 
-  if (
-    organization &&
-    [8, 9, 4].includes(organization.id) &&
-    organization.id != navCommunityId
-  ) {
+  if (organization && [8, 9, 4].includes(organization.id)) {
     if (organization.id === 9) {
       return `${fffBlog}${fullUrl}`;
     } else if (organization.id === 8) {
