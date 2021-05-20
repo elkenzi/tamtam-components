@@ -88,7 +88,7 @@ export const Article = ({
       );
     else
       return (
-        <a href={url} className={styles.title}>
+        <a href={shareUrl} className={styles.title}>
           <h3>{title}</h3>
         </a>
       );
