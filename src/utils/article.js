@@ -39,6 +39,15 @@ const getArticleFullUrl = (article, env = "", navCommunityId = 0) => {
   return fullUrl;
 };
 
+const getArticleUrl = (article) => {
+  const { url, id, language, isExternal, externalUrl } = article;
+  if (isExternal) {
+    return externalUrl;
+  }
+
+  return `/${language}/article/${url}/${id}`;
+};
+
 export const getCategoryName = (category, lng) => {
   const nameAttr = `name${lng.charAt(0).toUpperCase() + lng.slice(1)}`;
   return category && category[nameAttr] ? category[nameAttr] : "";
@@ -185,7 +194,8 @@ export const prepareArticle = (article, env = "", navCommunityId = 0) => {
       name: getCategoryName(category, "fr"),
       colorCode: category && category.colorCode ? category.colorCode : "",
     },
-    url: getArticleFullUrl(article, env, navCommunityId),
+    url: getArticleUrl(article, env, navCommunityId),
+    shareUrl: getArticleFullUrl(article, env, navCommunityId),
     mainMedia: getMainMedia(article),
     album: getAlbum(article),
     authors: getAuthors(article, "fr"),

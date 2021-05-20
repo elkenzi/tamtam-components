@@ -37,6 +37,7 @@ export const Article = ({
   const {
     title,
     url,
+    shareUrl,
     introduction,
     communityName,
     category,
@@ -167,7 +168,7 @@ export const Article = ({
             >
               <a
                 className={styles.action}
-                href={`https://www.facebook.com/sharer/sharer.php?u=${url}`}
+                href={`https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`}
                 target="_blank"
                 rel="noreferrer"
               >
@@ -175,7 +176,7 @@ export const Article = ({
               </a>
               <a
                 className={styles.action}
-                href={`https://www.linkedin.com/sharing/share-offsite/?url=${url}`}
+                href={`https://www.linkedin.com/sharing/share-offsite/?url=${shareUrl}`}
                 target="_blank"
                 rel="noreferrer"
               >
@@ -184,7 +185,7 @@ export const Article = ({
 
               <a
                 className={styles.action}
-                href={`https://twitter.com/intent/tweet?url=${url}`}
+                href={`https://twitter.com/intent/tweet?url=${shareUrl}`}
                 target="_blank"
                 rel="noreferrer"
               >
