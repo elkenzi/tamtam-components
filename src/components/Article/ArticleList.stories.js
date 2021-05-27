@@ -35,8 +35,9 @@ export const Default = () => (
     articles={articles}
     dispositions={dispositions}
     isFetching={boolean("isFetching", false)}
-    navCommunityId={44}
+    navCommunityId={9}
     env="local"
+    host="local.blog.tamtam.pro"
     saveFavorite={(articleId) => console.log(articleId)}
     onLike={(articleId, like) => console.log(articleId, like)}
     openModal={(article) => console.log(article)}

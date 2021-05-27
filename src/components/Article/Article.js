@@ -5,7 +5,7 @@ import moment from "moment";
 import styles from "./Article.module.scss";
 import { AuthorAvatar } from "../Avatar/AuthorAvatar";
 import { Fetching } from "./Fetching";
-import { prepareArticle } from "../../utils";
+import { prepareArticle, addLandaSize } from "../../utils";
 import classnames from "classnames";
 
 export const Article = ({
@@ -283,7 +283,7 @@ export const Article = ({
                 ? `${styles.col6} ${styles.contentImg} ${styles.hasActions}`
                 : `${styles.col6} ${styles.contentImg}`
             }
-            style={{ backgroundImage: `url(${mediaUrl})` }}
+            style={{ backgroundImage: `url(${addLandaSize(mediaUrl, 570)})` }}
           >
             {showStatus && (
               <div
@@ -385,7 +385,11 @@ export const Article = ({
                     <div key={`slide-${media.id}`}>
                       <div
                         style={{
-                          background: `url(${media.path}) no-repeat center center`,
+                          background: `url(${addLandaSize(
+                            media.path,
+                            null,
+                            432
+                          )}) no-repeat center center`,
                           backgroundSize: "cover",
                           width: "100%",
                           height: "216px",
@@ -400,7 +404,9 @@ export const Article = ({
           ) : (
             <div
               className={styles.contentImg}
-              style={{ backgroundImage: `url(${mediaUrl})` }}
+              style={{
+                backgroundImage: `url(${addLandaSize(mediaUrl, null, 432)})`,
+              }}
             ></div>
           )}
           <div className={styles.content}>
@@ -438,7 +444,11 @@ export const Article = ({
         {renderAvatar()}
         <div
           className={styles.content}
-          style={{ backgroundImage: `url(${mediaUrl})` }}
+          style={
+            size && size === "large"
+              ? { backgroundImage: `url(${addLandaSize(mediaUrl, 1700)})` }
+              : { backgroundImage: `url(${addLandaSize(mediaUrl, 520)})` }
+          }
         >
           {publishedAt && (
             <div className={styles.publishedAt}>

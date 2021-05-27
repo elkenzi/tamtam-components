@@ -1,7 +1,7 @@
 const TTP_API_URL = "http://api.tamtam.pro";
 
 const hasRelativePath = (navCommunityId, host) => {
-  if (!host) return true;
+  if (!host || host.includes("tamtam.pro")) return true;
   const hosts = {
     org_8: "be.accountants",
     org_9: "forumforthefuture.be",
@@ -41,6 +41,10 @@ const getArticleFullUrl = (article, env = "", navCommunityId = 0, host) => {
 
   let fullUrl = `/${language}/article/${url}/${id}`;
 
+  if (hasRelativePath(navCommunityId, host)) {
+    return fullUrl;
+  }
+
   if (
     organization &&
     [8, 9, 4].includes(organization.id) &&
@@ -56,13 +60,9 @@ const getArticleFullUrl = (article, env = "", navCommunityId = 0, host) => {
     }
   }
 
-  if (!hasRelativePath(navCommunityId, host)) {
-    return env === "local"
-      ? `http://${host}${fullUrl}`
-      : `https://${host}${fullUrl}`;
-  }
-
-  return fullUrl;
+  return env === "local"
+    ? `http://${host}${fullUrl}`
+    : `https://${host}${fullUrl}`;
 };
 
 const getArticleUrl = (article, env, navCommunityId, host) => {
