@@ -1,14 +1,29 @@
 const TTP_API_URL = "http://api.tamtam.pro";
 
-const getArticleFullUrl = (article, env = "", navCommunityId = 0) => {
+const hasRelativePath = (navCommunityId, host) => {
+  if (!host) return true;
+  const hosts = {
+    org_8: "be.accountants",
+    org_9: "forumforthefuture.be",
+    org_4: "degandpartners.com",
+  };
+  if (
+    [8, 9, 4].includes(navCommunityId) &&
+    !host.includes(hosts[`org_${navCommunityId}`])
+  ) {
+    return false;
+  }
+  return true;
+};
+const getArticleFullUrl = (article, env = "", navCommunityId = 0, host) => {
   let baBlog = "https://blog.be.accountants";
   let fffBlog = "https://blog.forumforthefuture.be";
   let dapBlog = "https://blog.degandpartners.com";
 
   if (env === "local") {
-    baBlog = "http://local.blog.be.accountants:3030";
-    fffBlog = "http://local.blog.forumforthefuture.be:3030";
-    dapBlog = "http://local.blog.degandpartners.com:3030";
+    baBlog = "http://local.blog.be.accountants:3000";
+    fffBlog = "http://local.blog.forumforthefuture.be:3000";
+    dapBlog = "http://local.blog.degandpartners.com:3000";
   } else if (env === "v2") {
     baBlog = "https://blog.be.accountants";
     fffBlog = "https://blog.forumforthefuture.be";
@@ -26,7 +41,12 @@ const getArticleFullUrl = (article, env = "", navCommunityId = 0) => {
 
   let fullUrl = `/${language}/article/${url}/${id}`;
 
-  if (organization && [8, 9, 4].includes(organization.id)) {
+  if (
+    organization &&
+    [8, 9, 4].includes(organization.id) &&
+    organization.id !== navCommunityId &&
+    navCommunityId !== 0
+  ) {
     if (organization.id === 9) {
       return `${fffBlog}${fullUrl}`;
     } else if (organization.id === 8) {
@@ -36,16 +56,62 @@ const getArticleFullUrl = (article, env = "", navCommunityId = 0) => {
     }
   }
 
+  if (!hasRelativePath(navCommunityId, host)) {
+    return env === "local"
+      ? `http://${host}${fullUrl}`
+      : `https://${host}${fullUrl}`;
+  }
+
   return fullUrl;
 };
 
-const getArticleUrl = (article) => {
-  const { url, id, language, isExternal, externalUrl } = article;
+const getArticleUrl = (article, env, navCommunityId, host) => {
+  const { url, id, organization, language, isExternal, externalUrl } = article;
+
   if (isExternal) {
     return externalUrl;
   }
 
-  return `/${language}/article/${url}/${id}`;
+  let baBlog = "https://blog.be.accountants";
+  let fffBlog = "https://blog.forumforthefuture.be";
+  let dapBlog = "https://blog.degandpartners.com";
+
+  if (env === "local") {
+    baBlog = "http://local.blog.be.accountants:3000";
+    fffBlog = "http://local.blog.forumforthefuture.be:3000";
+    dapBlog = "http://local.blog.degandpartners.com:3000";
+  } else if (env === "v2") {
+    baBlog = "https://blog.be.accountants";
+    fffBlog = "https://blog.forumforthefuture.be";
+    dapBlog = "https://blog.degandpartners.com";
+  } else if (env) {
+    baBlog = `https://blog.${env}.be.accountants`;
+    fffBlog = `https://blog.${env}.forumforthefuture.be`;
+    dapBlog = `https://blog.${env}.degandpartners.com`;
+  }
+
+  let fullUrl = `/${language}/article/${url}/${id}`;
+
+  if (
+    organization &&
+    [8, 9, 4].includes(organization.id) &&
+    organization.id !== navCommunityId &&
+    navCommunityId !== 0
+  ) {
+    if (organization.id === 9) {
+      return `${fffBlog}${fullUrl}`;
+    } else if (organization.id === 8) {
+      return `${baBlog}${fullUrl}`;
+    } else if (organization.id === 4) {
+      return `${dapBlog}${fullUrl}`;
+    }
+  }
+
+  if (host)
+    return env === "local"
+      ? `http://${host}/${language}/article/${url}/${id}`
+      : `https://${host}/${language}/article/${url}/${id}`;
+  else return `/${language}/article/${url}/${id}`;
 };
 
 export const getCategoryName = (category, lng) => {
@@ -152,7 +218,7 @@ export const addLandaSize = (img, width = 0, height = 0) => {
   );
 };
 
-export const prepareArticle = (article, env = "", navCommunityId = 0) => {
+export const prepareArticle = (article, env = "", navCommunityId = 0, host) => {
   const {
     id,
     title,
@@ -194,8 +260,9 @@ export const prepareArticle = (article, env = "", navCommunityId = 0) => {
       name: getCategoryName(category, "fr"),
       colorCode: category && category.colorCode ? category.colorCode : "",
     },
-    url: getArticleUrl(article, env, navCommunityId),
-    shareUrl: getArticleFullUrl(article, env, navCommunityId),
+    url: getArticleFullUrl(article, env, navCommunityId, host),
+    shareUrl: getArticleUrl(article, env, navCommunityId, host),
+    hasRelativePath: hasRelativePath(navCommunityId, host),
     mainMedia: getMainMedia(article),
     album: getAlbum(article),
     authors: getAuthors(article, "fr"),

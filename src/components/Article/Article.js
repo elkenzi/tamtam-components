@@ -29,11 +29,12 @@ export const Article = ({
   isSavingDislike,
   navCommunityId,
   Link,
+  host,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   if (isFetching) return <Fetching type={type} size={size} />;
-  const data = prepareArticle(article, env, navCommunityId);
+  const data = prepareArticle(article, env, navCommunityId, host);
   const {
     title,
     url,
@@ -51,6 +52,7 @@ export const Article = ({
     countComments,
     authors,
     socialData,
+    hasRelativePath,
   } = data;
   const hasActions = onDelete || onEdit || onPublish ? true : false;
   const mediaUrl = medias && medias.length > 0 ? medias[0].path : mainMedia;
@@ -79,16 +81,24 @@ export const Article = ({
 
   const articleLink = () => {
     if (Link)
-      return (
+      return hasRelativePath ? (
         <Link href={url}>
           <a className={styles.title}>
             <h3>{title}</h3>
           </a>
         </Link>
+      ) : (
+        <a href={url} taget="_blank" className={styles.title}>
+          <h3>{title}</h3>
+        </a>
       );
     else
-      return (
-        <a href={shareUrl} className={styles.title}>
+      return hasRelativePath ? (
+        <a href={url} className={styles.title}>
+          <h3>{title}</h3>
+        </a>
+      ) : (
+        <a href={url} taget="_blank" className={styles.title}>
           <h3>{title}</h3>
         </a>
       );
