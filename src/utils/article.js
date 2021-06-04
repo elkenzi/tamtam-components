@@ -209,7 +209,7 @@ export const addLandaSize = (img, width = 0, height = 0) => {
   );
 };
 
-export const prepareArticle = (article, env = "", navCommunityId = 0, host) => {
+export const prepareArticle = (article, env = "", host) => {
   const {
     id,
     title,
