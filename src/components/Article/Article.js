@@ -228,15 +228,7 @@ export const Article = ({
   const renderType2 = () => {
     return (
       <div className={`${styles.articleTemplate2} ${styles[size]}`}>
-        <div className={styles.authorsContainer}>
-          <ul>
-            {authors.map((author) => (
-              <li key={`author-${author.id}`}>
-                <AuthorAvatar author={author} />
-              </li>
-            ))}
-          </ul>
-        </div>
+        {renderAvatar()}
         <div className={styles.content}>
           {publishedAt && (
             <div className={styles.publishedAt}>
@@ -267,15 +259,7 @@ export const Article = ({
   const renderType3 = () => {
     return (
       <div className={size ? styles[size] : ""}>
-        <div className={styles.authorsContainer}>
-          <ul>
-            {authors.map((author) => (
-              <li key={`author-${author.id}`}>
-                <AuthorAvatar author={author} />
-              </li>
-            ))}
-          </ul>
-        </div>
+        {renderAvatar()}
         <div className={styles.row}>
           <div
             className={
@@ -361,15 +345,7 @@ export const Article = ({
 
     return (
       <div className={`${styles.articleTemplate4} ${styles[size]}`}>
-        <div className={styles.authorsContainer}>
-          <ul>
-            {authors.map((author) => (
-              <li key={`author-${author.id}`}>
-                <AuthorAvatar author={author} />
-              </li>
-            ))}
-          </ul>
-        </div>
+        {renderAvatar()}
         <div className={styles.articleContainer}>
           {publishedAt && (
             <div className={styles.publishedAt}>
