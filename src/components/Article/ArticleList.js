@@ -17,7 +17,7 @@ export const ArticleList = ({
   isSavingLike,
   isSavingDislike,
   articleId,
-  navCommunityId,
+  user,
   env,
   Link,
   host,
@@ -42,7 +42,7 @@ export const ArticleList = ({
             showSummary={true}
             article={articles[0]}
             isFetching={isFetching}
-            navCommunityId={navCommunityId}
+            user={user}
             env={env}
             saveFavorite={() => saveFavorite(articles[0].id)}
             onLike={() => onLike(articles[0].id, 1)}
@@ -72,7 +72,7 @@ export const ArticleList = ({
             showSummary={true}
             article={articles[0]}
             isFetching={isFetching}
-            navCommunityId={navCommunityId}
+            user={user}
             env={env}
             saveFavorite={() => saveFavorite(articles[0].id)}
             onLike={() => onLike(articles[0].id, 1)}
@@ -93,7 +93,7 @@ export const ArticleList = ({
               showSummary={true}
               article={articles[1]}
               isFetching={isFetching}
-              navCommunityId={navCommunityId}
+              user={user}
               env={env}
               saveFavorite={() => saveFavorite(articles[1].id)}
               onLike={() => onLike(articles[1].id, 1)}
@@ -113,7 +113,7 @@ export const ArticleList = ({
               showSummary={true}
               article={articles[2]}
               isFetching={isFetching}
-              navCommunityId={navCommunityId}
+              user={user}
               env={env}
               saveFavorite={() => saveFavorite(articles[2].id)}
               onLike={() => onLike(articles[2].id, 1)}
@@ -144,7 +144,7 @@ export const ArticleList = ({
             type="type2"
             article={articles[0]}
             isFetching={isFetching}
-            navCommunityId={navCommunityId}
+            user={user}
             env={env}
             saveFavorite={() => saveFavorite(articles[0].id)}
             onLike={() => onLike(articles[0].id, 1)}
@@ -164,7 +164,7 @@ export const ArticleList = ({
               type="type3"
               article={articles[1]}
               isFetching={isFetching}
-              navCommunityId={navCommunityId}
+              user={user}
               env={env}
               saveFavorite={() => saveFavorite(articles[1].id)}
               onLike={() => onLike(articles[1].id, 1)}
@@ -195,7 +195,7 @@ export const ArticleList = ({
             type="type2"
             article={articles[0]}
             isFetching={isFetching}
-            navCommunityId={navCommunityId}
+            user={user}
             env={env}
             saveFavorite={() => saveFavorite(articles[0].id)}
             onLike={() => onLike(articles[0].id, 1)}
@@ -215,7 +215,7 @@ export const ArticleList = ({
               size="medium"
               article={articles[1]}
               isFetching={isFetching}
-              navCommunityId={navCommunityId}
+              user={user}
               env={env}
               saveFavorite={() => saveFavorite(articles[1].id)}
               onLike={() => onLike(articles[1].id, 1)}
@@ -246,7 +246,7 @@ export const ArticleList = ({
             type="type4"
             article={articles[0]}
             isFetching={isFetching}
-            navCommunityId={navCommunityId}
+            user={user}
             env={env}
             saveFavorite={() => saveFavorite(articles[0].id)}
             onLike={() => onLike(articles[0].id, 1)}
@@ -266,7 +266,7 @@ export const ArticleList = ({
               type="type4"
               article={articles[1]}
               isFetching={isFetching}
-              navCommunityId={navCommunityId}
+              user={user}
               env={env}
               saveFavorite={() => saveFavorite(articles[1].id)}
               onLike={() => onLike(articles[1].id, 1)}
@@ -287,7 +287,7 @@ export const ArticleList = ({
               type="type4"
               article={articles[2]}
               isFetching={isFetching}
-              navCommunityId={navCommunityId}
+              user={user}
               env={env}
               saveFavorite={() => saveFavorite(articles[2].id)}
               onLike={() => onLike(articles[2].id, 1)}
@@ -318,7 +318,7 @@ export const ArticleList = ({
             size="smallBH"
             article={articles[0]}
             isFetching={isFetching}
-            navCommunityId={navCommunityId}
+            user={user}
             env={env}
             saveFavorite={() => saveFavorite(articles[0].id)}
             onLike={() => onLike(articles[0].id, 1)}
@@ -338,7 +338,7 @@ export const ArticleList = ({
               size="smallBH"
               article={articles[1]}
               isFetching={isFetching}
-              navCommunityId={navCommunityId}
+              user={user}
               env={env}
               saveFavorite={() => saveFavorite(articles[1].id)}
               onLike={() => onLike(articles[1].id, 1)}
@@ -369,7 +369,7 @@ export const ArticleList = ({
             type="type2"
             article={articles[0]}
             isFetching={isFetching}
-            navCommunityId={navCommunityId}
+            user={user}
             env={env}
             saveFavorite={() => saveFavorite(articles[0].id)}
             onLike={() => onLike(articles[0].id, 1)}
@@ -389,7 +389,7 @@ export const ArticleList = ({
               type="type2"
               article={articles[1]}
               isFetching={isFetching}
-              navCommunityId={navCommunityId}
+              user={user}
               env={env}
               saveFavorite={() => saveFavorite(articles[1].id)}
               onLike={() => onLike(articles[1].id, 1)}
@@ -410,7 +410,7 @@ export const ArticleList = ({
               type="type2"
               article={articles[2]}
               isFetching={isFetching}
-              navCommunityId={navCommunityId}
+              user={user}
               env={env}
               saveFavorite={() => saveFavorite(articles[2].id)}
               onLike={() => onLike(articles[2].id, 1)}
@@ -441,7 +441,7 @@ export const ArticleList = ({
             size="medium"
             article={articles[0]}
             isFetching={isFetching}
-            navCommunityId={navCommunityId}
+            user={user}
             env={env}
             saveFavorite={() => saveFavorite(articles[0].id)}
             onLike={() => onLike(articles[0].id, 1)}
@@ -461,7 +461,7 @@ export const ArticleList = ({
               type="type3"
               article={articles[1]}
               isFetching={isFetching}
-              navCommunityId={navCommunityId}
+              user={user}
               env={env}
               saveFavorite={() => saveFavorite(articles[1].id)}
               onLike={() => onLike(articles[1].id, 1)}

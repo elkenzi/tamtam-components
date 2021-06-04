@@ -27,14 +27,14 @@ export const Article = ({
   isSavingFavorite,
   isSavingLike,
   isSavingDislike,
-  navCommunityId,
+  user,
   Link,
   host,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   if (isFetching) return <Fetching type={type} size={size} />;
-  const data = prepareArticle(article, env, navCommunityId, host);
+  const data = prepareArticle(article, env, host);
   const {
     title,
     url,
@@ -115,7 +115,7 @@ export const Article = ({
   };
 
   const renderSocialStats = () => {
-    if (!navCommunityId) return null;
+    if (!user) return null;
     return (
       <div className={styles.actionsContainer}>
         <div>

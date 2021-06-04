@@ -1,21 +1,22 @@
 const TTP_API_URL = "http://api.tamtam.pro";
 
-const hasRelativePath = (navCommunityId, host) => {
+const hasRelativePath = (organizationId, host) => {
   if (!host || host.includes("tamtam.pro")) return true;
+
   const hosts = {
     org_8: "be.accountants",
     org_9: "forumforthefuture.be",
     org_4: "degandpartners.com",
   };
   if (
-    [8, 9, 4].includes(navCommunityId) &&
-    !host.includes(hosts[`org_${navCommunityId}`])
+    [8, 9, 4].includes(organizationId) &&
+    !host.includes(hosts[`org_${organizationId}`])
   ) {
     return false;
   }
   return true;
 };
-const getArticleFullUrl = (article, env = "", navCommunityId = 0, host) => {
+const getArticleFullUrl = (article, env = "", host) => {
   let baBlog = "https://blog.be.accountants";
   let fffBlog = "https://blog.forumforthefuture.be";
   let dapBlog = "https://blog.degandpartners.com";
@@ -41,16 +42,11 @@ const getArticleFullUrl = (article, env = "", navCommunityId = 0, host) => {
 
   let fullUrl = `/${language}/article/${url}/${id}`;
 
-  if (hasRelativePath(navCommunityId, host)) {
+  if (hasRelativePath(organization.id, host)) {
     return fullUrl;
   }
 
-  if (
-    organization &&
-    [8, 9, 4].includes(organization.id) &&
-    organization.id !== navCommunityId &&
-    navCommunityId !== 0
-  ) {
+  if (organization && [8, 9, 4].includes(organization.id)) {
     if (organization.id === 9) {
       return `${fffBlog}${fullUrl}`;
     } else if (organization.id === 8) {
@@ -65,7 +61,7 @@ const getArticleFullUrl = (article, env = "", navCommunityId = 0, host) => {
     : `https://${host}${fullUrl}`;
 };
 
-const getArticleUrl = (article, env, navCommunityId, host) => {
+const getArticleUrl = (article, env, host) => {
   const { url, id, organization, language, isExternal, externalUrl } = article;
 
   if (isExternal) {
@@ -92,12 +88,7 @@ const getArticleUrl = (article, env, navCommunityId, host) => {
 
   let fullUrl = `/${language}/article/${url}/${id}`;
 
-  if (
-    organization &&
-    [8, 9, 4].includes(organization.id) &&
-    organization.id !== navCommunityId &&
-    navCommunityId !== 0
-  ) {
+  if (organization && [8, 9, 4].includes(organization.id)) {
     if (organization.id === 9) {
       return `${fffBlog}${fullUrl}`;
     } else if (organization.id === 8) {
@@ -260,9 +251,9 @@ export const prepareArticle = (article, env = "", navCommunityId = 0, host) => {
       name: getCategoryName(category, "fr"),
       colorCode: category && category.colorCode ? category.colorCode : "",
     },
-    url: getArticleFullUrl(article, env, navCommunityId, host),
-    shareUrl: getArticleUrl(article, env, navCommunityId, host),
-    hasRelativePath: hasRelativePath(navCommunityId, host),
+    url: getArticleFullUrl(article, env, host),
+    shareUrl: getArticleUrl(article, env, host),
+    hasRelativePath: hasRelativePath(article, host),
     mainMedia: getMainMedia(article),
     album: getAlbum(article),
     authors: getAuthors(article, "fr"),
