@@ -258,7 +258,7 @@ export const Article = ({
 
   const renderType3 = () => {
     return (
-      <div className={size ? styles[size] : ""}>
+      <div className={`${styles.articleTemplate3} ${size ? styles[size] : ""}`}>
         {renderAvatar()}
         <div className={styles.row}>
           <div

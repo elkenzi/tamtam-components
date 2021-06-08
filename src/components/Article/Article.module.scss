@@ -1,3 +1,6 @@
+@import "../../styles/variables";
+@import "~foundation-sites/scss/foundation";
+
 .article {
   font-family: Roboto;
   // width: 309px;
@@ -496,18 +499,20 @@
 // End Template 2
 
 // Template 3
-.row {
-  display: flex;
-}
-.col6 {
-  width: 50%;
-}
-.contentImg {
-  position: relative;
-  background-color: #eee;
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
+.articleTemplate3 {
+  .row {
+    display: flex;
+  }
+  .col6 {
+    width: 50%;
+  }
+  .contentImg {
+    position: relative;
+    background-color: #eee;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
 }
 .hasActions {
   &:hover {
@@ -539,3 +544,15 @@
 }
 
 // End Template 4
+
+@include breakpoint(small only) {
+  .articleTemplate3 {
+    .row {
+      flex-direction: column;
+    }
+    .col6 {
+      width: 100%;
+      height: 216px;
+    }
+  }
+}

@@ -66,7 +66,7 @@ export const ArticleList = ({
     }
     return (
       <div key={key} className={`${styles.articleList1} grid-x grid-margin-x`}>
-        <div className="cell small-8">
+        <div className="cell small-12 medium-7 large-8">
           <Article
             size="large"
             showSummary={true}
@@ -86,7 +86,7 @@ export const ArticleList = ({
             host={host}
           />
         </div>
-        <div className={`${styles.articleTpl2} cell small-4`}>
+        <div className={`${styles.articleTpl2} cell small-12 medium-5 large-4`}>
           {articles.length > 1 && (
             <Article
               size="small"

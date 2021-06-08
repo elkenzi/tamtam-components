@@ -68,6 +68,7 @@ export class UserCard extends Component {
           }}
         >
           {checkDiv}
+          {this.renderUserExtraButton()}
           {showAvatarEdit && (
             <a className={styles.updateButton} onClick={this.handleAvatarClick}>
               <i className={` ${styles.icon} icon-note`}></i>
@@ -87,6 +88,7 @@ export class UserCard extends Component {
       <div className={classes} onClick={this.selectUser}>
         <span>{getUserNameForAvatar(firstName, lastName)}</span>
         {checkDiv}
+        {this.renderUserExtraButton()}
         {showAvatarEdit && (
           <a className={styles.updateButton} onClick={this.handleAvatarClick}>
             <i className={` ${styles.icon} icon-note`}></i>
@@ -188,7 +190,6 @@ export class UserCard extends Component {
     return (
       <div className={`${styles.userCard} ${styles[theme]}`}>
         {this.renderAvatar()}
-        {this.renderUserExtraButton()}
         <div className={styles.header}>{this.renderSignature()}</div>
       </div>
     );

@@ -1,3 +1,5 @@
+@import "~foundation-sites/scss/foundation";
+
 .articleList1 {
   margin-bottom: 1.625rem;
   .articleTpl1 {
@@ -13,4 +15,23 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+@include breakpoint(small only) {
+  .articleList1 {
+    .articleTpl1 {
+      padding-left: 0;
+      margin-bottom: 1.625rem;
+    }
+  }
+
+  // .articleList1 div:first-child {
+  //   margin-bottom: 1.625rem;
+  // }
+
+  .articleTpl2 {
+    > div {
+      margin-top: 1.625rem;
+    }
+  }
 }
