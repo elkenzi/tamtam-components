@@ -21,6 +21,7 @@ export class UserCard extends Component {
   selectUser() {
     const { id } = this.props.user;
     this.props.toggleUser(id);
+    console.log("select");
   }
   handleAvatarClick = (e) => {
     e.stopPropagation();
