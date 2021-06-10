@@ -9,25 +9,11 @@ render(){
 
   
       return (
-        <div> 
-        { !inProcess && (
-            <button className={classnames(styles.button, styles[variant])}>
-              {children}
+           <button className={classnames(styles.button, styles[variant])}>
+            { inProcess ? 
+            ( <IconLoader/>) : children }
             </button>
-            )
-        }
-          
-        { inProcess  && (
-            <button className={classnames(styles.button, styles[variant])}>
-              <IconLoader/>
-            </button>
-          )
-         }
-         
-        </div>
         );
-     
-      
   }
     
   };
