@@ -181,16 +181,16 @@
 }
 
 .boxes__box__logo {
-  height: 5rem;
-  background-size: contain;
+  height: 9rem;
+  width: 90%;
   background-repeat: no-repeat;
-  background-position: center center;
-  width: 80%;
-  margin-bottom: 20px;
+  background-size: contain;
+  background-position: 50%;
+  margin-top: 1px;
 }
 nav {
   li {
-    transition: nth($transitions, 3);
+    //transition: nth($transitions, 3);
     cursor: pointer;
 
     .menu__link {
@@ -216,7 +216,7 @@ nav {
 
   .settingsIcon {
     color: $pickled-bluewood;
-    padding: 16px 8px 16px 16px;
+    padding: 20px 20px 16px 16px;
   }
 
   img {
@@ -233,7 +233,6 @@ nav {
 
   &.shadow {
     transition: 0.2s all ease-in-out;
-    box-shadow: 1px 0 4px rgba(41, 57, 77, 0.1);
   }
 
   .iconOptions {
@@ -376,7 +375,7 @@ nav {
       }
     }
 
-    &:hover {
+    &:hover{
       background-color: $athens-gray;
       img {
         opacity: 0.85;
@@ -911,6 +910,8 @@ nav {
     justify-content: space-between;
     width: 15rem;
     height: 62px;
+
+    padding: 0 1rem 0 1rem ;
   }
   .menu__dropdown {
     padding-top: 1rem;
@@ -927,6 +928,9 @@ nav {
 .menu__hasChild {
   background-color: $new-very-light-gray;
   position: relative;
+  &:hover{
+    background-color: #fff;
+  }
   &.menu__community {
     &:hover {
       & > span {
@@ -940,10 +944,12 @@ nav {
       }
     }
     .menu__subChild {
-      border-top: 1px solid $new-very-light-gray;
       padding: 0.75rem 0;
       text-align: center;
-      margin: 0;
+      border-bottom: 1px solid rgba(44,43,63,.1);
+      border-bottom-width: 1px;
+      border-bottom-style: solid;
+      border-bottom-color: rgba(44, 43, 63, 0.1);
       &:hover {
         background-color: $new-very-light-gray;
         a {
@@ -960,14 +966,14 @@ nav {
     }
     .menu__dropdown {
       width: 15rem;
-      padding-top: 0;
     }
   }
   .menu__dropdown {
-    width: 24rem;
+    //width: 24rem;
     // left: 0;
     border-top-left-radius: 0;
-    padding-bottom: 0;
+    font-size: 16px;
+    font-weight: 400;
 
     .menu__dropdown-top {
       border-bottom: none;
@@ -1025,12 +1031,50 @@ nav {
     width: 100%;
     margin-left: 0;
     padding: 0.5rem 0;
-    //overflow: scroll;
+    //overflow: auto;
   }
 }
 
 @include breakpoint(small only) {
   .header {
     padding: 0;
+  }
+
+  .menu__hasChild {
+    width: 40%;
+    &.menu__community{
+      .menu__dropdown{
+        width: 100%;
+      }
+      .menu__subChild{
+        height: 85px;
+        
+        a{
+          text-align: center;
+          font-size: 10px;
+          span{
+            margin-right: 10px;
+          }
+        }
+      }
+    }
+  }
+  
+
+}
+
+.settings{
+  text-align: center;
+  font-family: $main-body-font;
+  font-weight: 500;
+  font-size: 12px;
+  color: $pickled-bluewood;
+  padding-left: 0;
+  padding-right: 0;
+  left: 0;
+  width: 100%;
+
+  li {
+    position: relative; 
   }
 }
