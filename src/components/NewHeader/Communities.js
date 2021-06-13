@@ -3,12 +3,10 @@ import { NavLink } from "react-router-dom";
 import styles from "./NewHeader.module.scss";
 import classnames from "classnames";
 
-
 export default class Communities extends Component {
   renderCommunities() {
-    const { communities,App} = this.props;
-    const{appUrl}= App;
-
+    const { communities, app } = this.props;
+    const { appUrl } = app;
 
     if (!communities || communities.length === 0) {
       return null;
@@ -36,22 +34,23 @@ export default class Communities extends Component {
         <li
           className={styles.menu__subChild}
           key={`client-${communities[i].id}`}
-          onClick={()=>this.props.onCommunityClick(communities[i])}
+          onClick={() => this.props.onCommunityClick(communities[i])}
         >
           <a
-            href={`${appUrl}/community/${communities[i].name.replace(/\s+/g, '-')}/${communities[i].id}`}
+            href={`${appUrl}/community/${communities[i].name.replace(
+              /\s+/g,
+              "-"
+            )}/${communities[i].id}`}
             activeClassName="active"
           >
-          {logoBlock}
-          {clientName}
+            {logoBlock}
+            {clientName}
           </a>
         </li>
-        
       );
     }
 
     return (
-    
       <div className={styles.menu__dropdown}>
         <ul>{clientsBlock}</ul>
       </div>
@@ -76,7 +75,7 @@ export default class Communities extends Component {
     }
 
     return (
-      <li className={classnames(styles.menu__hasChild , styles.menu__community)}>
+      <li className={classnames(styles.menu__hasChild, styles.menu__community)}>
         <div className={`${styles.menu__link}`} style={{ cursor: "pointer" }}>
           <p>{navText}</p>
           <i className={"icon icon-arrow-down"}> </i>

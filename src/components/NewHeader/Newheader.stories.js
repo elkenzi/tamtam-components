@@ -285,19 +285,20 @@ const menu = [
     iconUrl: "/img/icons/authors.svg",
     submenu: "AUTEURS",
     community: false,
-    submenu : [
+    submenu: [
       {
-      title: "Emmanuel DEGREVE",
-      avatarUrl: "https://s3.tamtam.pro/v2/storage/media/IMAGE/31/AVATAR_70d83b21836dec24e6ec10e5d38a0ac3d96cbed2.png",
-      url: `/authors`
-    },
-    {
-      title: "Stéphane De Bremaeker",
-      avatarUrl: "https://s3.tamtam.pro/prod/storage/media/IMAGE/1975/AVATAR_89452b9bf04fee0471086bb171ea8357a42eec9a.png",
-      url: `/authors`
-    }
-
-  ],
+        title: "Emmanuel DEGREVE",
+        avatarUrl:
+          "https://s3.tamtam.pro/v2/storage/media/IMAGE/31/AVATAR_70d83b21836dec24e6ec10e5d38a0ac3d96cbed2.png",
+        url: `/authors`,
+      },
+      {
+        title: "Stéphane De Bremaeker",
+        avatarUrl:
+          "https://s3.tamtam.pro/prod/storage/media/IMAGE/1975/AVATAR_89452b9bf04fee0471086bb171ea8357a42eec9a.png",
+        url: `/authors`,
+      },
+    ],
     more: {
       title: "follow_others",
       url: `/authors`,
@@ -314,17 +315,13 @@ const menu = [
 export default {
   title: "NewHeader",
   component: NewHeader,
-  decorators: [
-    StoryRouter(),
-    (story) => <div>{story()}</div>,
-    withKnobs,
-  ],
+  decorators: [StoryRouter(), (story) => <div>{story()}</div>, withKnobs],
 };
 
 export const HeaderLogedIn = () => (
   <NewHeader
     rightIcons={rightIcons}
-    App={App}
+    app={App}
     auth={authLogin}
     settings={settings}
     menu={menu}
@@ -342,7 +339,7 @@ export const HeaderLogedOut = () => (
     auth={authLogout}
     lng={select("language", ["fr", "nl", "en"], "fr")}
     onLanguageChange={(langue) => alert(langue)}
-    App={App}
+    app={App}
   />
 );
 

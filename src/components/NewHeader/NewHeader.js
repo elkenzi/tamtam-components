@@ -100,8 +100,8 @@ class NewHeader extends Component {
   }
 
   renderLoggedOut() {
-    const { lng, App } = this.props;
-    const { appUrl } = App;
+    const { lng, app } = this.props;
+    const { appUrl } = app;
     const languages = ["fr", "nl", "en"];
 
     return (
@@ -128,8 +128,8 @@ class NewHeader extends Component {
   }
 
   renderLeftSide() {
-    const { App, settings, lng, auth } = this.props;
-    const { appName, appLogoUrl } = App;
+    const { app, settings, lng, auth } = this.props;
+    const { appName, appLogoUrl } = app;
     return (
       <>
         <div className={styles.headerLeft}>
@@ -169,7 +169,7 @@ class NewHeader extends Component {
               communities={auth.user.communities}
               currentCommunity={auth.navCommunity}
               lng={lng}
-              App={App}
+              app={app}
               onCommunityClick={(community) =>
                 this.props.onCommunityClick(community)
               }
