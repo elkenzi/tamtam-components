@@ -49,7 +49,7 @@ export default function Notifs({ notifications, lng, onClick, rightIcon }) {
       );
     });
   };
-  
+
   const unreadNotifs = notifications.filter(
     (notif) => notif.status === "UNREAD"
   );

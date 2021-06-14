@@ -375,7 +375,7 @@ nav {
       }
     }
 
-    &:hover{
+    &:hover {
       background-color: $athens-gray;
       img {
         opacity: 0.85;
@@ -911,7 +911,7 @@ nav {
     width: 15rem;
     height: 62px;
 
-    padding: 0 1rem 0 1rem ;
+    padding: 0 1rem 0 1rem;
   }
   .menu__dropdown {
     padding-top: 1rem;
@@ -928,7 +928,7 @@ nav {
 .menu__hasChild {
   background-color: $new-very-light-gray;
   position: relative;
-  &:hover{
+  &:hover {
     background-color: #fff;
   }
   &.menu__community {
@@ -946,7 +946,7 @@ nav {
     .menu__subChild {
       padding: 0.75rem 0;
       text-align: center;
-      border-bottom: 1px solid rgba(44,43,63,.1);
+      border-bottom: 1px solid rgba(44, 43, 63, 0.1);
       border-bottom-width: 1px;
       border-bottom-style: solid;
       border-bottom-color: rgba(44, 43, 63, 0.1);
@@ -1042,28 +1042,26 @@ nav {
 
   .menu__hasChild {
     width: 40%;
-    &.menu__community{
-      .menu__dropdown{
+    &.menu__community {
+      .menu__dropdown {
         width: 100%;
       }
-      .menu__subChild{
+      .menu__subChild {
         height: 85px;
-        
-        a{
+
+        a {
           text-align: center;
           font-size: 10px;
-          span{
+          span {
             margin-right: 10px;
           }
         }
       }
     }
   }
-  
-
 }
 
-.settings{
+.settings {
   text-align: center;
   font-family: $main-body-font;
   font-weight: 500;
@@ -1075,6 +1073,6 @@ nav {
   width: 100%;
 
   li {
-    position: relative; 
+    position: relative;
   }
 }

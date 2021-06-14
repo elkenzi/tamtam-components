@@ -2,8 +2,6 @@ import React from "react";
 import MenuItem from "./MenuItem";
 import styles from "./NewHeader.module.scss";
 
-
-
 export default function Apps({ apps, language = "fr" }) {
   return (
     <MenuItem icon="Apps" className={styles.apps}>

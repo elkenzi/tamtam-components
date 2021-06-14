@@ -19,65 +19,67 @@ const I18N = {
 };
 
 class MenuProfile extends Component {
+  _Logout() {
+    this.props.onLogoutClick();
+  }
 
-    _Logout(){
-        this.props.onLogoutClick();
+  renderContactSocialNetworkBlock(contactSocialNetworks, socialNetworkName) {
+    if (!contactSocialNetworks) {
+      return null;
     }
 
-    renderContactSocialNetworkBlock(contactSocialNetworks, socialNetworkName) {
-        if (!contactSocialNetworks) {
-          return null;
-        }
-    
-        const socialNetwork = contactSocialNetworks[socialNetworkName];
-    
-        if (socialNetwork) {
-          let accessValue =
-            socialNetworkName === "twitter"
-              ? socialNetwork.username
-              : socialNetwork.id;
-          let snUrl =
-            socialNetworkName === "linkedin"
-              ? socialNetwork.publicProfileUrl
-                ? socialNetwork.publicProfileUrl
-                : ""
-              : `${
-                  SOCIAL_NETWORKS_HOSTS[socialNetworkName.toUpperCase()]
-                }/${accessValue}`;
-    
-          return (
-            <li className="social">
-              <a href={`${snUrl}`} target="_blank">
-                <i className={`icon icon-social-${socialNetworkName}`} />
-              </a>
-            </li>
-          );
-        }
-    
-        return null;
-      }  
-  
-  render(){
+    const socialNetwork = contactSocialNetworks[socialNetworkName];
 
-    const {user, lng, rightIcons}= this.props;
-    const { avatarUrl, firstName, lastName, mainEmail , contactSocialNetworks } = user;
+    if (socialNetwork) {
+      let accessValue =
+        socialNetworkName === "twitter"
+          ? socialNetwork.username
+          : socialNetwork.id;
+      let snUrl =
+        socialNetworkName === "linkedin"
+          ? socialNetwork.publicProfileUrl
+            ? socialNetwork.publicProfileUrl
+            : ""
+          : `${
+              SOCIAL_NETWORKS_HOSTS[socialNetworkName.toUpperCase()]
+            }/${accessValue}`;
+
+      return (
+        <li className="social">
+          <a href={`${snUrl}`} target="_blank">
+            <i className={`icon icon-social-${socialNetworkName}`} />
+          </a>
+        </li>
+      );
+    }
+
+    return null;
+  }
+
+  render() {
+    const { user, lng, rightIcons } = this.props;
+    const {
+      avatarUrl,
+      firstName,
+      lastName,
+      mainEmail,
+      contactSocialNetworks,
+    } = user;
     const languages = ["fr", "nl", "en"];
 
     const avatarDiv = avatarUrl ? (
-        <Avatar
-          avatarUrl={avatarUrl}
-          firstName={firstName}
-          lastName={lastName}
-          showInfo={false}
-        />
-      ) : (
-        <Avatar firstName={firstName} lastName={lastName} showInfo={false} />
-      );
+      <Avatar
+        avatarUrl={avatarUrl}
+        firstName={firstName}
+        lastName={lastName}
+        showInfo={false}
+      />
+    ) : (
+      <Avatar firstName={firstName} lastName={lastName} showInfo={false} />
+    );
 
-      
-
-    return(
-        <ul className={styles.menu}>
+    return (
+      <ul className={styles.menu}>
         <li
           className={`${styles.expandable} ${styles.menuImg} ${styles.profile}`}
         >
@@ -94,9 +96,7 @@ class MenuProfile extends Component {
             <li className={`${styles.menuProfile}`}>
               <ul>
                 <li>
-                  <a href={rightIcons.profile.url}>
-                    {I18N[lng]["profile"]}
-                  </a>
+                  <a href={rightIcons.profile.url}>{I18N[lng]["profile"]}</a>
                 </li>
               </ul>
             </li>
@@ -104,47 +104,44 @@ class MenuProfile extends Component {
               <ul>
                 {languages.map((language) => (
                   <li
-                  id={language}
-                  key={language}
-                  className={
-                    lng === language ? styles.headerLanguageSelected : ""
-                  }
-                  onClick={() => this.props.onLanguageChange(language)}
-                >
-                  {language.toUpperCase()}
-                </li>
+                    id={language}
+                    key={language}
+                    className={
+                      lng === language ? styles.headerLanguageSelected : ""
+                    }
+                    onClick={() => this.props.onLanguageChange(language)}
+                  >
+                    {language.toUpperCase()}
+                  </li>
                 ))}
               </ul>
             </li>
             <li className={styles.social}>
-                  <ul>
-                    {this.renderContactSocialNetworkBlock(
-                      contactSocialNetworks,
-                      "facebook"
-                    )}
-                    {this.renderContactSocialNetworkBlock(
-                      contactSocialNetworks,
-                      "twitter"
-                    )}
-                    {this.renderContactSocialNetworkBlock(
-                      contactSocialNetworks,
-                      "linkedin"
-                    )}
-                  </ul>
-                </li>
+              <ul>
+                {this.renderContactSocialNetworkBlock(
+                  contactSocialNetworks,
+                  "facebook"
+                )}
+                {this.renderContactSocialNetworkBlock(
+                  contactSocialNetworks,
+                  "twitter"
+                )}
+                {this.renderContactSocialNetworkBlock(
+                  contactSocialNetworks,
+                  "linkedin"
+                )}
+              </ul>
+            </li>
             <li className={styles.logout} onClick={this._Logout.bind(this)}>
-              <a href=""className="text-center">
-                 {I18N[lng]["logout"]}
+              <a href="" className="text-center">
+                {I18N[lng]["logout"]}
               </a>
             </li>
           </ul>
         </li>
       </ul>
-      
-        );
-  }  
-};
-
-
+    );
+  }
+}
 
 export default MenuProfile;
