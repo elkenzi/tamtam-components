@@ -1,5 +1,5 @@
 import React from "react";
-import NewHeader from "./NewHeader";
+import { NewHeader } from "./NewHeader";
 import SubMenu from "./SubMenu";
 import { withKnobs, text, boolean, select } from "@storybook/addon-knobs";
 import StoryRouter from "storybook-react-router";

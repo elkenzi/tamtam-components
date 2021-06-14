@@ -19,7 +19,7 @@ const I18N = {
   },
 };
 
-class NewHeader extends Component {
+export class NewHeader extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -192,5 +192,3 @@ class NewHeader extends Component {
     );
   }
 }
-
-export default NewHeader;
