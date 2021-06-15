@@ -188,6 +188,7 @@ class NewHeader extends Component {
           {this.renderLeftSide()}
           {!auth.user ? this.renderLoggedOut() : this.renderLoggedIn()}
         </header>
+       
       </>
     );
   }
