@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import styles from "./NewHeader.module.scss";
+import styles from "./Header.module.scss";
 import { Avatar } from "../Avatar/Avatar";
 import { SOCIAL_NETWORKS_HOSTS } from "../../config";
 

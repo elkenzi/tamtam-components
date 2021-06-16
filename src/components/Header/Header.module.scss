@@ -8,13 +8,7 @@
   background-color: #fff;
   font-weight: 500;
   box-shadow: 0 1px 15px rgba(0, 0, 0, 0.04), 0 1px 6px rgba(0, 0, 0, 0.04);
-  z-index: 2;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-
-  padding: 0 1rem 0 0;
+  position: relative;
   height: 64px;
   display: flex;
   align-items: center;
@@ -27,12 +21,12 @@
 
 .headerLeft {
   display: flex;
-  // width: 100%;
 }
 
 .headerRight {
   display: flex;
   margin-left: auto;
+  background-color: #fff;
 }
 
 .appInfo {
@@ -79,11 +73,6 @@
     &::before {
       content: "";
     }
-
-    // & ~ .dropdown {
-    //     opacity: 1;
-    //     visibility: visible;
-    // }
   }
 }
 
@@ -102,9 +91,6 @@
   transition: 0.2s all ease-in-out;
   z-index: 5;
   cursor: default;
-}
-
-.profile:hover {
 }
 
 .menuLink {
@@ -162,8 +148,9 @@
 }
 
 .signIn {
-  padding: 1.64rem 2rem;
-  display: inline-block;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
   font-weight: 600;
   transition: color 0.2s ease-in-out;
   color: $new-title-color;
@@ -181,16 +168,15 @@
 }
 
 .boxes__box__logo {
-  height: 5rem;
-  background-size: contain;
+  height: 9rem;
+  width: 90%;
   background-repeat: no-repeat;
-  background-position: center center;
-  width: 80%;
-  margin-bottom: 20px;
+  background-size: contain;
+  background-position: 50%;
+  margin-top: 1px;
 }
 nav {
   li {
-    transition: nth($transitions, 3);
     cursor: pointer;
 
     .menu__link {
@@ -216,7 +202,7 @@ nav {
 
   .settingsIcon {
     color: $pickled-bluewood;
-    padding: 16px 8px 16px 16px;
+    padding: 20px 20px 16px 16px;
   }
 
   img {
@@ -233,7 +219,6 @@ nav {
 
   &.shadow {
     transition: 0.2s all ease-in-out;
-    box-shadow: 1px 0 4px rgba(41, 57, 77, 0.1);
   }
 
   .iconOptions {
@@ -350,7 +335,6 @@ nav {
   }
   & > li {
     padding: 0.8rem 1rem;
-    position: relative;
     border-radius: 2rem 2rem 0 0;
     transition: nth($transitions, 2);
     cursor: pointer;
@@ -438,7 +422,6 @@ nav {
     .menuDropdown,
     .socialLinksWrapper {
       right: calc(-75px - 49px);
-
       a {
         display: block;
       }
@@ -462,11 +445,11 @@ nav {
       display: flex;
       flex-wrap: wrap;
       padding: $spacing-s;
+      overflow: scroll;
 
       li {
         margin: 0.5rem 0;
         padding: 0 0.5rem;
-
         a {
           color: #6d7f92;
         }
@@ -911,6 +894,8 @@ nav {
     justify-content: space-between;
     width: 15rem;
     height: 62px;
+
+    padding: 0 1rem 0 1rem;
   }
   .menu__dropdown {
     padding-top: 1rem;
@@ -927,6 +912,9 @@ nav {
 .menu__hasChild {
   background-color: $new-very-light-gray;
   position: relative;
+  &:hover {
+    background-color: #fff;
+  }
   &.menu__community {
     &:hover {
       & > span {
@@ -940,10 +928,12 @@ nav {
       }
     }
     .menu__subChild {
-      border-top: 1px solid $new-very-light-gray;
       padding: 0.75rem 0;
       text-align: center;
-      margin: 0;
+      border-bottom: 1px solid rgba(44, 43, 63, 0.1);
+      border-bottom-width: 1px;
+      border-bottom-style: solid;
+      border-bottom-color: rgba(44, 43, 63, 0.1);
       &:hover {
         background-color: $new-very-light-gray;
         a {
@@ -959,15 +949,15 @@ nav {
       }
     }
     .menu__dropdown {
-      width: 15rem;
-      padding-top: 0;
+      // width: 15rem;
     }
   }
   .menu__dropdown {
-    width: 24rem;
+    //width: 24rem;
     // left: 0;
     border-top-left-radius: 0;
-    padding-bottom: 0;
+    font-size: 16px;
+    font-weight: 400;
 
     .menu__dropdown-top {
       border-bottom: none;
@@ -1016,21 +1006,105 @@ nav {
 }
 
 @include breakpoint(medium down) {
+  .expandable {
+    position: initial;
+
+    &::after,
+    &::before {
+      display: none;
+    }
+  }
   .headerLeft {
     width: 100%;
     justify-content: space-between;
   }
+  .buttons {
+    .socialLinks {
+      position: initial;
+    }
+  }
+
   .headerRight {
     justify-content: center;
     width: 100%;
     margin-left: 0;
     padding: 0.5rem 0;
-    //overflow: scroll;
+    .socialLinksWrapper {
+      top: calc(100% + 4rem);
+      width: 100%;
+      height: 100%;
+    }
+    .apps {
+      .menuDropdown,
+      .socialLinksWrapper {
+        right: 0px;
+      }
+    }
+    .notif {
+      .menuDropdown,
+      .socialLinksWrapper {
+        right: 0;
+      }
+    }
+    .profile {
+      .menuDropdown {
+        width: 100%;
+        top: calc(100% + 4rem);
+        margin-left: -100px;
+        right: 0;
+      }
+    }
   }
 }
 
 @include breakpoint(small only) {
   .header {
     padding: 0;
+  }
+  .menu__community {
+    overflow: scroll;
+  }
+  .menu__hasChild {
+    width: 40%;
+    position: inherit;
+    &.menu__community {
+      .menu__dropdown {
+        width: 100%;
+        top: calc(100% + 3rem);
+      }
+      .menu__subChild {
+        height: 160px;
+        overflow: scroll;
+        border-bottom: 0px;
+        border-top: 1px solid rgba(44, 43, 63, 0.1);
+        border-top-width: 1px;
+        border-top-style: solid;
+        border-top-color: rgba(44, 43, 63, 0.1);
+
+        a {
+          text-align: center;
+          font-size: 10px;
+          span {
+            margin-right: 10px;
+          }
+        }
+      }
+    }
+  }
+
+  .settings {
+    text-align: center;
+    font-family: $main-body-font;
+    font-weight: 500;
+    font-size: 12px;
+    color: $pickled-bluewood;
+    padding-left: 0;
+    padding-right: 0;
+    left: 0;
+    width: 100%;
+
+    li {
+      position: relative;
+    }
   }
 }

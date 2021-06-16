@@ -1,7 +1,8 @@
 import React from "react";
 import moment from "moment";
 import MenuItem from "./MenuItem";
-import styles from "./NewHeader.module.scss";
+
+import styles from "./Header.module.scss";
 
 const I18N = {
   en: {
@@ -18,7 +19,7 @@ const I18N = {
   },
 };
 
-export default function Notifs({ notifications, lng, onClick, rightIcon }) {
+export default function Notifs({ notifications, lng, onClick }) {
   const renderNotifications = () => {
     const subject = `subject${lng.charAt(0).toUpperCase() + lng.slice(1)}`;
     if (notifications.length === 0) {
@@ -36,13 +37,13 @@ export default function Notifs({ notifications, lng, onClick, rightIcon }) {
       return (
         <li
           key={notification.id}
-          className={notification.status === "UNREAD" ? "" : styles.notRead}
+          className={notification.status === "UNREAD" ? styles.notRead : ""}
         >
           <a
             href={notification.url || null}
             onClick={() => onClick(notification.id)}
           >
-            <div>{notification[subject]}</div>
+            <span>{notification[subject]}</span>
             <div className={styles.infos}>{text}</div>
           </a>
         </li>
@@ -56,7 +57,7 @@ export default function Notifs({ notifications, lng, onClick, rightIcon }) {
 
   return (
     <MenuItem
-      icon={rightIcon.icon}
+      icon="Notifs"
       className={styles.notif}
       count={unreadNotifs.length}
     >

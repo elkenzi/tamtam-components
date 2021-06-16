@@ -1,35 +1,21 @@
-import React from "react";
-// import { SVG_ICONS } from "../../config/Common";
+import React, { Component } from "react";
 import * as icons from "../Icons";
 import styles from "./Header.module.scss";
 
-export const SVG_ICONS = {
-  //MainMenu
-  PROFILE: "profile.svg",
-  NOTIFS: "notifs.svg",
-  APPS: "apps.svg",
-  EBOX: "ebox.svg",
-};
+class MenuItem extends Component {
+  render() {
+    const { href, icon, className = "", children } = this.props;
+    const Icon = icons[icon];
 
-export default function MenuItem({
-  href,
-  icon,
-  children,
-  count = 0,
-  className = "",
-}) {
-  const Icon = icons[icon];
-  return (
-    <li
-      className={`${styles.socialLinks} ${
-        children ? styles.expandable : ""
-      } ${className}`}
-    >
-      <a href={href}>
-        <Icon />
-      </a>
-      {children}
-      {/* {count ? <span className="badge">{count > 99 ? '99+' : count }</span> : null} */}
-    </li>
-  );
+    return (
+      <li className={`${styles.socialLinks} ${className}`}>
+        <a href={href && href}>
+          <Icon />
+        </a>
+        {children}
+      </li>
+    );
+  }
 }
+
+export default MenuItem;

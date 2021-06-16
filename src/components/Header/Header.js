@@ -1,226 +1,106 @@
-import React, { Component, createRef } from "react";
-import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
-
-import { SOCIAL_NETWORKS_HOSTS } from "../../config";
-import Communities from "./Communities";
-import Apps from "./Apps";
-import Notifs from "./Notifs";
-import MenuItem from "./MenuItem";
-import { Avatar } from "../Avatar/Avatar";
+import React, { Component } from "react";
 import styles from "./Header.module.scss";
+import MenuItem from "./MenuItem";
+import Apps from "./Apps";
+import MenuProfile from "./MenuProfile";
+import Communities from "./Communities";
+import Notifs from "./Notifs";
 
 const I18N = {
   en: {
     signIn: "Login / Sign up",
-    logout: "Logout",
-    profile: "Profile",
   },
   fr: {
     signIn: "Connexion / Inscription",
-    logout: "Se déconnecter",
-    profile: "Profil",
   },
   nl: {
     signIn: "Aanmelden / Inschrijven",
-    logout: "Uitloggen",
-    profile: "Profiel",
   },
 };
 
 export class Header extends Component {
-  state = {
-    showSettings: false,
+  constructor(props) {
+    super(props);
+    this.state = {
+      showSettings: false,
+    };
+  }
+
+  _Search() {
+    this.props.onSearchClick();
+  }
+  _Logout() {
+    this.props.onLogoutClick();
+  }
+
+  handleShowSettings = () => {
+    const { showSettings } = this.state;
+    this.setState({ showSettings: !showSettings });
+    //alert(this.state.showSettings);
   };
-
-  settingsRef = createRef();
-
-  componentDidMount() {
-    window.addEventListener("mousedown", this.handleClickOutside);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener("mousedown", this.handleClickOutside);
-  }
-
-  handleClickOutside = ({ target }) => {
-    if (
-      this.settingsRef &&
-      this.settingsRef.current &&
-      this.settingsRef.current.contains(target)
-    ) {
-      this.setState(({ showSettings }) => ({ showSettings: !showSettings }));
-      return;
-    }
-
-    this.setState({ showSettings: false });
-  };
-
-  renderContactSocialNetworkBlock(contactSocialNetworks, socialNetworkName) {
-    if (!contactSocialNetworks) {
-      return null;
-    }
-
-    const socialNetwork = contactSocialNetworks[socialNetworkName];
-
-    if (socialNetwork) {
-      let accessValue =
-        socialNetworkName === "twitter"
-          ? socialNetwork.username
-          : socialNetwork.id;
-      let snUrl =
-        socialNetworkName === "linkedin"
-          ? socialNetwork.publicProfileUrl
-            ? socialNetwork.publicProfileUrl
-            : ""
-          : `${
-              SOCIAL_NETWORKS_HOSTS[socialNetworkName.toUpperCase()]
-            }/${accessValue}`;
-
-      return (
-        <li className="social">
-          <a href={`${snUrl}`} target="_blank">
-            <i className={`icon icon-social-${socialNetworkName}`} />
-          </a>
-        </li>
-      );
-    }
-
-    return null;
-  }
 
   renderLoggedIn() {
-    const {
-      rightLinks,
-      apps,
-      onSearchClick,
-      notifications,
-      user,
-      contactSocialNetworks,
-      lng,
-      onLanguageChange,
-      onLogout,
-    } = this.props;
-
-    const { avatarUrl, firstName, lastName, mainEmail } = user;
-    const languages = ["fr", "nl", "en"];
-
-    const avatarDiv = avatarUrl ? (
-      <Avatar
-        avatarUrl={avatarUrl}
-        firstName={firstName}
-        lastName={lastName}
-        showInfo={false}
-      />
-    ) : (
-      <Avatar firstName={firstName} lastName={lastName} showInfo={false} />
-    );
+    const { rightIcons, auth, lng, notifications } = this.props;
+    const { navCommunity, user } = auth;
+    const { appsState } = navCommunity;
 
     return (
       <>
         <div className={styles.headerRight}>
           <ul className={`${styles.menu} ${styles.buttons}`}>
-            {rightLinks.home.activated && (
+            {rightIcons.home.activated && (
               <MenuItem
-                icon={rightLinks.home.icon}
-                href={`${rightLinks.home.url}`}
+                icon={rightIcons.home.icon}
+                href={`${rightIcons.home.url}`}
               />
             )}
-            {rightLinks.profile.activated && (
+            {rightIcons.profile.activated && (
               <MenuItem
-                icon={rightLinks.profile.icon}
-                href={`${rightLinks.profile.url}`}
+                icon={rightIcons.profile.icon}
+                href={`${rightIcons.profile.url}`}
               />
             )}
-            {rightLinks.ebox.activated && (
+            {rightIcons.ebox.activated && (
               <MenuItem
-                icon={rightLinks.ebox.icon}
-                className={styles.ebox}
-                href={`${rightLinks.ebox.url}`}
-                count={102}
+                icon={rightIcons.ebox.icon}
+                href={`${rightIcons.ebox.url}`}
               />
             )}
-            <Notifs
-              notifications={notifications}
-              lng={lng}
-              onClick={this.handleNotificationClick}
-            />
-            <Apps apps={apps} />
-            {rightLinks.search.activated && (
-              <MenuItem icon={rightLinks.search.icon} onClick={onSearchClick} />
+            {rightIcons.notifs.activated && (
+              <Notifs
+                notifications={notifications}
+                lng={lng}
+                rightIcon={rightIcons.notifs}
+                onClick={() => this.props.handleNotificationClick()}
+              />
+            )}
+
+            <Apps apps={appsState} />
+
+            {rightIcons.search.activated && (
+              <div onClick={this._Search.bind(this)}>
+                <MenuItem icon={rightIcons.search.icon} />
+              </div>
             )}
           </ul>
 
-          <ul className={styles.menu}>
-            <li
-              className={`${styles.expandable} ${styles.menuImg} ${styles.profile}`}
-            >
-              {avatarDiv}
-              <ul className={`${styles.menuDropdown}`}>
-                <li className={styles.profileContainer}>
-                  <Avatar
-                    avatarUrl={avatarUrl}
-                    firstName={firstName}
-                    lastName={lastName}
-                    avatarSignature={mainEmail}
-                  />
-                </li>
-                <li className={`${styles.menuProfile}`}>
-                  <ul>
-                    <li>
-                      <a href={rightLinks.profile.url}>
-                        {I18N[lng]["profile"]}
-                      </a>
-                    </li>
-                  </ul>
-                </li>
-                <li className={styles.menuLanguage}>
-                  <ul>
-                    {languages.map((language) => (
-                      <li
-                        id={language}
-                        key={language}
-                        className={
-                          lng === language ? styles.headerLanguageSelected : ""
-                        }
-                        onClick={() => onLanguageChange(language)}
-                      >
-                        {language.toUpperCase()}
-                      </li>
-                    ))}
-                  </ul>
-                </li>
-                <li className={styles.social}>
-                  <ul>
-                    {this.renderContactSocialNetworkBlock(
-                      contactSocialNetworks,
-                      "facebook"
-                    )}
-                    {this.renderContactSocialNetworkBlock(
-                      contactSocialNetworks,
-                      "twitter"
-                    )}
-                    {this.renderContactSocialNetworkBlock(
-                      contactSocialNetworks,
-                      "linkedin"
-                    )}
-                  </ul>
-                </li>
-                <li className={styles.logout} onClick={onLogout}>
-                  <Link to="/" className="text-center">
-                    {I18N[lng]["logout"]}
-                  </Link>
-                </li>
-              </ul>
-            </li>
-          </ul>
+          <MenuProfile
+            user={user}
+            lng={lng}
+            rightIcons={rightIcons}
+            onLogoutClick={this._Logout.bind(this)}
+            onLanguageChange={(language) =>
+              this.props.onLanguageChange(language)
+            }
+          />
         </div>
       </>
     );
   }
 
   renderLoggedOut() {
-    const { lng, onLanguageChange, onClickLogin } = this.props;
+    const { lng, app } = this.props;
+    const { appUrl } = app;
     const languages = ["fr", "nl", "en"];
 
     return (
@@ -230,102 +110,84 @@ export class Header extends Component {
             <li
               key={language}
               className={lng === language ? styles.headerLanguageSelected : ""}
-              onClick={() => onLanguageChange(language)}
+              onClick={() => this.props.onLanguageChange(language)}
             >
               {language.toUpperCase()}
             </li>
           ))}
         </ul>
-        <a className={styles.signIn} onClick={onClickLogin} href="">
+        <a
+          className={styles.signIn}
+          href={`https://one.tamtam.pro/?goto=${appUrl}`}
+        >
           {I18N[lng]["signIn"]}
         </a>
       </div>
     );
   }
 
-  render() {
-    const {
-      loggedIn = false,
-      loggedAs,
-      appName,
-      appLogoUrl,
-      communities,
-      currentCommunity,
-      onCommunityChange,
-      lng,
-      avatarUrl,
-      firstName,
-      lastName,
-      profileUrl,
-      eboxUrl,
-      onClickLogo,
-      settings = [],
-      onLanguageChange,
-      ...otherProps
-    } = this.props;
-
-    // TODO sanitize otherprops
-
+  renderLeftSide() {
+    const { app, settings, lng, auth } = this.props;
+    const { appName, appLogoUrl } = app;
     return (
-      <header className={styles.header} {...otherProps}>
+      <>
         <div className={styles.headerLeft}>
-          <span
+          <div
             className={`${styles.menuLogo} ${
               this.state.showSettings ? styles.shadow : ""
             }`}
           >
-            <div>
-              <span
-                ref={this.settingsRef}
-                className={`icon-options-vertical ${styles.settingsIcon}`}
-                style={settings.length === 0 ? { visibility: "hidden" } : {}}
-              />
-              <ul
-                className={`${styles.menuDropdown} ${
-                  this.state.showSettings ? styles.show : ""
-                }`}
-              >
-                {settings.map(({ label, url }) => (
-                  <li key={url}>
-                    <Link to={url}>{label}</Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <Link to="/" className={styles.appInfo}>
-              <img className={styles.appLogo} src={appLogoUrl} alt="logo" />
-              <span className={styles.appName}>{appName}</span>
-            </Link>
-          </span>
-          {loggedIn && loggedAs !== "GUEST" && loggedAs !== "EMPTY" && (
-            <nav className="top-bar-left">
-              <ul className="menu">
-                <Communities
-                  communities={communities}
-                  currentCommunity={currentCommunity}
-                  onCommunityChange={onCommunityChange}
-                  lng={lng}
+            {auth.navCommunity && auth.user && (
+              <div>
+                <span
+                  ref={this.settingsRef}
+                  className={`icon-options-vertical ${styles.settingsIcon}`}
+                  style={settings.length === 0 ? { visibility: "hidden" } : {}}
+                  onClick={this.handleShowSettings.bind(this)}
                 />
-              </ul>
-            </nav>
+                <ul
+                  className={`${styles.menuDropdown} ${
+                    this.state.showSettings ? styles.show : ""
+                  }`}
+                >
+                  {settings.map(({ label, url }) => (
+                    <li key={url}>
+                      <a href={url}>{label}</a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            <img className={styles.appLogo} src={appLogoUrl} alt="logo" />
+            <div className={styles.appName}>{appName}</div>
+          </div>
+
+          {auth.user && (
+            <Communities
+              communities={auth.user.communities}
+              currentCommunity={auth.navCommunity}
+              lng={lng}
+              app={app}
+              onCommunityClick={(community) =>
+                this.props.onCommunityClick(community)
+              }
+            />
           )}
         </div>
-        {loggedIn ? this.renderLoggedIn() : this.renderLoggedOut()}
-      </header>
+      </>
+    );
+  }
+
+  render() {
+    const { auth, lng, menu } = this.props;
+    return (
+      <>
+        <header className={styles.header}>
+          {this.renderLeftSide()}
+          {!auth.user ? this.renderLoggedOut() : this.renderLoggedIn()}
+        </header>
+      </>
     );
   }
 }
-
-Header.propTypes = {
-  loggedIn: PropTypes.bool.isRequired,
-  loggedAs: PropTypes.string,
-  appName: PropTypes.string,
-  appLogoUrl: PropTypes.string,
-  avatarUrl: PropTypes.string,
-  firstName: PropTypes.string,
-  lastName: PropTypes.string,
-  profileUrl: PropTypes.string,
-  eboxUrl: PropTypes.string,
-  lng: PropTypes.oneOf(["fr", "nl", "en"]).isRequired,
-  onLanguageChange: PropTypes.func.isRequired,
-};
