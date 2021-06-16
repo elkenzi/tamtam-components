@@ -1,3 +1,6 @@
+@import "../../styles/variables";
+@import "~foundation-sites/scss/foundation";
+
 .modalOverlay {
   position: fixed;
   top: 0px;
@@ -40,6 +43,7 @@
   position: relative;
   top: 50%;
   width: 632px;
+  max-width: 90%;
   height: 307px;
   opacity: 0;
   background: #f8f9fa;
@@ -204,5 +208,13 @@
   cursor: not-allowed;
   &:hover {
     opacity: 1;
+  }
+}
+
+@include breakpoint(small only) {
+  .body,
+  .footer {
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 }

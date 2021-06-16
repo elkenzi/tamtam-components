@@ -5,7 +5,6 @@ import Apps from "./Apps";
 import MenuProfile from "./MenuProfile";
 import Communities from "./Communities";
 import Notifs from "./Notifs";
-import SubMenu from "./SubMenu";
 
 const I18N = {
   en: {

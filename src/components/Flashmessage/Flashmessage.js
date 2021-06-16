@@ -8,7 +8,7 @@ import classnames from "classnames";
   const [open, setOpen] = useState(openFlash);
 
   if(title){
-    title = "warning";
+    title = "error";
   }
 
   switch (status) {

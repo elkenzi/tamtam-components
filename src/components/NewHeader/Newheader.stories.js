@@ -5,7 +5,7 @@ import { withKnobs, text, boolean, select } from "@storybook/addon-knobs";
 import StoryRouter from "storybook-react-router";
 
 const App = {
-  appName: "webtools",
+  appName: "Blog",
   appLogoUrl: "https://s3.tamtam.pro/v2/apps/blog.png",
   appUrl: "https://blog.tamtam.pro/fr",
 };
@@ -147,11 +147,12 @@ const authLogin = {
         icon: "https://s3.tamtam.pro/v2/apps/payment.png",
         activated: true,
       },
+      
       {
-        code: "portal",
-        name: { fr: "Portal", en: "Portal", nl: "Portal" },
-        url: "https://portal.rc2.tamtam.pro/",
-        icon: "https://s3.tamtam.pro/v2/apps/portal.png",
+        code: "forumm",
+        name: { fr: "Forum", en: "Forum", nl: "Forum" },
+        url: "https://forum.rc2.tamtam.pro/",
+        icon: "https://s3.tamtam.pro/v2/apps/forum.png",
         activated: true,
       },
     ],
