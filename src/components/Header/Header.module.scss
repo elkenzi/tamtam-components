@@ -21,6 +21,8 @@
 
 .headerLeft {
   display: flex;
+  position: relative;
+  z-index: 105;
 }
 
 .headerRight {
@@ -288,7 +290,7 @@ nav {
   transition: all 0.2s ease-in-out;
   padding: 0 2rem 1rem;
   background: #fff;
-  z-index: 5;
+  z-index: 1005;
   width: 24rem;
 }
 
@@ -538,7 +540,7 @@ nav {
       opacity: 0;
       visibility: hidden;
       transition: 0.2s all ease-in-out;
-      z-index: 5;
+      z-index: 1005;
       cursor: default;
     }
   }
@@ -743,16 +745,10 @@ nav {
     .logout {
       padding: $spacing-xxs;
       text-align: center;
-
-      a {
-        color: $dodger-blue;
-        padding: 0;
-      }
+      color: $dodger-blue;
 
       &:hover {
-        a {
-          color: $curious-blue;
-        }
+        color: $curious-blue;
       }
     }
   }

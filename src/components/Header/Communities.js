@@ -4,7 +4,7 @@ import classnames from "classnames";
 
 export default class Communities extends Component {
   renderCommunities() {
-    const { communities, app } = this.props;
+    const { communities, app, lng, Link } = this.props;
     const { appUrl } = app;
 
     if (!communities || communities.length === 0) {
@@ -29,24 +29,40 @@ export default class Communities extends Component {
       } else if (clientName.length > 30) {
         clientName = clientName.substr(0, 30) + "...";
       }
-      clientsBlock.push(
-        <li
-          className={styles.menu__subChild}
-          key={`client-${communities[i].id}`}
-          onClick={() => this.props.onCommunityClick(communities[i])}
-        >
-          <a
-            href={`${appUrl}/community/${communities[i].name.replace(
-              /\s+/g,
-              "-"
-            )}/${communities[i].id}`}
-            activeClassName="active"
+
+      if (Link) {
+        clientsBlock.push(
+          <li
+            className={styles.menu__subChild}
+            key={`client-${communities[i].id}`}
+            onClick={() => this.props.onCommunityClick(communities[i])}
           >
-            {logoBlock}
-            {clientName}
-          </a>
-        </li>
-      );
+            <Link
+              href={`${lng}/community/${communities[i].url}/${communities[i].id}`}
+            >
+              <a>
+                {logoBlock}
+                {clientName}
+              </a>
+            </Link>
+          </li>
+        );
+      } else {
+        clientsBlock.push(
+          <li
+            className={styles.menu__subChild}
+            key={`client-${communities[i].id}`}
+            onClick={() => this.props.onCommunityClick(communities[i])}
+          >
+            <a
+              href={`${appUrl}/community/${communities[i].url}/${communities[i].id}`}
+            >
+              {logoBlock}
+              {clientName}
+            </a>
+          </li>
+        );
+      }
     }
 
     return (

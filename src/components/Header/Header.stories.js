@@ -328,7 +328,7 @@ export const HeaderLogedIn = () => (
     menu={menu}
     lng={select("language", ["fr", "nl", "en"], "fr")}
     onLanguageChange={(langue) => alert(langue)}
-    onLogoutClick={() => alert("Logout")}
+    onLogoutClick={(e) => console.log("Logout", e)}
     onSearchClick={() => alert("searching")}
     onCommunityClick={(community) => alert(community)}
     notifications={notifications}

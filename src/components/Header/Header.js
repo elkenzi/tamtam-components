@@ -29,9 +29,6 @@ export class Header extends Component {
   _Search() {
     this.props.onSearchClick();
   }
-  _Logout() {
-    this.props.onLogoutClick();
-  }
 
   handleShowSettings = () => {
     const { showSettings } = this.state;
@@ -88,7 +85,7 @@ export class Header extends Component {
             user={user}
             lng={lng}
             rightIcons={rightIcons}
-            onLogoutClick={this._Logout.bind(this)}
+            onLogoutClick={(e) => this.props.onLogoutClick(e)}
             onLanguageChange={(language) =>
               this.props.onLanguageChange(language)
             }
@@ -127,7 +124,7 @@ export class Header extends Component {
   }
 
   renderLeftSide() {
-    const { app, settings, lng, auth } = this.props;
+    const { app, settings, lng, auth, Link, isPrivateBlog } = this.props;
     const { appName, appLogoUrl } = app;
     return (
       <>
@@ -152,7 +149,13 @@ export class Header extends Component {
                 >
                   {settings.map(({ label, url }) => (
                     <li key={url}>
-                      <a href={url}>{label}</a>
+                      {Link ? (
+                        <Link href={url}>
+                          <a>{label}</a>
+                        </Link>
+                      ) : (
+                        <a href={url}>{label}</a>
+                      )}
                     </li>
                   ))}
                 </ul>
@@ -160,7 +163,7 @@ export class Header extends Component {
             )}
 
             <img className={styles.appLogo} src={appLogoUrl} alt="logo" />
-            <div className={styles.appName}>{appName}</div>
+            {!isPrivateBlog && <div className={styles.appName}>{appName}</div>}
           </div>
 
           {auth.user && (
@@ -169,6 +172,7 @@ export class Header extends Component {
               currentCommunity={auth.navCommunity}
               lng={lng}
               app={app}
+              Link={Link}
               onCommunityClick={(community) =>
                 this.props.onCommunityClick(community)
               }

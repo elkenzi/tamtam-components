@@ -19,8 +19,9 @@ const I18N = {
 };
 
 class MenuProfile extends Component {
-  _Logout() {
-    this.props.onLogoutClick();
+  _Logout(e) {
+    console.log("mmm");
+    this.props.onLogoutClick(e);
   }
 
   renderContactSocialNetworkBlock(contactSocialNetworks, socialNetworkName) {
@@ -132,10 +133,11 @@ class MenuProfile extends Component {
                 )}
               </ul>
             </li>
-            <li className={styles.logout} onClick={this._Logout.bind(this)}>
-              <a href="" className="text-center">
-                {I18N[lng]["logout"]}
-              </a>
+            <li
+              className={styles.logout}
+              onClick={(e) => this.props.onLogoutClick(e)}
+            >
+              {I18N[lng]["logout"]}
             </li>
           </ul>
         </li>
