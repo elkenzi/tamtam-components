@@ -302,7 +302,7 @@ nav {
 }
 
 .menu {
-  margin: 0 1.3rem;
+  margin: 0 1.3rem !important;
   align-items: center;
 
   .menuImg {
@@ -415,10 +415,9 @@ nav {
 
 .buttons {
   display: flex;
-  margin: 0;
+  margin: 0 3px 0 0 !important;
   align-items: center;
   font-size: 1.5rem;
-  margin-right: 3px;
 
   .notif {
     .menuDropdown,
@@ -981,10 +980,8 @@ nav {
 .menu__community {
   display: flex;
   align-items: center;
-
-  p {
-    margin: 0;
-  }
+  font-size: 0.8rem;
+  font-weight: 500;
 }
 .menu__community,
 .menu__category {
@@ -1060,6 +1057,7 @@ nav {
 @include breakpoint(small only) {
   .header {
     padding: 0;
+    height: 100%;
   }
   .menu__community {
     overflow: scroll;
