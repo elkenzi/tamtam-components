@@ -981,6 +981,10 @@ nav {
 .menu__community {
   display: flex;
   align-items: center;
+
+  p {
+    margin: 0;
+  }
 }
 .menu__community,
 .menu__category {

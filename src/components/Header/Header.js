@@ -33,13 +33,11 @@ export class Header extends Component {
   handleShowSettings = () => {
     const { showSettings } = this.state;
     this.setState({ showSettings: !showSettings });
-    //alert(this.state.showSettings);
   };
 
   renderLoggedIn() {
     const { rightIcons, auth, lng, notifications } = this.props;
     const { navCommunity, user } = auth;
-    const { appsState } = navCommunity;
 
     return (
       <>
@@ -72,7 +70,7 @@ export class Header extends Component {
               />
             )}
 
-            {appsState && <Apps apps={appsState} />}
+            {navCommunity && <Apps apps={navCommunity.appsState} />}
 
             {rightIcons.search.activated && (
               <div onClick={this._Search.bind(this)}>
