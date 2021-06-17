@@ -72,7 +72,7 @@ export class Header extends Component {
               />
             )}
 
-            <Apps apps={appsState} />
+            {appsState && <Apps apps={appsState} />}
 
             {rightIcons.search.activated && (
               <div onClick={this._Search.bind(this)}>
