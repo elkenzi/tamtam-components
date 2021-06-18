@@ -33,6 +33,8 @@ export class SubMenu extends Component {
   };
 
   renderItemMenuWithSubmenu = (item) => {
+    const { Link } = this.props;
+
     return (
       <li className={style.dropdown} key={`smenu-${Math.random()}`}>
         <a href={item.url} className={style.item}>
@@ -42,17 +44,23 @@ export class SubMenu extends Component {
         </a>
         <div>
           <ul>{this.renderSubmenu(item.submenu)}</ul>
-          {item.more && (
-            <a href={item.more.url} className={style.more}>
-              {item.more.title}
-            </a>
-          )}
+          {item.more &&
+            (Link ? (
+              <Link href={item.more.url}>
+                <a className={style.more}>{item.more.title}</a>
+              </Link>
+            ) : (
+              <a href={item.more.url} className={style.more}>
+                {item.more.title}
+              </a>
+            ))}
         </div>
       </li>
     );
   };
 
   renderSubmenu = (data) => {
+    const { Link } = this.props;
     return data.map((item) => (
       <li key={`smenu-${Math.random()}`}>
         <div
@@ -64,9 +72,14 @@ export class SubMenu extends Component {
             <img className={style.avatar} src={item.avatarUrl} />
           )}
           {item.iconUrl && <img src={item.iconUrl} />}
-          <a href={item.url} className="title">
-            {item.title}
-          </a>
+
+          {Link ? (
+            <Link href={item.url}>
+              <a>{item.title}</a>
+            </Link>
+          ) : (
+            <a href={item.url}>{item.title} </a>
+          )}
         </div>
       </li>
     ));
