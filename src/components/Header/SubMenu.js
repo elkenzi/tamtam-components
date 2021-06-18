@@ -98,6 +98,7 @@ export class SubMenu extends Component {
             })}
           </ul>
         </nav>
+        <div className={style.content}>{this.props.children}</div>
       </div>
     );
   }

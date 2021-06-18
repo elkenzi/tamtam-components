@@ -351,6 +351,8 @@ export const SubMenuHeader = () => (
       lng={select("language", ["fr", "nl", "en"], "fr")}
       menu={menu}
       currentCommunity={authLogin.navCommunity}
-    />
+    >
+      <div>Content</div>
+    </SubMenu>
   </div>
 );
