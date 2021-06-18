@@ -1,6 +1,6 @@
 import React from "react";
 import { Header } from "./Header";
-import SubMenu from "./SubMenu";
+import { SubMenu } from "./SubMenu";
 import { withKnobs, text, boolean, select } from "@storybook/addon-knobs";
 import StoryRouter from "storybook-react-router";
 
@@ -310,6 +310,7 @@ const menu = [
     url: `/library`,
     iconUrl: "/img/icons/categories.svg",
     community: true,
+    className: "hide-for-small-only",
   },
 ];
 
@@ -345,9 +346,11 @@ export const HeaderLogedOut = () => (
 );
 
 export const SubMenuHeader = () => (
-  <SubMenu
-    lng={select("language", ["fr", "nl", "en"], "fr")}
-    menu={menu}
-    currentCommunity={authLogin.navCommunity}
-  />
+  <div style={{ padding: "3rem" }}>
+    <SubMenu
+      lng={select("language", ["fr", "nl", "en"], "fr")}
+      menu={menu}
+      currentCommunity={authLogin.navCommunity}
+    />
+  </div>
 );

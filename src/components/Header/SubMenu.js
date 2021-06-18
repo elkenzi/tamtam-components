@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import style from "./SubMenu.module.scss";
 
-class SubMenu extends Component {
+export class SubMenu extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -14,12 +14,20 @@ class SubMenu extends Component {
   };
 
   renderItemMenu = (item) => {
+    const { Link } = this.props;
     return (
-      <li key={`smenu-${Math.random()}`}>
-        <div className={style.item}>
-          <img src={item.iconUrl} />
+      <li
+        key={`smenu-${Math.random()}`}
+        className={`${style.item} ${item.className ? item.className : ""} `}
+      >
+        <img src={item.iconUrl} />
+        {Link ? (
+          <Link href={item.url}>
+            <a>{item.title}</a>
+          </Link>
+        ) : (
           <a href={item.url}>{item.title} </a>
-        </div>
+        )}
       </li>
     );
   };
@@ -69,9 +77,17 @@ class SubMenu extends Component {
     return (
       <div className={this.state.isVertical ? style.vertical : ""}>
         <nav className={style.container}>
-          <div className={style.control} onClick={() => this.handleOnClick()}>
-            <i className="icon icon-menu"></i>
-          </div>
+          <span className={style.control} onClick={() => this.handleOnClick()}>
+            {this.state.isVertical ? (
+              <>
+                <i className="icon icon-menu hide-for-small-only"></i>
+                <i className="icon-sb-close show-for-small-only"></i>
+              </>
+            ) : (
+              <i className="icon icon-menu"></i>
+            )}
+          </span>
+
           <ul className={style.menu}>
             {menu.map((item) => {
               if (!item.community || (item.community && currentCommunity))
@@ -86,5 +102,3 @@ class SubMenu extends Component {
     );
   }
 }
-
-export default SubMenu;
