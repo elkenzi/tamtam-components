@@ -6,9 +6,9 @@ $transitions: ();
   $transitions: append($transitions, #{$i * 0.1}s all ease-in-out);
 }
 
-$h-font-family: "Montserrat";
-$main-header-font: Roboto, "Segoe UI", Helvetica, sans-serif;
-$main-body-font: Roboto, "Segoe UI", Helvetica, sans-serif;
+$h-font-family: Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
+$main-header-font: Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
+$main-body-font: Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
 $h-color: rgb(63, 63, 63);
 
 $main-color: #8d8d8d;
