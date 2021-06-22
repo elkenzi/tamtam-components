@@ -95,7 +95,7 @@ export class Header extends Component {
 
   renderLoggedOut() {
     const { lng, app } = this.props;
-    const { appUrl } = app;
+    const { appUrl, homeUrl } = app;
     const languages = ["fr", "nl", "en"];
 
     return (
@@ -111,10 +111,7 @@ export class Header extends Component {
             </li>
           ))}
         </ul>
-        <a
-          className={styles.signIn}
-          href={`https://one.tamtam.pro/?goto=${appUrl}`}
-        >
+        <a className={styles.signIn} href={`${homeUrl}/?goto=${appUrl}`}>
           {I18N[lng]["signIn"]}
         </a>
       </div>
@@ -123,7 +120,7 @@ export class Header extends Component {
 
   renderLeftSide() {
     const { app, settings, lng, auth, Link, isPrivateBlog } = this.props;
-    const { appName, appLogoUrl } = app;
+    const { appName, appLogoUrl, appUrl } = app;
     return (
       <>
         <div className={styles.headerLeft}>
@@ -160,8 +157,23 @@ export class Header extends Component {
               </div>
             )}
 
-            <img className={styles.appLogo} src={appLogoUrl} alt="logo" />
-            {!isPrivateBlog && <div className={styles.appName}>{appName}</div>}
+            {Link ? (
+              <Link to={appUrl} className={styles.appInfo}>
+                <a>
+                  <img className={styles.appLogo} src={appLogoUrl} alt="logo" />
+                  {!isPrivateBlog && (
+                    <span className={styles.appName}>{appName}</span>
+                  )}
+                </a>
+              </Link>
+            ) : (
+              <a href={appUrl} className={styles.appInfo}>
+                <img className={styles.appLogo} src={appLogoUrl} alt="logo" />
+                {!isPrivateBlog && (
+                  <span className={styles.appName}>{appName}</span>
+                )}
+              </a>
+            )}
           </div>
 
           {auth.user && (

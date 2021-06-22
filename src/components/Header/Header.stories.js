@@ -8,6 +8,7 @@ const App = {
   appName: "Blog",
   appLogoUrl: "https://s3.tamtam.pro/v2/apps/blog.png",
   appUrl: "https://blog.tamtam.pro/fr",
+  homeUrl: "https://one.tamtam.pro",
 };
 
 const rightIcons = {
