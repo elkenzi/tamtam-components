@@ -158,7 +158,7 @@ export class Header extends Component {
             )}
 
             {Link ? (
-              <Link to={appUrl} className={styles.appInfo}>
+              <Link href={appUrl} className={styles.appInfo}>
                 <a>
                   <img className={styles.appLogo} src={appLogoUrl} alt="logo" />
                   {!isPrivateBlog && (
