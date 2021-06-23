@@ -38,7 +38,7 @@ export default class Communities extends Component {
             onClick={() => this.props.onCommunityClick(communities[i])}
           >
             <Link
-              href={`${lng}/community/${communities[i].url}/${communities[i].id}`}
+              href={`/${lng}/community/${communities[i].url}/${communities[i].id}`}
             >
               <a>
                 {logoBlock}
