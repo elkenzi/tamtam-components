@@ -183,9 +183,6 @@ export class Header extends Component {
               lng={lng}
               app={app}
               Link={Link}
-              onCommunityClick={(community) =>
-                this.props.onCommunityClick(community)
-              }
             />
           )}
         </div>

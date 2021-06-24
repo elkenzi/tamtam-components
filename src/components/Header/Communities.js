@@ -35,7 +35,6 @@ export default class Communities extends Component {
           <li
             className={styles.menu__subChild}
             key={`client-${communities[i].id}`}
-            onClick={() => this.props.onCommunityClick(communities[i])}
           >
             <Link
               href={`/${lng}/community/${communities[i].url}/${communities[i].id}`}
@@ -52,7 +51,6 @@ export default class Communities extends Component {
           <li
             className={styles.menu__subChild}
             key={`client-${communities[i].id}`}
-            onClick={() => this.props.onCommunityClick(communities[i])}
           >
             <a
               href={`${appUrl}/community/${communities[i].url}/${communities[i].id}`}
