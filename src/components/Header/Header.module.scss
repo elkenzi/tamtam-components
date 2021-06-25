@@ -1059,19 +1059,19 @@ nav {
 }
 
 @include breakpoint(small only) {
-  .menu__community {
-    overflow: scroll;
-  }
+  // .menu__community {
+  //   overflow: scroll;
+  // }
   .menu__hasChild {
     width: 40%;
     position: inherit;
     &.menu__community {
       .menu__dropdown {
         width: 100%;
-        top: calc(100% + 3rem);
+        top: 100%;
       }
       .menu__subChild {
-        height: 160px;
+        height: 140px;
         overflow: scroll;
         border-bottom: 0px;
         border-top: 1px solid rgba(44, 43, 63, 0.1);

@@ -200,6 +200,28 @@ const authLogin = {
         avatarUrl:
           "https://s3.tamtam.pro/v2/storage/media/IMAGE/34/AVATAR_00e0170bb5fc8a8cae3fd79abdc36c943669673b.png",
       },
+      {
+        id: 8,
+        name:
+          "Instituut van de Accountants en de Belastingconsulenten - Institut des Experts-comptables et des Conseils fiscaux",
+        abbreviation: "IEC-IAB",
+        avatarUrl:
+          "https://s3.tamtam.pro/v2/storage/media/IMAGE/2753/AVATAR_a726d59d13c723f15343ae75ead939fdd1f0895f.png",
+      },
+      {
+        id: 9,
+        name: "Forum For The Future",
+        abbreviation: "F.F.F.",
+        avatarUrl:
+          "https://s3.tamtam.pro/v2/storage/media/IMAGE/2174/AVATAR_a55cc7155830b08e45678b3bc4ed02f3e190fc96.png",
+      },
+      {
+        id: 4,
+        name: "DEG & PARTNERS CONSULTING COMPANY",
+        abbreviation: "Deg & Partners",
+        avatarUrl:
+          "https://s3.tamtam.pro/v2/storage/media/IMAGE/34/AVATAR_00e0170bb5fc8a8cae3fd79abdc36c943669673b.png",
+      },
     ],
   },
 };
