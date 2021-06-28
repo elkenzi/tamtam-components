@@ -91,7 +91,7 @@
   opacity: 0;
   visibility: hidden;
   transition: 0.2s all ease-in-out;
-  z-index: 5;
+  z-index: 1005;
   cursor: default;
 }
 
@@ -1062,10 +1062,17 @@ nav {
   // .menu__community {
   //   overflow: scroll;
   // }
+  .menuLogo {
+    width: 50%;
+  }
   .menu__hasChild {
-    width: 40%;
+    width: 46%;
     position: inherit;
+
     &.menu__community {
+      .menu__link {
+        font-size: 0.9rem;
+      }
       .menu__dropdown {
         width: 100%;
         top: 100%;
