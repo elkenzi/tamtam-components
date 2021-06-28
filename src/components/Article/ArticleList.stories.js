@@ -11,11 +11,7 @@ const articles = jsonData.data;
 export default {
   title: "ArticleList",
   component: ArticleList,
-  decorators: [
-    StoryRouter(),
-    (story) => <div style={{ padding: "3rem" }}>{story()}</div>,
-    withKnobs,
-  ],
+  decorators: [StoryRouter(), (story) => <div>{story()}</div>, withKnobs],
 };
 const dispositions = [
   "default",

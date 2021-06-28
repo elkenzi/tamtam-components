@@ -550,10 +550,18 @@
     .row {
       flex-direction: column;
     }
+    .contentImg {
+      height: 216px;
+    }
     .col6 {
       width: 100%;
-      height: 216px;
-      overflow: scroll;
+    }
+  }
+
+  .articleTemplate2,
+  .articleTemplate4 {
+    .content {
+      height: 100%;
     }
   }
 
