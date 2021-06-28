@@ -553,6 +553,14 @@
     .col6 {
       width: 100%;
       height: 216px;
+      overflow: scroll;
     }
+  }
+
+  .article,
+  .articleTemplate2,
+  .articleTemplate3,
+  .articleTemplate4 {
+    margin-bottom: 1.625rem;
   }
 }

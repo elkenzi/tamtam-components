@@ -19,15 +19,16 @@
 
 @include breakpoint(small only) {
   .articleList1 {
+    margin-bottom: 0;
     .articleTpl1 {
       padding-left: 0;
-      margin-bottom: 1.625rem;
+      // margin-bottom: 1.625rem;
     }
   }
 
-  .articleTpl2 {
-    > div {
-      margin-top: 1.625rem;
-    }
-  }
+  // .articleTpl2 {
+  //   > div {
+  //     margin-top: 1.625rem;
+  //   }
+  // }
 }
