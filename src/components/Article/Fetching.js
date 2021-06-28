@@ -41,7 +41,7 @@ export const Fetching = (props) => {
 
   const renderType3 = () => {
     return (
-      <div>
+      <div className={`${styles.articleTemplate3} ${size ? styles[size] : ""}`}>
         {renderAvatar()}
         <div className={styles.row}>
           <div className={`${styles.col6} ${styles.contentImg}`}>
