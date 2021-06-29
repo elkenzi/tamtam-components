@@ -133,7 +133,7 @@ export class Header extends Component {
               <div>
                 <span
                   ref={this.settingsRef}
-                  className={`icon-options-vertical ${styles.settingsIcon}`}
+                  className={`icon-sb-more-vertical ${styles.settingsIcon}`}
                   style={settings.length === 0 ? { visibility: "hidden" } : {}}
                   onClick={this.handleShowSettings.bind(this)}
                 />

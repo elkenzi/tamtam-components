@@ -4,19 +4,38 @@ import classnames from "classnames";
 import IconLoader from "../Icons/IconLoader";
 
 class NewButton extends Component {
-render(){
-  const {inProcess ,variant="primary",children,disabled} = this.props;
+  render() {
+    const { inProcess, variant = "primary", children, disabled } = this.props;
 
-  
-      return (
-           <button className={classnames(styles.button, styles[variant], disabled && styles.disabled)} onClick={()=>this.props.onClick()}>
-            { inProcess ? 
-            ( <IconLoader/>) : (<div>{children} {variant=="showmore" && <i className={classnames("icon icon-arrow-down",styles.showmoreicon)}> </i>}  </div>)}
-
-            </button>
-        );
+    return (
+      <button
+        className={classnames(
+          styles.button,
+          styles[variant],
+          disabled && styles.disabled
+        )}
+        onClick={() => this.props.onClick()}
+      >
+        {inProcess ? (
+          <IconLoader />
+        ) : (
+          <div>
+            {children}{" "}
+            {variant == "showmore" && (
+              <i
+                className={classnames(
+                  "icon-sb-chevron-down",
+                  styles.showmoreicon
+                )}
+              >
+                {" "}
+              </i>
+            )}{" "}
+          </div>
+        )}
+      </button>
+    );
   }
-    
-  };
+}
 
 export default NewButton;

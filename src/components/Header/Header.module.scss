@@ -204,7 +204,8 @@ nav {
 
   .settingsIcon {
     color: $pickled-bluewood;
-    padding: 20px 20px 16px 16px;
+    padding: 20px 16px 16px 16px;
+    font-size: 1.5rem;
   }
 
   img {
@@ -942,9 +943,6 @@ nav {
         align-items: center;
         justify-content: center;
       }
-    }
-    .menu__dropdown {
-      // width: 15rem;
     }
   }
   .menu__dropdown {

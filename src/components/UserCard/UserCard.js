@@ -169,7 +169,7 @@ export class UserCard extends Component {
             style={{ backgroundImage: `url(${logoPath})` }}
           ></div>
         ) : (
-          <i className="icon icon-briefcase"></i>
+          <i className="icon-sb-briefcase"></i>
         )}
       </div>
     );

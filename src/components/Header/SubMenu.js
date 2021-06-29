@@ -40,7 +40,7 @@ export class SubMenu extends Component {
         <a href={item.url} className={style.item}>
           <img src={item.iconUrl} />
           <a className={style.title}>{item.title}</a>
-          <i className="icon icon-arrow-down"></i>
+          <i className="icon-sb-chevron-down"></i>
         </a>
         <div>
           <ul>{this.renderSubmenu(item.submenu)}</ul>
@@ -93,11 +93,11 @@ export class SubMenu extends Component {
           <span className={style.control} onClick={() => this.handleOnClick()}>
             {this.state.isVertical ? (
               <>
-                <i className="icon icon-menu hide-for-small-only"></i>
+                <i className="icon-sb-menu hide-for-small-only"></i>
                 <i className="icon-sb-close show-for-small-only"></i>
               </>
             ) : (
-              <i className="icon icon-menu"></i>
+              <i className="icon-sb-menu"></i>
             )}
           </span>
 
