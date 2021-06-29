@@ -24,7 +24,7 @@ class NewButton extends Component {
             {variant == "showmore" && (
               <i
                 className={classnames(
-                  "icon-sb-chevron-down",
+                  "icon-sb-arrow-down",
                   styles.showmoreicon
                 )}
               >

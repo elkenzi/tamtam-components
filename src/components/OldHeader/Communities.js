@@ -85,7 +85,7 @@ export default class Communities extends Component {
       <li className={`${styles.menu__hasChild} ${styles.menu__community}`}>
         <span className={`${styles.menu__link}`} style={{ cursor: "pointer" }}>
           <span>{navText}</span>
-          <i className="icon-sb-chevron-down" />
+          <i className="icon-sb-arrow-down" />
         </span>
         {this.renderCommunities()}
       </li>

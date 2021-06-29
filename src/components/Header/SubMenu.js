@@ -40,7 +40,7 @@ export class SubMenu extends Component {
         <a href={item.url} className={style.item}>
           <img src={item.iconUrl} />
           <a className={style.title}>{item.title}</a>
-          <i className="icon-sb-chevron-down"></i>
+          <i className="icon-sb-arrow-down"></i>
         </a>
         <div>
           <ul>{this.renderSubmenu(item.submenu)}</ul>
