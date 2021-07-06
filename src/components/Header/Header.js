@@ -1,6 +1,8 @@
 import React, { Component } from "react";
+
 import styles from "./Header.module.scss";
 import MenuItem from "./MenuItem";
+import MenuLink from "./MenuLink";
 import Apps from "./Apps";
 import MenuProfile from "./MenuProfile";
 import Communities from "./Communities";
@@ -43,6 +45,14 @@ export class Header extends Component {
       <>
         <div className={styles.headerRight}>
           <ul className={`${styles.menu} ${styles.buttons}`}>
+            {rightIcons.backoffice.activated && (
+              <MenuLink
+                icon={rightIcons.backoffice.icon}
+                href={`${rightIcons.backoffice.url}`}
+              >
+                {rightIcons.backoffice.label}
+              </MenuLink>
+            )}
             {rightIcons.home.activated && (
               <MenuItem
                 icon={rightIcons.home.icon}
@@ -129,7 +139,7 @@ export class Header extends Component {
               this.state.showSettings ? styles.shadow : ""
             }`}
           >
-            {auth.navCommunity && auth.user && (
+            {auth.navCommunity && auth.user && settings.length > 0 && (
               <div>
                 <span
                   ref={this.settingsRef}
@@ -176,7 +186,7 @@ export class Header extends Component {
             )}
           </div>
 
-          {auth.user && (
+          {auth.user && auth.user.communities && (
             <Communities
               communities={auth.user.communities}
               currentCommunity={auth.navCommunity}

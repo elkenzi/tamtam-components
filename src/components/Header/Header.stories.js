@@ -35,6 +35,12 @@ const rightIcons = {
     activated: true,
     icon: "Notifs",
   },
+  backoffice: {
+    label: "Back office",
+    activated: true,
+    icon: "Settings",
+    url: "https://blog.tamtam.pro/fr",
+  },
 };
 
 const settings = [
@@ -348,7 +354,7 @@ export const HeaderLogedIn = () => (
     rightIcons={rightIcons}
     app={App}
     auth={authLogin}
-    settings={settings}
+    settings={[]}
     menu={menu}
     lng={select("language", ["fr", "nl", "en"], "fr")}
     onLanguageChange={(langue) => alert(langue)}
