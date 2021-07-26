@@ -35,6 +35,9 @@ const rightIcons = {
     activated: true,
     icon: "Notifs",
   },
+  apps: {
+    activated: true,
+  },
   backoffice: {
     label: "Back office",
     activated: true,

@@ -80,7 +80,9 @@ export class Header extends Component {
               />
             )}
 
-            {navCommunity && <Apps apps={navCommunity.appsState} />}
+            {rightIcons.apps?.activated && navCommunity && (
+              <Apps apps={navCommunity.appsState} />
+            )}
 
             {rightIcons.search.activated && (
               <div onClick={this._Search.bind(this)}>
