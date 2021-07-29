@@ -38,6 +38,10 @@ const rightIcons = {
   apps: {
     activated: true,
   },
+  faq: {
+    activated: true,
+    icon: "Help",
+  },
   backoffice: {
     label: "Back office",
     activated: true,
@@ -169,6 +173,7 @@ const authLogin = {
   },
 
   user: {
+    type: "ADMIN",
     firstName: "Emmanuel",
     lastName: "Degrève",
     mainEmail: "emmanuel.degreve@degandpartners.com",
@@ -365,6 +370,8 @@ export const HeaderLogedIn = () => (
     onSearchClick={() => alert("searching")}
     notifications={notifications}
     handleNotificationClick={() => alert("notif")}
+    handleNotificationEditClick={() => alert("Edit notif")}
+    onFaqClick={() => alert("FAQ")}
   />
 );
 export const HeaderLogedOut = () => (

@@ -7,18 +7,29 @@ const I18N = {
   en: {
     nothingToShow: "Nothing to show",
     notificationsOfUpdates: "Notifications of updates",
+    manage: "Manage",
   },
   fr: {
     nothingToShow: "Aucunes notification n'est diponible",
     notificationsOfUpdates: "Notifications de mises à jour",
+    manage: "Gérer",
   },
   nl: {
     nothingToShow: "Niets om te laten zien'",
     notificationsOfUpdates: "Meldingen van updates",
+    manage: "Beheren",
   },
 };
 
-export default function Notifs({ notifications, lng, onClick, rightIcon }) {
+export default function Notifs({
+  notifications,
+  lng,
+  auth,
+  handleOnClick,
+  handleEditClick,
+  rightIcon,
+}) {
+  const isAdmin = auth && auth.user?.type === "ADMIN" ? true : false;
   const renderNotifications = () => {
     const subject = `subject${lng.charAt(0).toUpperCase() + lng.slice(1)}`;
     if (notifications.length === 0) {
@@ -40,7 +51,7 @@ export default function Notifs({ notifications, lng, onClick, rightIcon }) {
         >
           <a
             href={notification.url || null}
-            onClick={() => onClick(notification.id)}
+            onClick={() => handleOnClick(notification.id)}
           >
             <div>{notification[subject]}</div>
             <div className={styles.infos}>{text}</div>
@@ -61,8 +72,20 @@ export default function Notifs({ notifications, lng, onClick, rightIcon }) {
       count={unreadNotifs.length}
     >
       <div className={styles.socialLinksWrapper}>
-        <div className={styles.socialLinksHeader}>
+        <div
+          className={`${styles.socialLinksHeader} ${
+            isAdmin ? styles.socialLinksHeader_admin : ""
+          }`}
+        >
           {I18N[lng]["notificationsOfUpdates"]}
+          {isAdmin && (
+            <span
+              className={styles.socialLinksHeader_edit}
+              onClick={() => handleEditClick()}
+            >
+              {I18N[lng]["manage"]}
+            </span>
+          )}
         </div>
         <div className={styles.socialLinksBody}>
           <ul className={styles.subMenuDropdown}>{renderNotifications()}</ul>

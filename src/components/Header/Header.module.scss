@@ -534,6 +534,15 @@ nav {
       font-family: $main-body-font;
       text-transform: none;
       font-weight: normal;
+
+      &_admin {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      &_edit {
+        cursor: pointer;
+      }
     }
 
     &Body {

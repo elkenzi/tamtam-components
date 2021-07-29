@@ -75,11 +75,17 @@ export class Header extends Component {
               <Notifs
                 notifications={notifications}
                 lng={lng}
+                auth={auth}
                 rightIcon={rightIcons.notifs}
-                onClick={() => this.props.handleNotificationClick()}
+                handleOnClick={() => this.props.handleNotificationClick()}
+                handleEditClick={() => this.props.handleNotificationEditClick()}
               />
             )}
-
+            {rightIcons.faq?.activated && (
+              <div onClick={() => this.props.onFaqClick()}>
+                <MenuItem icon={rightIcons.faq.icon} />
+              </div>
+            )}
             {rightIcons.apps?.activated && navCommunity && (
               <Apps apps={navCommunity.appsState} />
             )}
