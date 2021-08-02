@@ -45,7 +45,7 @@ export class Header extends Component {
       <>
         <div className={styles.headerRight}>
           <ul className={`${styles.menu} ${styles.buttons}`}>
-            {rightIcons.backoffice.activated && (
+            {rightIcons.backoffice?.activated && (
               <MenuLink
                 icon={rightIcons.backoffice.icon}
                 href={`${rightIcons.backoffice.url}`}
