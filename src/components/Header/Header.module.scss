@@ -538,10 +538,15 @@ nav {
       &_admin {
         display: flex;
         justify-content: space-between;
+        align-items: center;
       }
 
       &_edit {
         cursor: pointer;
+
+        i {
+          font-size: 18px;
+        }
       }
     }
 

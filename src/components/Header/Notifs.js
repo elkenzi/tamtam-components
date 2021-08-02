@@ -7,17 +7,14 @@ const I18N = {
   en: {
     nothingToShow: "Nothing to show",
     notificationsOfUpdates: "Notifications of updates",
-    manage: "Manage",
   },
   fr: {
     nothingToShow: "Aucunes notification n'est diponible",
     notificationsOfUpdates: "Notifications de mises à jour",
-    manage: "Gérer",
   },
   nl: {
     nothingToShow: "Niets om te laten zien'",
     notificationsOfUpdates: "Meldingen van updates",
-    manage: "Beheren",
   },
 };
 
@@ -83,7 +80,7 @@ export default function Notifs({
               className={styles.socialLinksHeader_edit}
               onClick={() => handleEditClick()}
             >
-              {I18N[lng]["manage"]}
+              <i className="icon-sb-settings"></i>
             </span>
           )}
         </div>
