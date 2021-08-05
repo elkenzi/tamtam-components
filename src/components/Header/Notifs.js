@@ -69,7 +69,10 @@ export default function Notifs({
   const handleOnClick = (notification) => {
     setCurrentNotif(notification);
     setIsOpen(true);
-    handleNotificationClick(notification);
+    if (!notification.isRead) {
+      handleNotificationClick(notification);
+      notification.isRead = true;
+    }
   };
 
   const unreadNotifs = notifications.filter((notif) => notif.isRead === false);
@@ -109,6 +112,7 @@ export default function Notifs({
         }}
         overlayClassName={styles.modalOverlay}
         closeTimeoutMS={200}
+        ariaHideApp={false}
       >
         <div className={`${styles.modal}`}>
           <div className={styles.modalHeader}>{currentNotif?.[title]}</div>
@@ -120,7 +124,12 @@ export default function Notifs({
           >
             <IconClose width={14} />
           </div>
-          <div className={styles.modalBody}>{currentNotif?.[content]}</div>
+          <div
+            className={styles.modalBody}
+            dangerouslySetInnerHTML={{
+              __html: currentNotif?.[content],
+            }}
+          ></div>
         </div>
       </Modal>
     </MenuItem>
