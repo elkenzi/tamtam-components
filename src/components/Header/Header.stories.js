@@ -249,11 +249,11 @@ const notifications = [
   {
     id: 5,
     appName: "SMS",
-    subjectEn: "Emailing Release Note 1.4",
-    subjectFr: "Notes de publication de la nouvelle version d’Emailing 1.4",
-    subjectNl: "Emailing Release Note 1.4",
+    titleEn: "Emailing Release Note 1.4",
+    titleFr: "Notes de publication de la nouvelle version d’Emailing 1.4",
+    titleNl: "Emailing Release Note 1.4",
     contentEn: "",
-    contentFr: "",
+    contentFr: "Contenu Notes de publication de la nouvelle version d’Emailing",
     contentNl: "",
     type: "RELEASE",
     isPersonal: 0,
@@ -263,16 +263,16 @@ const notifications = [
     createdAt: "2021-05-18 17:31:48",
     expiredAt: null,
     updatedAt: "18/05/2021",
-    status: "UNREAD",
+    isRead: false,
   },
   {
     id: 4,
     appName: "SMS",
-    subjectEn:
+    titleEn:
       "The approver organization has changed, now you can define multiple approval groups to better manage the validation of your campaigns.",
-    subjectFr:
+    titleFr:
       "Nouvelle fonctionnalité : L’organisation des approbateurs a changé, maintenant vous pouvez définir plusieurs groupes d’approbation pour mieux gérer la validation de vos campagnes.",
-    subjectNl:
+    titleNl:
       "Nieuwe functionaliteit : de organisatie van de goedkeurders is gewijzigd, nu kunt u meerdere goedkeuringsgroepen instellen om uw campagnevalidatie beter te beheren.",
     isPersonal: 0,
     isAuto: 0,
@@ -285,16 +285,16 @@ const notifications = [
     createdAt: "2021-04-26 08:54:36",
     expiredAt: null,
     updatedAt: "12/05/2021",
-    status: "UNREAD",
+    isRead: false,
   },
   {
     id: 2,
     appName: "SMS",
-    subjectEn:
+    titleEn:
       "Here is our new service e-Box, it will help you to find all the email you have received from your communities.",
-    subjectFr:
+    titleFr:
       "Découvrez e-Box la nouvelle fonctionnalité vous permettant d’accéder à votre boîte de réception et revoir tous les messages reçus de la part de vos communautés.",
-    subjectNl:
+    titleNl:
       "Ontdek e-Box de nieuwe functionaliteit waarmee je je inbox kunt openen en alle berichten kunt bekijken die je van je community's hebt ontvangen.",
     isPersonal: 0,
     isAuto: 0,
@@ -307,7 +307,7 @@ const notifications = [
     createdAt: "2021-01-24 14:58:41",
     expiredAt: null,
     updatedAt: "14/05/2021",
-    status: "READ",
+    isRead: true,
   },
 ];
 
@@ -369,7 +369,7 @@ export const HeaderLogedIn = () => (
     onLogoutClick={(e) => console.log("Logout", e)}
     onSearchClick={() => alert("searching")}
     notifications={notifications}
-    handleNotificationClick={() => alert("notif")}
+    handleNotificationClick={(e) => console.log("notif", e)}
     handleNotificationEditClick={() => alert("Edit notif")}
     onFaqClick={() => alert("FAQ")}
   />

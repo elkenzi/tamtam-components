@@ -1,6 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
+import Modal from "react-modal";
 import moment from "moment";
+import "moment/locale/fr";
+import "moment/locale/nl";
+
 import MenuItem from "./MenuItem";
+import IconClose from "../Icons/IconClose";
 import styles from "./Header.module.scss";
 
 const I18N = {
@@ -22,13 +27,16 @@ export default function Notifs({
   notifications,
   lng,
   auth,
-  handleOnClick,
+  handleNotificationClick,
   handleEditClick,
   rightIcon,
 }) {
+  const [isOpen, setIsOpen] = useState(false);
+  const [currentNotif, setCurrentNotif] = useState(null);
   const isAdmin = auth && auth.user?.type === "ADMIN" ? true : false;
+  const title = `title${lng.charAt(0).toUpperCase() + lng.slice(1)}`;
+  const content = `content${lng.charAt(0).toUpperCase() + lng.slice(1)}`;
   const renderNotifications = () => {
-    const subject = `subject${lng.charAt(0).toUpperCase() + lng.slice(1)}`;
     if (notifications.length === 0) {
       return <li className="p-b-m">{I18N[lng]["nothingToShow"]}</li>;
     }
@@ -44,13 +52,13 @@ export default function Notifs({
       return (
         <li
           key={notification.id}
-          className={notification.status === "UNREAD" ? "" : styles.notRead}
+          className={!notification.isRead ? "" : styles.notRead}
         >
           <a
             href={notification.url || null}
-            onClick={() => handleOnClick(notification.id)}
+            onClick={() => handleOnClick(notification)}
           >
-            <div>{notification[subject]}</div>
+            <div>{notification[title]}</div>
             <div className={styles.infos}>{text}</div>
           </a>
         </li>
@@ -58,9 +66,13 @@ export default function Notifs({
     });
   };
 
-  const unreadNotifs = notifications.filter(
-    (notif) => notif.status === "UNREAD"
-  );
+  const handleOnClick = (notification) => {
+    setCurrentNotif(notification);
+    setIsOpen(true);
+    handleNotificationClick(notification);
+  };
+
+  const unreadNotifs = notifications.filter((notif) => notif.isRead === false);
 
   return (
     <MenuItem
@@ -88,6 +100,29 @@ export default function Notifs({
           <ul className={styles.subMenuDropdown}>{renderNotifications()}</ul>
         </div>
       </div>
+      <Modal
+        isOpen={isOpen}
+        className={{
+          base: styles.modalContent,
+          afterOpen: styles.modalContentAfterOpen,
+          beforeClose: styles.modalContentBeforeClose,
+        }}
+        overlayClassName={styles.modalOverlay}
+        closeTimeoutMS={200}
+      >
+        <div className={`${styles.modal}`}>
+          <div className={styles.modalHeader}>{currentNotif?.[title]}</div>
+          <div
+            className={styles.modalClose}
+            onClick={() => {
+              setIsOpen(false);
+            }}
+          >
+            <IconClose width={14} />
+          </div>
+          <div className={styles.modalBody}>{currentNotif?.[content]}</div>
+        </div>
+      </Modal>
     </MenuItem>
   );
 }

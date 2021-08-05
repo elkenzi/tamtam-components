@@ -77,7 +77,9 @@ export class Header extends Component {
                 lng={lng}
                 auth={auth}
                 rightIcon={rightIcons.notifs}
-                handleOnClick={() => this.props.handleNotificationClick()}
+                handleNotificationClick={(e) =>
+                  this.props.handleNotificationClick(e)
+                }
                 handleEditClick={() => this.props.handleNotificationEditClick()}
               />
             )}
