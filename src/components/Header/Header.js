@@ -139,7 +139,15 @@ export class Header extends Component {
   }
 
   renderLeftSide() {
-    const { app, settings, lng, auth, Link, isPrivateBlog } = this.props;
+    const {
+      app,
+      settings,
+      lng,
+      auth,
+      Link,
+      isPrivateBlog,
+      onSelectAllCommunities,
+    } = this.props;
     const { appName, appLogoUrl, appUrl } = app;
     return (
       <>
@@ -203,6 +211,7 @@ export class Header extends Component {
               lng={lng}
               app={app}
               Link={Link}
+              onSelectAllCommunities={onSelectAllCommunities}
             />
           )}
         </div>

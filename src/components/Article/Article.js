@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import Slider from "react-slick";
 import moment from "moment";
+import "moment/locale/fr";
 
 import styles from "./Article.module.scss";
 import { AuthorAvatar } from "../Avatar/AuthorAvatar";
 import { Fetching } from "./Fetching";
 import { prepareArticle, addLandaSize } from "../../utils";
 import classnames from "classnames";
+
+const API_DATE_FORMAT = "YYYY-MM-DD HH:mm:ss";
 
 export const Article = ({
   article,
@@ -36,6 +39,7 @@ export const Article = ({
   if (isFetching) return <Fetching type={type} size={size} />;
   const data = prepareArticle(article, env, host);
   const {
+    id,
     title,
     url,
     shareUrl,
@@ -69,7 +73,7 @@ export const Article = ({
         <div className={styles.authorsContainer}>
           <ul>
             {authors.map((author) => (
-              <li key={`author-${author.id}`}>
+              <li key={`author-${id}-${author.id}`}>
                 <AuthorAvatar author={author} />
               </li>
             ))}
@@ -232,7 +236,9 @@ export const Article = ({
         <div className={styles.content}>
           {publishedAt && (
             <div className={styles.publishedAt}>
-              {moment(new Date(publishedAt)).format("DD MMM YYYY [at] hh:mm")}
+              {moment(publishedAt, API_DATE_FORMAT).format(
+                "DD MMM YYYY [at] hh:mm"
+              )}
             </div>
           )}
           <div
@@ -305,7 +311,7 @@ export const Article = ({
             <div className={styles.content}>
               {publishedAt && (
                 <div className={styles.publishedAt}>
-                  {moment(new Date(publishedAt)).format(
+                  {moment(publishedAt, API_DATE_FORMAT).format(
                     "DD MMM YYYY [at] hh:mm"
                   )}
                 </div>
@@ -349,7 +355,9 @@ export const Article = ({
         <div className={styles.articleContainer}>
           {publishedAt && (
             <div className={styles.publishedAt}>
-              {moment(new Date(publishedAt)).format("DD MMM YYYY [at] hh:mm")}
+              {moment(publishedAt, API_DATE_FORMAT).format(
+                "DD MMM YYYY [at] hh:mm"
+              )}
             </div>
           )}
 
@@ -428,7 +436,9 @@ export const Article = ({
         >
           {publishedAt && (
             <div className={styles.publishedAt}>
-              {moment(new Date(publishedAt)).format("DD MMM YYYY [at] hh:mm")}
+              {moment(publishedAt, API_DATE_FORMAT).format(
+                "DD MMM YYYY [at] hh:mm"
+              )}
             </div>
           )}
 

@@ -1001,6 +1001,19 @@ nav {
       font-weight: 500;
     }
   }
+  .menu__seeAll {
+    padding: 0.75rem 1.5rem;
+    text-align: right;
+    border-bottom: 1px solid rgba(44, 43, 63, 0.1);
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: rgba(44, 43, 63, 0.1);
+
+    a {
+      color: #95959f;
+      font-size: 0.7rem !important;
+    }
+  }
   &:hover .menu__dropdown {
     opacity: 1;
     visibility: visible;
@@ -1152,7 +1165,7 @@ nav {
   left: 0px;
   right: 0px;
   bottom: 0px;
-  z-index: 10;
+  z-index: 99999;
   background-color: rgba(41, 57, 77, 0.4);
 }
 

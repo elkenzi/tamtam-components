@@ -2,14 +2,32 @@ import React, { Component } from "react";
 import styles from "./Header.module.scss";
 import classnames from "classnames";
 
+const I18N = {
+  en: {
+    viewAll: "View all",
+  },
+  fr: {
+    viewAll: "Voir tout",
+  },
+  nl: {
+    viewAll: "Bekijk alles",
+  },
+};
+
 export default class Communities extends Component {
   renderCommunities() {
-    const { communities, app, lng, Link } = this.props;
+    const { communities, app, lng, Link, onSelectAllCommunities } = this.props;
     const { appUrl } = app;
 
     if (!communities || communities.length === 0) {
       return null;
     }
+
+    const handleViewAll = () => {
+      if (onSelectAllCommunities) {
+        onSelectAllCommunities();
+      }
+    };
 
     let clientsBlock = [];
 
@@ -58,6 +76,31 @@ export default class Communities extends Component {
               {logoBlock}
               {clientName}
             </a>
+          </li>
+        );
+      }
+    }
+    if (clientsBlock.length > 0) {
+      if (Link) {
+        clientsBlock.push(
+          <li
+            className={styles.menu__seeAll}
+            key={`c-all`}
+            onClick={handleViewAll}
+          >
+            <Link href={`/${lng}/communities`}>
+              <a>{I18N[lng]["viewAll"]}</a>
+            </Link>
+          </li>
+        );
+      } else {
+        clientsBlock.push(
+          <li
+            className={styles.menu__seeAll}
+            key={`c-all`}
+            onClick={handleViewAll}
+          >
+            <a href={`${appUrl}/communities`}>{I18N[lng]["viewAll"]}</a>
           </li>
         );
       }

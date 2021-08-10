@@ -372,6 +372,7 @@ export const HeaderLogedIn = () => (
     handleNotificationClick={(e) => console.log("notif", e)}
     handleNotificationEditClick={() => alert("Edit notif")}
     onFaqClick={() => alert("FAQ")}
+    onSelectAllCommunities={() => console.log("Communities select all")}
   />
 );
 export const HeaderLogedOut = () => (
