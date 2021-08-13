@@ -41,3 +41,42 @@ export const getUserNameForAvatar = (firstName = "", lastName = "") => {
     return extractFirstLettre(fName.concat(lName), 3);
   }
 };
+
+export const truncateWithHTML = (string, length, max = 10) => {
+  const noHTML = string.replace(/<[^>]*>/g, "");
+
+  // if the string does not need to be truncated
+  if (noHTML.length <= max) {
+    return string;
+  }
+
+  // if the string does not contains tags
+  if (noHTML.length === string.length) {
+    // add <span title=""> to allow complete string to appear on hover
+    return `<span title="${string}">${string.substring(0, max).trim()}…</span>`;
+  }
+
+  const substrings = string.split(/(<[^>]*>)/g).filter(Boolean);
+  // substrings = ["<span class='className'>","My long string that","</span>"," I want shorter","<span>"," but just a little bit","</span>"]
+
+  let count = 0;
+  let truncated = [];
+  for (let i = 0; i < substrings.length; i++) {
+    let substr = substrings[i];
+    // if the substring isn't an HTML tag
+    if (!substr.startsWith("<")) {
+      if (count > length) {
+        continue;
+      } else if (substr.length > length - count - 1) {
+        truncated.push(substr.substring(0, length - count - 1) + "…");
+      } else {
+        truncated.push(substr);
+      }
+      count += substr.length;
+    } else {
+      truncated.push(substr);
+    }
+  }
+
+  return `<span title="${noHTML}">${truncated.join("")}…</span>`;
+};

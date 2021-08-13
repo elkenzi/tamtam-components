@@ -80,7 +80,7 @@ export default class Communities extends Component {
         );
       }
     }
-    if (clientsBlock.length > 0) {
+    if (clientsBlock.length > 1) {
       if (Link) {
         clientsBlock.push(
           <li

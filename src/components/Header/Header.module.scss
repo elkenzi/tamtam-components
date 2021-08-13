@@ -600,6 +600,7 @@ nav {
       }
 
       & > li {
+        position: relative;
         line-height: 0.2rem;
         padding: $spacing-m $spacing-s $spacing-xxs;
         font-size: 12px;
@@ -622,14 +623,22 @@ nav {
           font-size: 0.75rem;
           line-height: 1.1rem;
           text-transform: none;
-          color: $pickled-bluewood;
         }
         &:last-child {
           border-bottom: none;
         }
 
+        &.read {
+          a {
+            color: #6d7f92 !important;
+          }
+        }
+
         &.notRead {
-          background: $athens-gray;
+          padding: 1.5rem 1.5rem 0.25rem;
+          a {
+            color: $pickled-bluewood;
+          }
         }
 
         .infos {
@@ -662,6 +671,22 @@ nav {
       border: 0;
     }
   }
+}
+
+.notifContent {
+  font-size: 12px;
+  line-height: 14px;
+  color: #6d7f92;
+}
+.notReadPoint {
+  position: absolute;
+  display: block;
+  right: 1rem;
+  top: 50%;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #2495e1;
 }
 
 .appsContainer {

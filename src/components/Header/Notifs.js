@@ -4,6 +4,7 @@ import moment from "moment";
 import "moment/locale/fr";
 import "moment/locale/nl";
 
+import { truncateWithHTML } from "../../utils";
 import MenuItem from "./MenuItem";
 import IconClose from "../Icons/IconClose";
 import styles from "./Header.module.scss";
@@ -52,15 +53,26 @@ export default function Notifs({
       return (
         <li
           key={notification.id}
-          className={!notification.isRead ? "" : styles.notRead}
+          className={notification.isRead ? styles.read : styles.notRead}
         >
           <a
             href={notification.url || null}
             onClick={() => handleOnClick(notification)}
           >
             <div>{notification[title]}</div>
+            {notification[content] && (
+              <div
+                className={styles.notifContent}
+                dangerouslySetInnerHTML={{
+                  __html: truncateWithHTML(notification[content], 100),
+                }}
+              ></div>
+            )}
             <div className={styles.infos}>{text}</div>
           </a>
+          {!notification.isRead && (
+            <span className={styles.notReadPoint}></span>
+          )}
         </li>
       );
     });

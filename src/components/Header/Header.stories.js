@@ -253,7 +253,8 @@ const notifications = [
     titleFr: "Notes de publication de la nouvelle version d’Emailing 1.4",
     titleNl: "Emailing Release Note 1.4",
     contentEn: "",
-    contentFr: "Contenu Notes de publication de la nouvelle version d’Emailing",
+    contentFr:
+      "Contenu <b>Notes de publication</b> de la nouvelle version d’Emailing",
     contentNl: "",
     type: "RELEASE",
     isPersonal: 0,
