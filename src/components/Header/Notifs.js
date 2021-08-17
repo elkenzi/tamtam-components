@@ -87,7 +87,9 @@ export default function Notifs({
     }
   };
 
-  const unreadNotifs = notifications.filter((notif) => notif.isRead === false);
+  const unreadNotifs = notifications
+    ? notifications.filter((notif) => notif.isRead === false)
+    : [];
 
   return (
     <MenuItem
