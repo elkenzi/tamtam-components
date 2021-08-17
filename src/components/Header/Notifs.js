@@ -38,7 +38,7 @@ export default function Notifs({
   const title = `title${lng.charAt(0).toUpperCase() + lng.slice(1)}`;
   const content = `content${lng.charAt(0).toUpperCase() + lng.slice(1)}`;
   const renderNotifications = () => {
-    if (notifications.length === 0) {
+    if (!notifications || notifications?.length === 0) {
       return <li className="p-b-m">{I18N[lng]["nothingToShow"]}</li>;
     }
 
