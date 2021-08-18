@@ -48,7 +48,7 @@ class MenuProfile extends Component {
       return (
         <li className="social">
           <a href={`${snUrl}`} target="_blank">
-            <i className={`icon icon-social-${socialNetworkName}`} />
+            <i className={`icon-sb-${socialNetworkName}`} />
           </a>
         </li>
       );
