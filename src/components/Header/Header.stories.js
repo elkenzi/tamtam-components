@@ -9,6 +9,15 @@ const App = {
   appLogoUrl: "https://s3.tamtam.pro/v2/apps/blog.png",
   appUrl: "https://blog.tamtam.pro/fr",
   homeUrl: "https://one.tamtam.pro",
+  isPrivateBlog: false,
+};
+
+const AppPrivate = {
+  appName: "Blog",
+  appLogoUrl: "http://blog.degandpartners.com/img/deg2.png",
+  appUrl: "https://blog.tamtam.pro/fr",
+  homeUrl: "https://one.tamtam.pro",
+  isPrivateBlog: true,
 };
 
 const rightIcons = {
@@ -362,6 +371,24 @@ export const HeaderLogedIn = () => (
   <Header
     rightIcons={rightIcons}
     app={App}
+    auth={authLogin}
+    settings={[]}
+    menu={menu}
+    lng={select("language", ["fr", "nl", "en"], "fr")}
+    onLanguageChange={(langue) => alert(langue)}
+    onLogoutClick={(e) => console.log("Logout", e)}
+    onSearchClick={() => alert("searching")}
+    notifications={notifications}
+    handleNotificationClick={(e) => console.log("notif", e)}
+    handleNotificationEditClick={() => alert("Edit notif")}
+    onFaqClick={() => alert("FAQ")}
+    onSelectAllCommunities={() => console.log("Communities select all")}
+  />
+);
+export const HeaderPrivateBlogLogedIn = () => (
+  <Header
+    rightIcons={rightIcons}
+    app={AppPrivate}
     auth={authLogin}
     settings={[]}
     menu={menu}

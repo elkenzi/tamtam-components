@@ -145,10 +145,9 @@ export class Header extends Component {
       lng,
       auth,
       Link,
-      isPrivateBlog,
       onSelectAllCommunities,
     } = this.props;
-    const { appName, appLogoUrl, appUrl } = app;
+    const { appName, appLogoUrl, appUrl, isPrivateBlog } = app;
     return (
       <>
         <div className={styles.headerLeft}>
@@ -204,7 +203,7 @@ export class Header extends Component {
             )}
           </div>
 
-          {auth.user && auth.user.communities && (
+          {auth.user && auth.user.communities && !isPrivateBlog && (
             <Communities
               communities={auth.user.communities}
               currentCommunity={auth.navCommunity}
