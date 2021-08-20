@@ -66,7 +66,7 @@ export default function Notifs({
               <div
                 className={styles.notifContent}
                 dangerouslySetInnerHTML={{
-                  __html: introduction,
+                  __html: notification[introduction],
                 }}
               ></div>
             )}
