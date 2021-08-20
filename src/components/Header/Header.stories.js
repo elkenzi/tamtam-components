@@ -274,6 +274,10 @@ const notifications = [
     expiredAt: null,
     updatedAt: "18/05/2021",
     isRead: false,
+    introEn: "",
+    introFr:
+      "Contenu Notes de publication de la nouvelle version d’Emailing...",
+    introNl: "",
   },
   {
     id: 4,
@@ -296,6 +300,10 @@ const notifications = [
     expiredAt: null,
     updatedAt: "12/05/2021",
     isRead: false,
+    introEn: "",
+    introFr:
+      "Contenu Notes de publication de la nouvelle version d’Emailing...",
+    introNl: "",
   },
   {
     id: 2,
@@ -318,6 +326,10 @@ const notifications = [
     expiredAt: null,
     updatedAt: "14/05/2021",
     isRead: true,
+    introEn: "",
+    introFr:
+      "Contenu Notes de publication de la nouvelle version d’Emailing...",
+    introNl: "",
   },
 ];
 

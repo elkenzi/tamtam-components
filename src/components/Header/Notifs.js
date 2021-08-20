@@ -36,7 +36,9 @@ export default function Notifs({
   const [currentNotif, setCurrentNotif] = useState(null);
   const isAdmin = auth && auth.user?.type === "ADMIN" ? true : false;
   const title = `title${lng.charAt(0).toUpperCase() + lng.slice(1)}`;
+  const introduction = `intro${lng.charAt(0).toUpperCase() + lng.slice(1)}`;
   const content = `content${lng.charAt(0).toUpperCase() + lng.slice(1)}`;
+
   const renderNotifications = () => {
     if (!notifications || notifications?.length === 0) {
       return <li className="p-b-m">{I18N[lng]["nothingToShow"]}</li>;
@@ -60,11 +62,11 @@ export default function Notifs({
             onClick={() => handleOnClick(notification)}
           >
             <div>{notification[title]}</div>
-            {notification[content] && (
+            {notification[introduction] && (
               <div
                 className={styles.notifContent}
                 dangerouslySetInnerHTML={{
-                  __html: truncateWithHTML(notification[content], 100),
+                  __html: introduction,
                 }}
               ></div>
             )}
