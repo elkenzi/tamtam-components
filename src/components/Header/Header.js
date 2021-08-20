@@ -115,7 +115,7 @@ export class Header extends Component {
 
   renderLoggedOut() {
     const { lng, app } = this.props;
-    const { appUrl, homeUrl } = app;
+    const { appUrl, homeUrl, isPrivateBlog } = app;
     const languages = ["fr", "nl", "en"];
 
     return (
@@ -131,7 +131,14 @@ export class Header extends Component {
             </li>
           ))}
         </ul>
-        <a className={styles.signIn} href={`${homeUrl}/?goto=${appUrl}`}>
+        <a
+          className={styles.signIn}
+          href={
+            isPrivateBlog
+              ? `${homeUrl}/?gotoWithAuth=${appUrl}`
+              : `${homeUrl}/?goto=${appUrl}`
+          }
+        >
           {I18N[lng]["signIn"]}
         </a>
       </div>
